@@ -48,7 +48,7 @@ TBD
 | 7             | Case study.                          | TBD           | TBD           | TBD           |
 
 
-### Extras
+## Extras
 
 TBD
 
