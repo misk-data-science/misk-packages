@@ -1,0 +1,14 @@
+# Package Metadata {#metadata}
+
+- Dependencies (required vs dev)
+- Title / description
+- Author / contact info
+- bug reporting
+- license
+- versioning
+
+## R
+
+
+
+## Python

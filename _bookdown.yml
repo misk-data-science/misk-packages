@@ -1,0 +1,5 @@
+book_filename: "misk-packages"
+language:
+  ui:
+    chapter_name: "Chapter "
+delete_merged_file: true

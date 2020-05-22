@@ -1,0 +1,23 @@
+--- 
+title: "Delivering Data Science Products via Packages"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: bradleyboehmke/misk-packages
+description: "Creating R and Python packages to scale data science."
+---
+
+# Welcome
+
+Some introductory words...
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```

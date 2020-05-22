@@ -1,0 +1,11 @@
+# Introduction {#intro}
+
+Often, small scripts grow in usefulness...
+
+
+## Why is packaging important
+
+
+## When packaging might not be needed
+
+

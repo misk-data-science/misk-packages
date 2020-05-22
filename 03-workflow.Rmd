@@ -1,0 +1,16 @@
+# Development Workflow {#workflow}
+
+Discuss the basic developer workflow for packages...
+
+- virtual environments
+- TDD
+- adding functionality
+- documenting
+- running tests
+- etc.
+
+## R
+
+
+
+## Python

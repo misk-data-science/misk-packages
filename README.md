@@ -26,10 +26,10 @@ This module makes a few assumptions of your established knowledge regarding your
 
 | Assumptions                       | Resource      
 | --------------------------------- | ------------- |
-| You should be familiar with...    | [https://github.com/bradleyboehmke/misk-packages) | 
-| You should be familiar with...    | [https://github.com/bradleyboehmke/misk-packages) | 
-| You should be familiar with...    | [https://github.com/bradleyboehmke/misk-packages) | 
-| You should be familiar with...    | [https://github.com/bradleyboehmke/misk-packages) | 
+| You should be familiar with...    | [link](https://github.com/bradleyboehmke/misk-packages) | 
+| You should be familiar with...    | [link](https://github.com/bradleyboehmke/misk-packages) | 
+| You should be familiar with...    | [link](https://github.com/bradleyboehmke/misk-packages) | 
+| You should be familiar with...    | [link](https://github.com/bradleyboehmke/misk-packages) | 
 
 
 ## Schedule
