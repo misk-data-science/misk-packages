@@ -72,6 +72,7 @@
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
 <li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#why-is-packaging-important"><i class="fa fa-check"></i><b>2.1</b> Why is packaging important</a></li>
 <li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#when-packaging-might-not-be-needed"><i class="fa fa-check"></i><b>2.2</b> When packaging might not be needed</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#an-opinionated-approach"><i class="fa fa-check"></i><b>2.3</b> An opinionated approach</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="structure.html"><a href="structure.html"><i class="fa fa-check"></i><b>3</b> Package Structure</a><ul>
 <li class="chapter" data-level="3.1" data-path="structure.html"><a href="structure.html#r"><i class="fa fa-check"></i><b>3.1</b> R</a></li>
@@ -104,12 +105,58 @@
             <section class="normal" id="section-">
 <div id="intro" class="section level1">
 <h1><span class="header-section-number">Chapter 2</span> Introduction</h1>
-<p>Often, small scripts grow in usefulness…</p>
+<p>Often, small snippets of code grow in usefulness and importance, which creates a need to share and distribute their contents. R and Python libraries require <em>packaging</em>, otherwise distributing code becomes problematic and brittle. A package bundles together code, data, documentation, and tests, and is easy to share with others.</p>
+<div class="note">
+<p>
+People often use the terms “library” and “package” synonymously. Although there are some semantical differences between R and Python, here is how you can think of the two terms:
+</p>
+<ul>
+<li>
+<p>
+<strong>library</strong>: generally refers to source code that has been installed on an operating system in a centralized location and can be imported into a current session. When you use <code>pip list</code> (Python) or <code>installed.packages()</code> (R) you will see a list of <em>installed</em> packages, which we refer to as libraries. When you <code>import pkg</code> (Python) or <code>library(pkg)</code> (R) you are loading the <code>pkg</code> library into your current session for use.
+</p>
+</li>
+<li>
+<p>
+<strong>package</strong>: generally refers to source code that is bundled up in a way that a package manager can host. <a href="https://pypi.org/">PyPI</a> and <a href="https://cran.r-project.org/">CRAN</a> are the two primary public package managers for Python and R. When you <code>pip install pkg</code> (Python) or <code>install.packages(“pkg”)</code> (R) you are installing the <code>pkg</code> package from a package manager onto a computer.
+</p>
+</li>
+</ul>
+</div>
 <div id="why-is-packaging-important" class="section level2">
 <h2><span class="header-section-number">2.1</span> Why is packaging important</h2>
+<p>Why write a package?</p>
+<ul>
+<li><strong>To share with others</strong>: Bundling your code into a package makes it easy for other people to use it, because like you, they already know how to use packages. If your code is in a package, any R or Python user can easily download it, install it and learn how to use it.</li>
+<li><strong>To make processes reproducible</strong>: When certain code processes are repeated, rather than copy-n-pasting (error prone!) packaging helps to ensure the same procedures are executed in the same way. This leads to standardized tools for standardized conventions and can save you and others time.</li>
+<li><strong>To track changes</strong>: Packaging helps to formulize version changes of a project. Versioning allows developers a way to communicate the type of changes made to a project (i.e. bug fixes versus feature enhancement). It also allows users to “pin” a specific version that works for their project. For example, although a current package may have a version 3.2.1, your project depends on specific functionality provided in version 2.9.7. Pinning allows you to request and use that specific version.</li>
+<li><strong>To communicate with users</strong>: Beyond versioning, packaging helps with communication between developers and end-users. Detailed documentation helps the end-users implement the code, a change log can communcate the progression of a package over its versions, users can communicate to the developers regarding bugs they’ve found or suggested feature enhancements.</li>
+<li><strong>To provide reliability</strong>: Packaging helps to modularize code in a way that allows for, and simplifies, testing procedures. This means as your source code grows, or as you get feedback from end-users, so should your test suite grow to help improve reliability of the code base. This results in code that is reliable and trustworthy.</li>
+<li><strong>To deploy production work</strong>: You may have code that is never reused by others; however, the code is put into production to formalize the processesing and output of the code. Packaging your project is a great way to organize, maintain, and distribute your work into production.</li>
+</ul>
 </div>
 <div id="when-packaging-might-not-be-needed" class="section level2">
 <h2><span class="header-section-number">2.2</span> When packaging might not be needed</h2>
+<p>To be clear, it is not necessary to package your code to address all the bullets in the previous section; but it will definitely make them easier to achieve. However, there are times when writing a package is not necessary. For example:</p>
+<ul>
+<li><strong>Exploratory analysis</strong>: The exploratory phase of a project is very interactive and contains many unknowns. You may find yourself repeating some code, which may be a good time to write and reuse small functions. However, this is not the phase to start writing a package. It’s best to wait and see what results from your exploratory analysis. If there are steps in the process (i.e. data prep, model execution) that you later determine are common steps that will often be repeated in the future then a package may result from post-exploration project review.</li>
+<li><strong>One-off projects</strong>: Many times we perform one-off ad-hoc projects. Sometimes we may be able to abstract some steps in these projects that may be repeated but often these projects contain very unique steps that are not often repeated. You most likely will use packages in your analysis but writing a package based on a one-off project is rarely a good use of time.</li>
+<li><strong>Small scripts</strong>: Sometimes a simple R, Python, or Bash script can go a long way and serve your primary purpose. Small individual scripts can be easy to build, execute and orchestrate; however, if you notice this small script starting to grow in size and use then it’s time to start thinking of converting it to a package.</li>
+</ul>
+<div class="note">
+<p>
+Although the above type of work may not justify a package, it often still justifies good software engineering practices such as modularity and unit tests!
+</p>
+</div>
+</div>
+<div id="an-opinionated-approach" class="section level2">
+<h2><span class="header-section-number">2.3</span> An opinionated approach</h2>
+<p>It is important to understand that there are several approaches and strategies to writing packages. Even within a single language there are different ways to structure a package. Consequently, understand that this book demonstrates the best practices we have found for developing, maintaining, and distributing packages. Our goal is to provide you with a short runway to writing packages as quickly as possible while following commonly used best practices.</p>
+<p>As you write more packages you will begin to learn the lower-level details and alternative options. Do not shy away from these details as we highly recommend that you learn them. In fact, below are some additional resources that will take you to the official R and Python packaging documentation. Realize that the details in these documents can make them challenging to read. That is ok and to be expected. Our suggestion is to get the basics down, which we cover in this book, and slowly expand your knowledge base by writing more packages.</p>
+<ul>
+<li>R: <a href="https://cran.r-project.org/doc/manuals/R-exts.html#Creating-R-packages">Creating R Extensions</a></li>
+<li>Python: <a href="https://packaging.python.org/">Python Packaging User Guide</a></li>
+</ul>
 
 </div>
 </div>

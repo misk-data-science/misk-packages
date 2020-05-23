@@ -13,7 +13,7 @@ description: "Creating R and Python packages to scale data science."
 
 # Welcome
 
-Some introductory words...
+Packages are the fundamental units of reproducible R and Python code. They include reusable components, the documentation that describes how to use them, requirements to ensure the user can apply them and tests to ensure consistent and reliable functionality. In this book you’ll learn how to turn your code into packages so that you, your teammates, and others can easily download and use. Writing a package can seem overwhelming at first. So start with the basics and improve it over time. It doesn’t matter if your first version isn’t perfect as long as the next version is better.
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
