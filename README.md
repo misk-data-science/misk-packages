@@ -26,10 +26,10 @@ This module makes a few assumptions of your established knowledge regarding your
 
 | Assumptions                       | Resource      
 | --------------------------------- | ------------- |
-| You should be familiar with...    | [link](https://github.com/bradleyboehmke/misk-packages) | 
-| You should be familiar with...    | [link](https://github.com/bradleyboehmke/misk-packages) | 
-| You should be familiar with...    | [link](https://github.com/bradleyboehmke/misk-packages) | 
-| You should be familiar with...    | [link](https://github.com/bradleyboehmke/misk-packages) | 
+| You should be familiar with...    | [link](https://github.com/misk-data-science/misk-packages) | 
+| You should be familiar with...    | [link](https://github.com/misk-data-science/misk-packages) | 
+| You should be familiar with...    | [link](https://github.com/misk-data-science/misk-packages) | 
+| You should be familiar with...    | [link](https://github.com/misk-data-science/misk-packages) | 
 
 
 ## Schedule
@@ -39,8 +39,8 @@ TBD
 
 | Session       | Description                          | Reading(s)    | Python        | R             |
 | :-----------: | :----------------------------------- | :-----------: | :-----------: | :-----------: |
-| 1             | Introduction to packages             | Ch [1](https://bradleyboehmke.github.io/misk-packages/) & [2](https://bradleyboehmke.github.io/misk-packages/intro.html)      | NA            | NA            |
-| 2             | Package structure                    | Ch [3](https://bradleyboehmke.github.io/misk-packages/structure.html)     | TBD           | TBD           |
+| 1             | Introduction to packages             | Ch [1](https://github.com/misk-data-science/misk-packages/) & [2](https://github.com/misk-data-science/misk-packages/intro.html)      | NA            | NA            |
+| 2             | Package structure                    | Ch [3](https://github.com/misk-data-science/misk-packages/structure.html)     | TBD           | TBD           |
 | 3             | Package documentation                | TBD           | TBD           | TBD           |
 | 4             | Tests                                | TBD           | TBD           | TBD           |
 | 5             | Continuous integration and deployment | TBD           | TBD           | TBD           |
