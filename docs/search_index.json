@@ -1,0 +1,7 @@
+[
+["index.html", "Delivering Data Science Products via Packages Chapter 1 Welcome", " Delivering Data Science Products via Packages 2020-05-23 Chapter 1 Welcome Some introductory words… "],
+["intro.html", "Chapter 2 Introduction 2.1 Why is packaging important 2.2 When packaging might not be needed", " Chapter 2 Introduction Often, small scripts grow in usefulness… 2.1 Why is packaging important 2.2 When packaging might not be needed "],
+["structure.html", "Chapter 3 Package Structure 3.1 R 3.2 Python", " Chapter 3 Package Structure Discuss the basic structure of packages 3.1 R 3.2 Python "],
+["workflow.html", "Chapter 4 Development Workflow 4.1 R 4.2 Python", " Chapter 4 Development Workflow Discuss the basic developer workflow for packages… virtual environments TDD adding functionality documenting running tests etc. 4.1 R 4.2 Python "],
+["metadata.html", "Chapter 5 Package Metadata 5.1 R 5.2 Python", " Chapter 5 Package Metadata Dependencies (required vs dev) Title / description Author / contact info bug reporting license versioning 5.1 R 5.2 Python "]
+]

@@ -1,7 +1,9 @@
 bookdown::gitbook:
+  toc_depth: 4
   css: style.css
   config:
     toc:
+      collapse: section
       before: |
         <li><a href="./">Creating Packages</a></li>
     edit: https://github.com/bradleyboehmke/misk-packages/edit/master/%s
