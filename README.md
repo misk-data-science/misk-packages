@@ -37,15 +37,15 @@ This module makes a few assumptions of your established knowledge regarding your
 TBD
 
 
-| Session       | Description                          | Reading(s)    | Python        | R             |
-| :-----------: | :----------------------------------- | :-----------: | :-----------: | :-----------: |
-| 1             | Introduction to packages             | Ch [1](https://github.com/misk-data-science/misk-packages/) & [2](https://github.com/misk-data-science/misk-packages/intro.html)      | NA            | NA            |
-| 2             | Package structure                    | Ch [3](https://github.com/misk-data-science/misk-packages/structure.html)     | TBD           | TBD           |
-| 3             | Package documentation                | TBD           | TBD           | TBD           |
-| 4             | Tests                                | TBD           | TBD           | TBD           |
-| 5             | Continuous integration and deployment | TBD           | TBD           | TBD           |
-| 6             | Other components                     | TBD           | TBD           | TBD           |
-| 7             | Case study.                          | TBD           | TBD           | TBD           |
+| Session       | Description                          | Reading(s)    | Slides     | Python        | R             |
+| :-----------: | :----------------------------------- | :-----------: | :-----------: | :-----------: | :-----------: |
+| 1             | Introduction to packages             | Ch [1](https://misk-data-science.github.io/misk-packages/) & [2](https://misk-data-science.github.io/misk-packages/intro.html)      | TBD            | NA            | NA            |
+| 2             | Package structure                    | Ch [3](https://misk-data-science.github.io/misk-packages/structure.html)     | TBD           | TBD           | TBD           |
+| 3             | Package documentation                | TBD           | TBD           | TBD           | TBD           |
+| 4             | Tests                                | TBD           | TBD           | TBD           | TBD           |
+| 5             | Continuous integration and deployment | TBD          | TBD           | TBD           | TBD           |
+| 6             | Other components                     | TBD           | TBD           | TBD           | TBD           |
+| 7             | Case study.                          | TBD           | TBD           | TBD           | TBD           |
 
 
 ## Extras
