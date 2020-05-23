@@ -35,10 +35,24 @@ To be clear, it is not necessary to package your code to address all the bullets
 Although the above type of work may not justify a package, it often still justifies good software engineering practices such as modularity and unit tests!
 ```
 
+## Assumptions
+
+This module makes a few assumptions of your established knowledge regarding your programming skills. Below are some important assumptions made and resources to read through if you feel inadequately prepared:
+
+| Assumptions                       | Python Resource | R   Resource   
+| --------------------------------- | ------------- | ------------- |
+| You should be familiar with...    |               |               | 
+| You should be familiar with...    |               |               |
+| You should be familiar with...    |               |               |
+| You should be familiar with...    |               |               |
 
 ## An opinionated approach
 
 It is important to understand that there are several approaches and strategies to writing packages. Even within a single language there are different ways to structure a package. Consequently, understand that this book demonstrates the best practices we have found for developing, maintaining, and distributing packages. Our goal is to provide you with a short runway to writing packages as quickly as possible while following commonly used best practices. 
+
+```{block, type='note'}
+This is a lot to learn, but don’t feel overwhelmed. Start with a minimal subset of useful features and build up over time.
+```
 
 As you write more packages you will begin to learn the lower-level details and alternative options. Do not shy away from these details as we highly recommend that you learn them. In fact, below are some additional resources that will take you to the official R and Python packaging documentation. Realize that the details in these documents can make them challenging to read. That is ok and to be expected. Our suggestion is to get the basics down, which we cover in this book, and slowly expand your knowledge base by writing more packages.
 

@@ -1,7 +1,25 @@
 # Package Structure {#structure}
 
-Discuss the basic structure of packages
+Packages have a specific structure required to be bundable, deployable, and usable. There are a set of minimum files required for both R and Python packages but you will often see additional files in packages. 
 
+```sh
+.
+├── package metadata file
+├── source code directory
+│   ├── script 1
+│   ├── script 2
+│   └── script n
+├── test directory
+│   ├── script 1
+│   ├── script 2
+│   └── script n
+├── documentation directory
+│   └── various doc files
+├── license file
+├── changelog / news file
+├── README
+└── other various config files
+```
 
 ## R
 
