@@ -21,3 +21,70 @@ knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
 ), 'packages.bib')
 ```
+
+## Who should read this {-}
+
+```{block, type='todo'}
+TBD
+```
+
+This module makes a few assumptions of your established knowledge regarding your programming skills. Below are some important assumptions made and resources to read through if you feel inadequately prepared:
+
+```{block, type='todo'}
+Complete after rest of material is finalized.
+```
+
+| Assumptions                       | `r fontawesome::fa("python")` Resource | `r fontawesome::fa("r-project")` Resource   
+| --------------------------------- | ------------- | ------------- |
+| You should be familiar with...    |               |               | 
+| You should be familiar with...    |               |               |
+| You should be familiar with...    |               |               |
+| You should be familiar with...    |               |               |
+
+## What you need for this book {-}
+
+```{block, type='todo'}
+TBD
+```
+
+## Conventions used in this book {-}
+
+The following typographical conventions are used in this book:
+
+* ___strong italic___: indicates new terms,
+* __bold__: indicates package & file names,
+* `inline code`: monospaced highlighted text indicates functions or other commands that could be typed literally by the user,
+* code chunk: indicates commands or other text that could be typed literally by the user
+
+```{r, first-code-chunk, collapse=TRUE}
+1 + 2
+```
+
+We will also refer to both R and Python throughout. When discussing one or the other we will typically label with the appropriate icons:
+
+- Python: `r fontawesome::fa("python")`
+- R: `r fontawesome::fa("r-project")`
+
+In addition to the general text used throughout, you will notice the following code chunks:
+
+```{block, type = "tip"}
+Signifies a tip or suggestion
+```
+
+```{block, type = "note"}
+Signifies a general note
+```
+
+```{block, type = "warning"}
+Signifies a warning or caution
+```
+
+## Feedback {-}
+
+Reader comments are greatly appreciated. To report errors or bugs please post an issue at https://github.com/misk-data-science/misk-packages/issues.
+
+## Acknowledgments {-} 
+
+```{block, type='todo'}
+TBD
+```

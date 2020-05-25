@@ -1,0 +1,16 @@
+# (PART) Package Components {-}
+
+# Package Metadata {#metadata}
+
+- Dependencies (required vs dev)
+- Title / description
+- Author / contact info
+- bug reporting
+- license (include discussion of license file)
+- versioning
+
+## `r fontawesome::fa("r-project")`
+
+
+
+## `r fontawesome::fa("python")`

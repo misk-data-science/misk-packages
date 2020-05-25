@@ -9,8 +9,8 @@ Discuss the basic developer workflow for packages...
 - running tests
 - etc.
 
-## R
+## `r fontawesome::fa("r-project")`
 
 
 
-## Python
+## `r fontawesome::fa("python")`

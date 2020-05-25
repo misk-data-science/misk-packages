@@ -1,0 +1,12 @@
+# Object Documentation {#object_docs}
+
+- function documentation
+- module level docs
+- package level doc
+- etc.
+
+## `r fontawesome::fa("r-project")`
+
+
+
+## `r fontawesome::fa("python")`

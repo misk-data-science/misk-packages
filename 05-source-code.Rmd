@@ -2,8 +2,8 @@
 
 Discuss where to add source code and how to think about layers of modularity...
 
-## R
+## `r fontawesome::fa("r-project")`
 
 
 
-## Python
+## `r fontawesome::fa("python")`
