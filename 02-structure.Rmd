@@ -45,9 +45,9 @@ Within R, the basic structure of your package will look like the following. The 
 ```sh
 mypkg
 ├── DESCRIPTION
-├── R
-├── tests
-├── docs
+├── R/
+├── tests/
+├── docs/
 ├── LICENSE
 ├── NEWS
 └── README
@@ -65,9 +65,9 @@ Within Python, the basic structure of your package will look like the following.
 ```sh
 mypkg
 ├── setup.py
-├── src
-├── tests
-├── docs
+├── src/
+├── tests/
+├── docs/
 ├── LICENSE
 ├── CHANGELOG
 └── README

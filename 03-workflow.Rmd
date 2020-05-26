@@ -1,16 +1,129 @@
 # Development Workflow {#workflow}
 
-Discuss the basic developer workflow for packages...
+As data scientists, we get used to common workflows that exist in exploring and modeling data. However, the package development workflow is often unique from how we are used to working. This chapter is designed to get you started on a small package so you can experience the typical workflow. First, we'll discuss the common steps and then we will work through them for both an `r fontawesome::fa("r-project")` and `r fontawesome::fa("python")` version of the package.
 
-- virtual environments
-- TDD
-- adding functionality
-- documenting
-- running tests
-- etc.
+## Create the package
+
+Once you have determined the need to create a package, the first thing we need to do is identify a package name, create the basic package structure, and connect it to a version control system (i.e. Github) of interest.
+
+### Naming
+
+Naming our package is important. There are certain requirements we need to adhere to but, also, the name you choose should be easy to remember and follow the respective languages idiomatic approach to naming. Moreover, the name you choose should not already exist.
+
+`r fontawesome::fa("r-project")` and `r fontawesome::fa("python")` have slightly different requirements regarding acceptable names. In both languages, you can only use letters and numbers; however, you can't start the name with a number. In `r fontawesome::fa("r-project")` your name can contain a `.` but not a `-` or `_` while in `r fontawesome::fa("python")` your name can contain all three. In both languages you can combine upper and lowercase letters in the name.
+
+However, our advice is to keep the name short, all lowercase, and with no separator when possible. Examples of good approaches to name include:
+
+- numpy
+- dplyr
+- pandas
+- keras
+
+Once you've come up with a name or two you probably want to make sure that the name is not already being used. The package managers (CRAN & PyPI) do not allow duplicate names so your name must be unique. Even if you don't intend to share your package publicly, you should avoid duplicate names if possible. Both `r fontawesome::fa("r-project")` and `r fontawesome::fa("python")` have tools that make this easy to do and we'll cover them in the hands-on sections of this chapter.
+
+### Create 
+
+Once you have a name its time to create the package. This includes determining where the package will live on your operating system and creating the bare bones framework of the package. 
+
+When creating a package, the source code location (path) refers to where the __source__ lives, not where the __installed__ form lives. Recall in Chapter \@ref(intro) that installed packages all live within a library directory. But when developing, you will keep the source code somewhere else. 
+
+Where should you keep source packages? The main principle is that this location should be distinct from where installed packages live. In the absence of external considerations, a typical user should designate a directory inside their home directory for `r fontawesome::fa("r-project")` and `r fontawesome::fa("python")` (source) packages. This may be in directories such as `~/Desktop/Packages/` or `/r/packages` and `/python/packages`. Some of us use one directory for this, others divide source packages among a few directories. This probably reflects that we are primarily tool-builders. An academic researcher might organize their files around individual publications, whereas a data scientist might organize around data products and reports. There is no particular technical or traditional reason for one specific approach. As long as you keep a clear distinction between source and installed packages, just pick a strategy that works within your overall system for file organization, and use it consistently.
+
+Once you have a location to hold the source code, both `r fontawesome::fa("r-project")` and `r fontawesome::fa("python")` have tools that help to automate the creation of a basic package structure. We'll use these tools in the hands-on sections of this chapter.
+
+### Version control
+
+Most package development never resides solely on one operating system nor with only one developer. So not only should we be using git for version control, we should be using a hosting platform such as [GitHub](https://github.com/), [GitLab](https://gitlab.com/), [Azure Repos](https://azure.microsoft.com/en-us/services/devops/repos/), or the like. So the first thing we need to do is connect our local git repository to a remote repository so we can push, pull, and merge updates we make to the package.
+
+Once we have established our remote repository, we should set up a proper branching method for our work. We advise a Git flow branching strategy where:
+
+- __master__ branch is the "production" release branch. This is the main branch where the source code always reflects a production-ready state. 
+- __develop__ branch is the main branch where the source code always reflects a state with the latest delivered development changes for the next release. Some would call this the “integration branch”.
+- __supporting branches__ are the branches where we do the majority of our work. These are the branches where we create new fixtures, fix bugs, improve documentation.
+
+In this branching approach, we will make updates to our package in a supporting branch, then do a pull request to merge these updates into the develop branch. Once the develop branch has enough updates to warrant a new release we then merge the develop to master with a pull request.
+
+```{block, type='note'}
+This may seem like a lot to digest. If you are unfamiliar with git and branching then we recommend these tutorials to get started:
+
+- [Understanding the GitHub flow](https://guides.github.com/introduction/flow/)
+- [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
+```
+
+In the hands-on sections of this chapter we'll walk through setting up this git flow branching strategy.
+
+## Setup a virtual environment
+
+By default, every project on your system will use the same library directory to store and retrieve packages. At first glance, this may not seem like a big deal but it does matter when different projects require different versions of dependency packages.
+
+Consider the following scenario where you have two projects: __Project A__ and __Project B__, both of which have a dependency on the same library, __somepkg__. The problem becomes apparent when we start requiring different versions of __somepkg__. Maybe __Project A__ needs v1.0.0, while __Project B__ requires the newer v2.0.0, for example.
+
+This is a real problem for both `r fontawesome::fa("r-project")` and `r fontawesome::fa("python")` since they can’t differentiate between versions in the library directory. So both v1.0.0 and v2.0.0 would reside in the same directory with the same name. Since packages are stored according to just their name, there is no differentiation between versions. Thus, both __Project A__ and __Project B__ would be required to use the same version, which is unacceptable in many cases.
+
+This is where virtual environments come into play. Virtual environments create an isolated environment for our project. This means that each project can have its own dependencies, regardless of what dependencies every other project has. This creates better reliability during the development process.
+
+In the hands-on sections of this chapter, we'll setup `r fontawesome::fa("r-project")` and `r fontawesome::fa("python")` virtual environments. We consider it a best practice to always do your development work in virtual environments.
+
+```{block, type='tip'}
+To learn more about virtual environments we suggest starting with the following tutorials:
+
+- [Python Virtual Environments: A Primer](https://realpython.com/python-virtual-environments-a-primer/)
+- [renv: Project Environments for R](https://blog.rstudio.com/2019/11/06/renv-project-environments-for-r/)
+```
+
+## Add new functionality
+
+So we finally have our project set-up ready, now it's time to start adding some functionality. When adding new functionality or fixing a bug, it's important to approach it strategically. Rather than just adding or changing code, we should do it in a way that we know whether our code is successful or not. To accomplish this, we should use a [test-driven development](https://en.wikipedia.org/wiki/Test-driven_development) (TDD) approach.
+
+The general idea behind TDD is to follow this basic approach:
+
+1. __Add a test__: In TDD, each new feature or bug fix begins with writing a test. This test defines a function, improvements of a function, or a case in which a function results in a bug.
+2. __Run test(s) and make sure the new test fails__: Before writing any source code, run the new test to ensure that it fails.
+3. __Write the code__: The next step is to write some code that causes the test to pass. The new code written at this stage is not perfect and may, for example, pass the test in an inelegant way. That is acceptable because it will be improved and honed in Step 5.
+4. __Run tests__: If all test cases now pass, the programmer can be confident that the new code meets the test requirements, and does not break or degrade any existing features. If they do not, the new code must be adjusted until they do.
+5. __Refactor code__: Once the source code passes the test, you should spend time refactoring and cleaning it up. A growing code base can quickly get out of control. This step ensures you take the time to reduce [tech debt](https://en.wikipedia.org/wiki/Technical_debt).
+6. __Repeat__: Starting with another new test, the cycle is then repeated to push forward the functionality of the source code.
+
+This may seem like a lot of steps to remember but this process is rather quick and each step takes very small incremental steps forward. After implementing a few features in this manner it quickly becomes a natural approach to software development.
+
+```{block, type='tip'}
+If you are interested in learning more about the TDD philosophy we recommend the following books:
+
+- [The Pragramatic Programmer](https://www.amazon.com/Pragmatic-Programmer-journey-mastery-Anniversary/dp/0135957052/ref=dp_ob_title_bk) (Ch. 41)
+- [Clean Code](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882/ref=pd_bxgy_img_2/134-3713013-8748161?_encoding=UTF8&pd_rd_i=0132350882&pd_rd_r=c66a8eb8-13a3-4246-bf5c-47bff29f3be6&pd_rd_w=m2kCB&pd_rd_wg=NqeJv&pf_rd_p=4e3f7fc3-00c8-46a6-a4db-8457e6319578&pf_rd_r=R46745MCZ1C0V1ZD3QS4&psc=1&refRID=R46745MCZ1C0V1ZD3QS4) (Ch. 9)
+- [Test Driven Development](https://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530)
+```
+
+## Document
+
+Once your new functionality is successfully passing tests and has been refactored, you should make sure any necessary documentation is added or updated. This will include function specific documentation, module level documentation, any code in example notebooks or vignettes and the like.
+
+## Version control
+
+Lastly, we need to now save our work to our remote repository. This typically includes staging, commiting and pushing our changes. Depending on the stage of our work we may be ready to do a pull request into the main development branch.
+
+Okay, so this may seem like a lot of steps to keep track of. Often, this feels more convoluted on paper than when you are actually implementing so let's start working with an example package to go through these steps.
 
 ## `r fontawesome::fa("r-project")`
 
-
+```{block, type="todo"}
+1. Check package name with pip search
+2. Create package directory and structure
+3. Version control
+4. Setup/activate venv
+5. Add new functionality
+6. Document
+7. Version control
+```
 
 ## `r fontawesome::fa("python")`
+
+```{block, type="todo"}
+1. Check package name with available_packages()
+2. Create package directory and structure
+3. Version control
+4. Setup/activate venv
+5. Add new functionality
+6. Document
+7. Version control
+```
