@@ -132,26 +132,27 @@ available::available("myfirstpkg", browse = FALSE)
 
 Now let's create the initial package structure. There are several ways to do this but in this case I've set up a pre-built template that helps automate the initial structure. Open up your terminal and run:
 
-```sh
+```bash
 pip install cookiecutter
 ```
 
 Now go to the location that you want the package source code to live (i.e. a directory on your Desktop versus in a Packages subdirectory). In my case, I am going to keep this in a misk subdirectory:
 
-```sh
+```bash
 cd ~/Desktop/Workspace/Projects/misk
 ```
 
 Next, we'll run the following command. This uses [cookiecutter](https://cookiecutter.readthedocs.io/en/1.7.2/README.html) to create our simplified pre-built package. 
 
-```sh
+```bash
 cookiecutter https://github.com/misk-data-science/package-template
 ```
 
 When you run this, you will be asked a series of questions such as your name, email, and package specific questions. For my package, I provided the following command responses:
 
-```sh
-full_name [Brad Boehmke]: Brad Boehmke
+```bash
+first_name [ex: John]: Brad
+last_name [ex: Smith]: Boehmke
 email [first.last@example.com]: bradleyboehmke@gmail.com
 github_username [bradleyboehmke]: bradleyboehmke
 package_language [r or python]: r
@@ -175,7 +176,7 @@ The values in the brackets are the default values if you do not supply any input
 
 You should now have a directory with your package name in your current directory. If you use the shell command `ls` you should see __myfirstpkg__ listed. Here is what my directory look likes:
 
-```sh
+```bash
 ls
 ds-packages		misk-dl			misk-homl		myfirstpkg		package-template
 ```
@@ -241,7 +242,7 @@ knitr::include_graphics("figures/two-branches.png")
 
 Whew `r emo::ji("whew")`! We finally have our version control set up. That was a bit of work but you only need to do that once at package creation time.
 
-### Step 4: Setup our virtual environment
+### Step 4: Setup virtual environment
 
 Before we add any new functionality to our package, let's create a virtual environment so we can keep all our package dependencies isolated to the location we are working in. Go ahead and open up the R project in the package source code location. You can do that by clicking on the `myfirstpkg.Rproj` file or from the command line with:
 
@@ -498,13 +499,341 @@ If pull requests are new to you, read more about them here:
 
 
 ## `r fontawesome::fa("python")` example
+Now we'll work through a simple example to illustrate how to perform the basic workflow steps for n `r fontawesome::fa("python")` package. As in the previous section, we'll create a package that has a single function...calculating the mean of a vector.
 
-```{block, type="todo"}
-1. Check package name with pip search
-2. Create package directory and structure
-3. Version control
-4. Setup/activate venv
-5. Add new functionality
-6. Document
-7. Version control
+### Step 1: Check package name
+
+Although we are not going to publish this package we should still check to make sure there are no other packages that have the same name. For this example, I'm going to use the name "__myfirstpypkg__". We can use `pip search` to check the availability of the name on PyPI.
+
+```{block, type='warning'}
+If you followed along in last sections R example then make sure you use a different name.
+```
+
+In this case, we see that there are no conflicting packages on PyPI!  So let's proceed.
+
+```bash
+pip search myfirstpypkg
+```
+
+### Step 2: Create package directory and structure
+
+Now let's create the initial package structure. There are several ways to do this but similar to the `r fontawesome::fa("r-project")` example we'll use a pre-built template that helps automate the initial structure. Open up your terminal. If you didn't follow along in the last section then run the following to install [cookiecutter](https://cookiecutter.readthedocs.io/en/1.7.2/README.html):
+
+```sh
+pip install cookiecutter
+```
+
+Now go to the location that you want the package source code to live (i.e. a directory on your Desktop versus in a Packages subdirectory). In my case, I am going to keep this in a misk subdirectory:
+
+```sh
+cd ~/Desktop/Workspace/Projects/misk
+```
+
+Next, run the following command: 
+
+```sh
+cookiecutter https://github.com/misk-data-science/package-template
+```
+
+When you run this, you will be asked a series of questions such as your name, email, and package specific questions. For my package, I provided the following command responses:
+
+```sh
+first_name [ex: John]: Brad
+last_name [ex: Smith]: Boehmke
+email [first.last@example.com]: bradleyboehmke@gmail.com
+github_username [bradleyboehmke]: bradleyboehmke
+package_language [r or python]: python
+package_name [awesome]: myfirstpypkg
+package_short_description [myfirstpypkg provides... (one line)]: myfirstpypkg provides simple helper functions to help me learn packaging
+version [0.1.0]: 
+url [https://github.com/bradleyboehmke/myfirstpypkg]: 
+Select open_source_license:
+1 - MIT license
+2 - BSD license
+3 - ISC license
+4 - Apache Software License 2.0
+5 - GNU General Public License v3
+6 - Not open source
+Choose from 1, 2, 3, 4, 5, 6 [1]: 5
+```
+
+```{block, type='warning'}
+The values in the brackets are the default values if you do not supply any input. For example, note how I did not enter any values for the version number or the URL. This is because 0.1.0 is nearly always a good first version number to start with. The Github URL is automatically generated so unless you choose to use a different remote the default should be a good choice.
+```
+
+You should now have a directory with your package name in your current directory. If you use the shell command `ls` you should see __myfirstpypkg__ listed. Here is what my directory look likes:
+
+```bash
+ls
+ds-packages		misk-dl			misk-homl		myfirstpkg		myfirstpypkg		package-template
+```
+
+### Step 3: Version control
+
+The first thing we want to do is create a remote where we'll push our source code to (i.e. Github). In our case, we'll use Github. First, [create a new repository](https://help.github.com/en/articles/creating-a-new-repository) on GitHub. 
+
+```{r create-repo-python, echo=FALSE, fig.align='center'}
+knitr::include_graphics("figures/repo-create.png")
+```
+
+To avoid errors, do not initialize the new repository with README, license, or gitignore files since our local directory already contains these files.
+
+```{r create-myfirstpypkg-repo, echo=FALSE, fig.align='center'}
+knitr::include_graphics("figures/create-myfirstpypkg-repo.png")
+```
+
+Now go back to your terminal and `cd` into the source code directory.
+
+```bash
+cd myfirstpypkg
+```
+
+Next, we initialize the local package directory as a git repo and add the remote URL. This allows changes to be tracked and when we push and pull our changes it will push and pull from the URL location.  We can always verify that our remote was added with `git remote -v`:
+
+```bash
+git init .
+git remote add origin https://github.com/bradleyboehmke/myfirstpypkg
+
+# verify remotes were added
+git remote -v
+origin	https://github.com/bradleyboehmke/myfirstpypkg (fetch)
+origin	https://github.com/bradleyboehmke/myfirstpypkg (push)
+```
+
+Now let's create our first commit so that we have a baseline (although empty) package.
+
+```bash
+git add -A
+git commit -m "create initial package structure"
+git push --set-upstream origin master
+```
+
+Now if you look at your Github repo you will see the master branch has your current directory contents.
+
+```{r initial-master-python, echo=FALSE, fig.align='center'}
+knitr::include_graphics("figures/intial-master-py-repo.png")
+```
+
+Recall in section \@ref(version-control) that we prefer to do development work with a __support » develop » master__ branch framework. This has us doing work in a support branch and not the master or develop branch. Right now we only have a master branch established so let's create a develop branch with `git checkout -b develop` and push the contents of the develop branch (which are the same as the master) to Github.
+
+```bash
+git checkout -b develop
+git push --set-upstream origin develop
+```
+
+Now if you look at Github you'll notice that we have two branches in our repo:
+
+```{r two-branches-python, echo=FALSE, fig.align='center'}
+knitr::include_graphics("figures/two-branches.png")
+```
+
+Whew `r emo::ji("whew")`! We finally have our version control set up. That was a bit of work but you only need to do that once at package creation time.
+
+### Step 4: Setup virtual environment
+
+Before we add any new functionality to our package, let's create a virtual environment so we can keep all our package dependencies isolated to the location we are working in. Go ahead and open up the Python project in your favorite editor. I will be using VS Code and I can open up the project with:
+
+```{block, type='note'}
+This assumes that you have already set the project directory as the working directory.
+```
+
+
+```bash
+code .
+```
+
+This will open the project, which is where we'll do the majority of our work from here on out. We'll use the __venv__ package to create a virtual environment. Run the following in your terminal to create and activate the virtual environment:
+
+```bash
+python -m venv venv
+source venv/bin/activate
+```
+
+This will add a `venv/` directory to your repo. If you look inside the `venv/` directory you will see a `lib/` directory that contains a couple of basic packages.  
+
+Now let's install all the initial packages that we will need. The `setup.py` file contains package dependencies. By running the following, we will install all these dependencies into our environment. The `-e` installs our empty package in an __e__ditable fashion, this means as we make updates to the package we won't need to reinstall along the way. The `".[dev]"` installs all development required dependencies. We'll cover this in chapter \@ref(metadata).
+
+```bash
+pip install -e ".[dev]"
+```
+
+```{block, type="tip"}
+Whenever you are done working in your virtual environment you can run `deactivate` to exit out of your virtual environment.
+```
+
+### Step 5: Add new functionality
+
+Now that our virtual environment is set up, let's add some functionality to our package.  The first thing we'll add is a function that computes the mean of a vector. Recall that when we add new functionality we:
+
+1. create a new branch to do the work in,
+2. create a test that initially fails,
+3. write the code to make the test pass.
+
+So first, we'll create a new branch, which we can just call `add_mean`:
+
+```bash
+git checkout -b add_mean
+```
+
+Now let's create two new files:
+
+- `touch src/myfirstpypkg/mean.py`: creates a new `mean.py` file within the source code directory. This is where our function will be written.
+- `touch tests/test_mean.py`: creates a new `test_mean.py` file within the `tests/` directory. This is where the test to ensure our function is working correctly will go.
+
+```bash
+touch src/myfirstpypkg/mean.py
+touch tests/test_mean.py
+```
+
+```{block, type="note"}
+Later chapters will discuss ways to organize your source code within the `src/` directory and your associated tests. For now, we'll just create a new script for both.
+```
+
+Now open up the `src/myfirstpypkg/mean.py` file and insert a shell function. `pass` is a null operation -- when it's executed, nothing happens and consequently the function will return `None`. This allows us to create and run a failing first test.
+
+```{python, eval=FALSE}
+def my_mean(x):
+    pass
+```
+
+Now open the `tests/test_mean.py` file and let's create our first test. We can always add more tests later but for the first test we just want to check for the most basic functionality. Consequently, this test is simply testing that the mean of values 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 is 5.
+
+```{python, eval=FALSE}
+from myfirstpypkg.mean import my_mean
+
+def test_my_mean():
+    x = range(0, 11)
+    assert my_mean(x) == 5
+```
+
+Now we can run our tests by executing `pytest` at the command line:
+
+```bash
+pytest
+===================================== test session starts ======================================
+platform darwin -- Python 3.7.3, pytest-5.4.2, py-1.8.1, pluggy-0.13.1
+rootdir: /Users/b294776/Desktop/Workspace/Projects/misk/myfirstpypkg, inifile: setup.cfg, testpaths: tests/
+collected 1 item                                                                               
+
+tests/test_mean.py F                                                                     [100%]
+
+=========================================== FAILURES ===========================================
+_________________________________________ test_my_mean _________________________________________
+
+    def test_my_mean():
+        x = range(0, 11)
+>       assert my_mean(x) == 5
+E       assert None == 5
+E        +  where None = my_mean(range(0, 11))
+
+tests/test_mean.py:5: AssertionError
+=================================== short test summary info ====================================
+FAILED tests/test_mean.py::test_my_mean - assert None == 5
+====================================== 1 failed in 0.09s =======================================
+```
+As you see above, our test is failing. So let's start adding code to make this test pass. We know that the mean is computed as $m = \frac{\text{sum of terms}}{\text{number of terms}}$. Let's update our function to account for that:
+
+```{python, eval=FALSE}
+def my_mean(x):
+    total = sum(x)
+    units = len(x)
+    return total / units
+```
+
+Now running our test again we get success!
+
+```bash
+pytest
+========================================= test session starts =========================================
+platform darwin -- Python 3.7.3, pytest-5.4.2, py-1.8.1, pluggy-0.13.1
+rootdir: /Users/b294776/Desktop/Workspace/Projects/misk/myfirstpypkg, inifile: setup.cfg, testpaths: tests/
+collected 1 item                                                                                      
+
+tests/test_mean.py .                                                                            [100%]
+
+========================================== 1 passed in 0.01s ==========================================
+```
+
+We likely want to iterate like this to make our function more robust. For example, what happens if a user passes non-numeric values or a non-list data structure to our function?  Or what happens if our list contains `None`, `np.nan`, or or some other missing value representation values? For each scenario like this we want to create a test first, make sure it fails, and then add the new functionality to our code to make our tests pass.  We'll explore this process more in chapter \@ref(test).
+
+We have empirical evidence that `my_mean()` works so now let's talk about documentation.
+
+### Step 6: Document
+
+We now have new working functionality in our package, the last thing we want to do is properly document our function. We do this with [docstrings](https://www.python.org/dev/peps/pep-0257/). We can add object-level documentation to our `my_mean()` function like this:
+
+```{python, eval=FALSE}
+def my_mean(x):
+    """
+    Mean of a vector
+
+    Computes arithmetic mean of a vector with numeric or logical values.
+
+    Parameters
+    ----------
+    x
+        A numeric or logical list.
+
+    Returns
+    -------
+    The arithmetic mean of the values in x returned as a numeric vector of length one.
+
+    Examples
+    --------
+    >>> x = range(0, 11)
+    ... my_mean(x)
+    """
+    total = sum(x)
+    units = len(x)
+    return total / units
+```
+
+After adding the documentation we can now get various help documentation on the function. For example, hovering over the function in my editor shows the following:
+
+```{r help-docs-python, echo=FALSE, fig.align='center'}
+knitr::include_graphics("figures/help-docs-python.png")
+```
+
+After adding the documentation its best to re-run the tests to ensure nothing unexpected happened while adding the documentation. Later chapters will go into the details of docstrings along with other documentation we should be updating along the way (i.e. module level docstrings, CHANGELOG.md).
+
+### Step 7: Version control
+
+We now have the new functionality and documentation in place. Now we need to commit our changes, push them to Github and do a pull request to merge into the development branch of the package. 
+
+```{block, type="tip"}
+Learn about writing clear and effective git messages [here](http://udacity.github.io/git-styleguide/).
+```
+
+```bash
+git add -A
+git commit -m "feat: add my_mean to compute arithmetic mean"
+git push --set-upstream origin add_mean
+```
+
+Once the changes have been pushed to Github you will notice the updated branch changes were successfully pushed. Next, select the "Compare & pull request" button next to the new changes:
+
+```{r new-branch-then-pr-python, echo=FALSE, fig.align='center'}
+knitr::include_graphics("figures/new-branch-then-pr-python.png")
+```
+
+Be sure to choose the "base: develop" option for the pull request. This will signal that we want to merge our changes in the the feature branch with the develop branch:
+
+```{r pr-into-develop-python, echo=FALSE, fig.align='center'}
+knitr::include_graphics("figures/pr-into-develop.png")
+```
+
+Next we add a good summary of the pull request that signals what we added/changed and that we ran tests and checks successfully.  After you add the message, go ahead and tag a friend or colleague to review your pull request. With more formalized projects we typically require that 1-2 folks have reviewed code changes in pull requests.
+
+```{r pr-msg-python, echo=FALSE, fig.align='center'}
+knitr::include_graphics("figures/pr-msg-python.png")
+```
+
+Once all reviewers have successfully signed off on the pull request go ahead and merge it into develop.
+
+```{block, type="tip"}
+If pull requests are new to you, read more about them here:
+
+- [Github help docs](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests)
+- [The (written) unwritten guide to pull requests](https://www.atlassian.com/blog/git/written-unwritten-guide-pull-requests)
+- [Best practices for pull requests](https://github.community/t/best-practices-for-pull-requests/10195)
 ```
