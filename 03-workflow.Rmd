@@ -157,7 +157,7 @@ email [first.last@example.com]: bradleyboehmke@gmail.com
 github_username [bradleyboehmke]: bradleyboehmke
 package_language [r or python]: r
 package_name [awesome]: myfirstpkg
-package_short_description [myfirstpkg provides... (one line)]: myfirstpkg provides simple helper functions to help me learn packaging
+package_short_description [short one-liner, ex: My first package]: My first package
 version [0.1.0]: 
 url [https://github.com/bradleyboehmke/myfirstpkg]: 
 Select open_source_license:
@@ -544,7 +544,7 @@ email [first.last@example.com]: bradleyboehmke@gmail.com
 github_username [bradleyboehmke]: bradleyboehmke
 package_language [r or python]: python
 package_name [awesome]: myfirstpypkg
-package_short_description [myfirstpypkg provides... (one line)]: myfirstpypkg provides simple helper functions to help me learn packaging
+package_short_description [short one-liner, ex: My first package]: My first package
 version [0.1.0]: 
 url [https://github.com/bradleyboehmke/myfirstpypkg]: 
 Select open_source_license:

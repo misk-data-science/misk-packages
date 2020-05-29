@@ -34,7 +34,7 @@ This general structure will look like the following and the sections that follow
 
 For the sections that follow let's assume we are creating a package called __mypkg__.
 
-## `r fontawesome::fa("r-project")`
+## `r fontawesome::fa("r-project")` example
 
 Within R, the basic structure of your package will look like the following. The unique items here are:
 
@@ -55,7 +55,7 @@ mypkg
 
 The rest of the files are consistent with the previous section. As you'll see in the next chapter, additional files will be produced when we build the package but these are the primary directories and files to get going with an R package.
 
-## `r fontawesome::fa("python")`
+## `r fontawesome::fa("python")` example
 
 Within Python, the basic structure of your package will look like the following. The unique items here are:
 
