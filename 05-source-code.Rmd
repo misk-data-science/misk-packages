@@ -1,9 +1,73 @@
 # Source Code {#code}
 
-Discuss where to add source code and how to think about layers of modularity...
+An important principle in any project is how to manage the source code. In this chapter, you’ll learn about the directories that hold the `r fontawesome::fa("r-project")` and `r fontawesome::fa("python")` package source code and some general tips for organizing source code functionality. We'll also add some new functionality to our package to demonstrate our thoughts.
 
-## `r fontawesome::fa("r-project")`
+## Organization
+
+Organizing your source code provides many benefits such as:
+
+- making the intentions of the code obvious,
+- making it easy for others to contribute,
+- making it easy for you to maintain,
+- making it easy to debug,
+- making it easy to expand.
+
+```{block, type="note"}
+There are no strict requirements in how you organize your code but what follows are general best practices.
+```
+
+### Individual units
+
+> _"Functions should do one thing. They should do it well. They should do it only."_ - Robert Martin
+
+Individual units of functionality (i.e. functions, methods, classes) should be <font size="-2">small.</font> How small? That's the magic question `r emo::ji("shrug")`. Individual units of functionality should not require significant scrolling in your editor. They should be very clear regarding the intention and functionality they are providing. And they should only _"do one thing"_.
+
+```{block, type="tip"}
+One way to know if a function is doing more than one thing is if you can extract another function from it with a name that is not merely a restatement of its implementation.
+```
+
+So far our package has only one simple function; however, we typically build our packages to be more comprehensive and complex. Organizing this expansion is important. There are two main ways our code expands:
+
+1. breadth: we add more functionality but not necessarily building onto existing functionality,
+2. aggregation: we continue building onto existing functionality to create layers of abstraction.
+
+### Expanding code breadth
+
+Expanding code breadth is easier to maintain. For our example package that currently has a `my_mean()` function, this could include adding new functions such as `my_median()`, `my_mode()`. When expanding code breadth the main thing you should consider is where to put the new functionality.
+
+Grouping like functionality into one file is good. For example, since `my_mean()`, `my_median()` and `my_mode()` are all forms of central tendencies we may put them in the same file while functions with other purposes (i.e. deviations) may go into a different file.
+
+While you're free to arrange functions into files as you wish, the two extremes are bad: don't put all functions into one file and don't put each function into its own separate file. (It's OK if some files only contain one function, particularly if the function is large `r emo::ji("stop_sign")` or has a lot of documentation.).
+
+### Aggregating functionality
+
+Often, we write code that builds on top of each other. This is known as creating higher levels of abstraction. For example, say we wanted to create a function that computes the z-score, which uses the mean and standard deviations ($z=\frac{x - \mu}{\sigma}$). This is a higher level of abstraction and we should write our code in such a way that:
+
+1. our code reads like a top-down narrative,
+2. functionality is abstracted away and grouped at similar levels of abstraction.
+
+If your code still fits into one file, we want the code to read like a top-down narrative where the highest level of abstraction is exposed first followed by the next level of abstraction. If your code grows signicantly then you want to separate functionality into separate files but still group functions based on similar levels of abstraction.
+
+### Naming is important
+
+Naming is important but as our source code grows it becomes even moreso. Here are some good naming tips:
+
+- If a file contains a single function, give the file the same name as the function.
+- If a file contains multiple related functions, give it a concise, but descriptive name. For example, we could group `my_mean()`, `my_median()` and `my_mode()` together into a file named `central_tendencies`.
+- Sometimes you have many helper functions in your source code that all support one primary user facing API functionality. Put the user-facing API function/class into a file named `main` or `main_api`.
+- Many times people create a general `utils` file to hold general utility functions. This is not advised. Always try to find a proper home and name for all supporting functions. This is a [great read](https://breadcrumbscollector.tech/stop-naming-your-python-modules-utils/) explaining why.
+- Deprecated functions should live in a file or directory that makes it obvious they are deprecated (i.e. prefix file name with `deprec-`).
 
 
+## Public vs private
 
-## `r fontawesome::fa("python")`
+- explicit vs implicit exposure
+- same rules apply - document & test private methods just like you do public
+
+
+## `r fontawesome::fa("r-project")` example
+
+- add breadth with central tendency functionality
+- add hierarchy with z-score
+
+## `r fontawesome::fa("python")` example
