@@ -169,7 +169,7 @@ Three important items to note in the above:
 
 1. We used the `@keywords internal` tag instead of `@export` as we did in chapter \@ref(workflow). Only functions that are documented with `@export` are made explicitly visible to the end user. Using `@keywords internal` instead of `@export` signals that this function is for internal use only. Internal functions are still accessible to end users but they must use the triple `:::` syntax - `myfirstpkg:::validate_numeric_vector()`.
 2. When including examples for internal functions you need to use the triple `:::` syntax - `myfirstpkg:::validate_numeric_vector()` otherwise you will get an error when you run `devtools::check()`.
-3. Even though this is an internal package, we still document it as normal. This isn't required but it helps us and contributing developers understand the purpose of the function.
+3. Even though this is an internal function, we still document it as normal. This isn't required but it helps us and contributing developers understand the purpose of the function.
 
 ```{block, type='tip'}
 Remember, as we add new code we always want to be running the tests.
@@ -392,3 +392,402 @@ git push --set-upstream origin ch6
 ```
 
 ## `r fontawesome::fa("python")` example
+
+For a `r fontawesome::fa("python")` package, all source code goes in the `src/pkgname/` directory. Unlike `r fontawesome::fa("r-project")` packages, you can have subdirectories and submodules in `r fontawesome::fa("python")` packages. However, for simplicity, we'll just include all source code at the `src/pkgname/` directory level.
+
+Let's add some functionality to our package to illustrate some points from our previous discussion. We'll take the same approach as in the `r fontawesome::fa("r-project")` example section and:
+
+- add an internally-focused function that validates the user inputs,
+- add breadth to our package by adding additional summary statistics computations,
+- add aggregation to our package by adding a z-score computation that leverages other functions within our package.
+
+```{block, type='note'}
+To simplify, we'll show the final functions and tests added rather than illustrate every step of the test-driven development process.
+```
+
+### Setup
+
+Before we start adding new functionality, let's make sure the current code base is ready. Open up your Python project, activate your virtual environment, switch to the develop branch and make sure it is current with your remote repo:
+
+```bash
+git checkout develop
+git pull
+```
+
+Now let's create a new branch to add this chapter's new functionality. Usually you name the branch after the new functionality that you're adding or a Github issue that you are addressing. In our case we can name the branch "ch6" since it's related to this chapter.
+
+```bash
+git checkout -b ch6
+```
+
+### Internal function
+
+First, we'll add an internally-focused function that validates the user inputs. Since we may continue to expand our package and add more validation procedures, we typically create a validation.R file to hold these functions.
+
+Go ahead and create the test and .py file:
+
+```bash
+touch tests/test_validation.py
+touch src/myfirstpypkg/validation.py
+```
+
+Place the following in the `test_validation.py` test file:
+
+```{python, eval=FALSE}
+from myfirstpypkg.validation import _validate_numeric_sequence
+import pytest
+
+
+def test_validate_sequence_numeric():
+    assert _validate_numeric_sequence(range(10)) == None
+    with pytest.raises(TypeError):
+        _validate_numeric_sequence(list('a', 'b', 'c'))
+
+def test_validate_sequence_type():
+    with pytest.raises(TypeError):
+        _validate_numeric_sequence({})
+```
+
+and the following in the `validation.py` source code file:
+
+```{python, eval=FALSE}
+from collections import Sequence
+
+def _validate_numeric_sequence(x):
+    """
+    Validate numeric sequence input
+
+    Checks that an in put is a sequence that contains numeric inputs or
+    logical values that can be coerced to numeric values.
+
+    Parameters
+    ----------
+    x
+        A numeric or logical vector.
+
+    Returns
+    -------
+    None
+
+    Raises
+    ------
+    TypeError
+        If `x` is not a sequence of type float, int or bool.
+
+    Examples
+    --------
+    x = range(10)
+    _validate_numeric_sequence(x)
+    """
+    if not isinstance(x, (Sequence, float, int, bool)):
+        raise TypeError("`x` must be a sequence of type float, int, or bool.")
+```
+
+Two important items to note in the above:
+
+1. We start the function with an underscore `_validate...`. In Python, we cannot hide internal functions from end-users; however, it is Pythonic to start all functions designed for internal use with an underscore.
+2. Even though this is an internal function, we still document it as normal. This isn't required but it helps us and contributing developers understand the purpose of the function.
+
+```{block, type='tip'}
+Remember, as we add new code we always want to be running the tests with `pytest`.
+```
+
+Now before adding any new functionality, let's add this validation function to our existing `my_mean()` function. Your `mean.py` file should look like below. Note that we use a relative import to import `_validate_numeric_sequence` from the `validation.py` module.
+
+```{python, eval=FALSE}
+from .validation import _validate_numeric_sequence
+
+
+def my_mean(x):
+    """
+    Mean of a vector
+
+    Computes arithmetic mean of a vector with numeric or logical values.
+
+    Parameters
+    ----------
+    x
+        A numeric or logical list.
+
+    Returns
+    -------
+    The arithmetic mean of the values in x returned as a numeric vector of length one.
+
+    Examples
+    --------
+    >>> x = range(0, 11)
+    ... my_mean(x)
+    """
+    _validate_numeric_sequence(x)
+    total = sum(x)
+    units = len(x)
+    return total / units
+```
+
+### Adding breadth
+
+Next, let's add a new summary statistic to our collection. For now, we'll store this summary statistic in the same file but in the future if this file became too large we may look to refactor and split up the centralized organization. Let's rename the original `mean.py` file to `summary_stats.py` and also rename the associated test file to `test_summary_stats.py`.
+
+```{block, type='note'}
+It is common to rename files and functions as you begin developing a package since you are feeling out what the best design and organization will be but as your package matures this will happen less frequently.
+```
+
+Now we'll add a function that computes the standard deviation. Update your `test_summary_stats.py` file to look like:
+
+```{python, eval=FALSE}
+from myfirstpypkg.summary_stats import my_mean
+from myfirstpypkg.summary_stats import my_sd
+
+
+def test_my_sd():
+    x = [1, 2, 3]
+    assert my_sd(x) == 1
+
+def test_my_mean():
+    x = range(0, 11)
+    assert my_mean(x) == 5
+```
+
+and add the following to the `summary_stats.py` file in the `src/myfirstpypkg/` directory:
+
+```{python, eval=FALSE}
+from math import sqrt
+
+
+def my_sd(x):
+    """
+    Standard deviation of a sequence
+
+    Computes standard deviation of a vector with numeric or logical values. The
+    denominator `units = len(x) - 1` is used which gives an unbiased estimator
+    of the (co)variance for i.i.d. observations.
+
+    Parameters
+    ----------
+    x
+        A numeric or logical sequence.
+
+    Returns
+    -------
+    The standard deviation of the values in x returned as a numeric value of length one.
+
+    Examples
+    --------
+    >>> x = [1, 2, 3]
+    ... my_sd(x)
+    """
+    _validate_numeric_sequence(x)
+    mu = my_mean(x)
+    squared_diff = [(i - mu)**2 for i in x]
+    total = sum(squared_diff)
+    units = len(x) - 1
+    return(sqrt(total / units))
+```
+
+
+### Adding aggregation
+
+Last, we'll add a new summary statistics, the z-score, that leverages the `my_mean` and `my_sd` functions. Since this is adding onto our level of abstraction we'll place this at the top of our `src/myfirstpypkg/summary_stats.py` file.
+
+Add a z-score test to the `test_summary_stats.py` file:
+
+```{python, eval=FALSE}
+def test_z_score():
+    x = [1, 2, 3]
+    expected = [-1, 0, 1]
+    assert z_score(x) == expected
+```
+
+and add the following to the `summary_stats.py` file in the `src/myfirstpypkg/` directory:
+
+```{python, eval=FALSE}
+def z_score(x):
+    """
+    Z-score of a sequence
+
+    Computes the z-score of a sequence with numeric or logical values.
+
+    Parameters
+    ----------
+    x
+        A numeric or logical sequence.
+
+    Returns
+    -------
+    The z-score for each value in x as a list.
+
+    Examples
+    --------
+    >>> x = [1, 2, 3]
+    ... z_score(x)
+    """
+    mu = my_mean(x)
+    sd = my_sd(x)
+    return [((i - mu) / sd) for i in x]
+```
+
+Our `summary_stats.py` file should now include three functions in a top-down approach:
+
+```{python, eval=FALSE}
+from .validation import _validate_numeric_sequence
+from math import sqrt
+
+
+def z_score(x):
+    """
+    Z-score of a sequence
+
+    Computes the z-score of a sequence with numeric or logical values.
+
+    Parameters
+    ----------
+    x
+        A numeric or logical sequence.
+
+    Returns
+    -------
+    The z-score for each value in x as a list.
+
+    Examples
+    --------
+    >>> x = [1, 2, 3]
+    ... z_score(x)
+    """
+    mu = my_mean(x)
+    sd = my_sd(x)
+    return [((i - mu) / sd) for i in x]
+
+def my_sd(x):
+    """
+    Standard deviation of a sequence
+
+    Computes standard deviation of a sequence with numeric or logical values.
+    The denominator `units = len(x) - 1` is used which gives an unbiased
+    estimator of the (co)variance for i.i.d. observations.
+
+    Parameters
+    ----------
+    x
+        A numeric or logical sequence.
+
+    Returns
+    -------
+    The standard deviation of the values in x returned as a numeric value of length one.
+
+    Examples
+    --------
+    >>> x = [1, 2, 3]
+    ... my_sd(x)
+    """
+    _validate_numeric_sequence(x)
+    mu = my_mean(x)
+    squared_diff = [(i - mu)**2 for i in x]
+    total = sum(squared_diff)
+    units = len(x) - 1
+    return(sqrt(total / units))
+
+def my_mean(x):
+    """
+    Mean of a sequence
+
+    Computes arithmetic mean of a sequence with numeric or logical values.
+
+    Parameters
+    ----------
+    x
+        A numeric or logical sequence.
+
+    Returns
+    -------
+    The arithmetic mean of the values in x returned as a numeric value of length one.
+
+    Examples
+    --------
+    >>> x = range(0, 11)
+    ... my_mean(x)
+    """
+    _validate_numeric_sequence(x)
+    total = sum(x)
+    units = len(x)
+    return total / units
+```
+
+And our `test_summary_stats.py` file should look like:
+
+```{python, eval=FALSE}
+from myfirstpypkg.summary_stats import my_mean
+from myfirstpypkg.summary_stats import my_sd
+from myfirstpypkg.summary_stats import z_score
+
+
+def test_z_score():
+    x = [1, 2, 3]
+    expected = [-1, 0, 1]
+    assert z_score(x) == expected
+
+def test_my_sd():
+    x = [1, 2, 3]
+    assert my_sd(x) == 1
+
+def test_my_mean():
+    x = range(0, 11)
+    assert my_mean(x) == 5
+```
+
+### Simplify user access
+
+With `r fontawesome::fa("python")` packages, users access objects with a module namespace approach. This means, since our `z_score()` function is located at:
+
+```bash
+.
+└── src/myfirstpypkg
+    └── summary_stats.py
+```
+
+When they use our package they would have to access this function with one of the following:
+
+```{python, eval=FALSE}
+import myfirstpypkg
+
+myfirstpypkg.summary_stats.z_score(x)
+```
+
+or
+
+```{python, eval=FALSE}
+from myfirstpypkg.summary_stats import z_score
+
+z_score(x)
+```
+
+We can simplify this for the users by exporting the `z_score()` function so the user can simply do:
+
+```{python, eval=FALSE}
+from myfirstpypkg import z_score
+
+z_score(x)
+```
+
+To allow for this you simply add the following to the `src/myfirstpypkg/__init__.py` file:
+
+```{python, eval=FALSE}
+from .summary_stats import z_score
+```
+
+### Final checks & version control
+
+Now before we commit our changes to git, let's make sure everything still loads appropriately and passes all tests:
+
+```bash
+pip install -e .
+pytest
+```
+
+As long as everything is passing, we can now commit our changes, push to Github and then do a pull request to incorporate our changes from our current working branch to the develop branch.
+
+```bash
+git add -A
+git commit -m 'feat: add new validation & summary stats
+> Add validation function to ensure proper numeric sequence input.
+> Add summary stat functions to compute standard deviation and z-score.'
+git push --set-upstream origin ch6
