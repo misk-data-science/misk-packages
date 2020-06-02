@@ -95,26 +95,24 @@ The `test/` directory in an `r fontawesome::fa("r-project")` should have the fol
 
 ```bash
 .
-├── tests
-│   └── testthat
-│       ├── test-script1.R
-│       ├── test-script2.R
-│       └── test-scriptn.R
-...
+└── tests
+    └── testthat
+        ├── test-script1.R
+        ├── test-script2.R
+        └── test-scriptn.R
 ```
 
 ...where all test scripts start with `test` and fall in a `tests/testhat/` directory. This is automatically set up for you in our template but you can easily create this from scratch with `usethis::use_testthat()`. When using this approach, each test script should be considered isolated from one another. If for some reason you need to create an object, environment or connection that gets used across multiple test files then you will see the following structure where objects, environments or connections are created in the `setup.R` file and then, if necessary, decommissioned/disconnected in the `teardown.R` file.
 
 ```bash
 .
-├── tests
-│   └── testthat
-│       ├── setup.R
-│       ├── test-script1.R
-│       ├── test-script2.R
-│       ├── test-scriptn.R
-│       └── teardown.R
-...
+└── tests
+    └── testthat
+        ├── setup.R
+        ├── test-script1.R
+        ├── test-script2.R
+        ├── test-scriptn.R
+        └── teardown.R
 ```
 
 ```{block, type='warning'}
@@ -130,7 +128,7 @@ Test scripts are ran in order based on their name. So if you need, or desire, to
 We write tests in the following approach where:
 
 - `test_that()` captures a suite of expectations,
-- `"test context" provides a clear, concise explanation of the purpose of the test,
+- `"test context"` provides a clear, concise explanation of the purpose of the test,
 - we can include any additional documentation in comments
 - and `expect_xxx()` is the expectation we have for our test output. There are a variety of `expect_xxx()` functions that we can apply (i.e. `expect_equal`, )
 
@@ -271,3 +269,238 @@ test_that("Inadequate inputs raise error", {
 ```
 
 ## `r fontawesome::fa("python")` example
+
+The most common testing framework in `r fontawesome::fa("python")` is the [pytest](https://docs.pytest.org/en/latest/) package.
+
+### Test organization
+
+The `test/` directory in an `r fontawesome::fa("python")` should have the following:
+
+```bash
+.
+└── tests
+    ├── __init__.py
+    ├── test_script1.py
+    ├── test_script1.py
+    └── test-scriptn.py
+```
+
+...where all test scripts start with `test`. The __init__.py file is not necessary but it allows you to have duplicate file and test names without causing namespace clashes. This is especially helpful when you have multiple test directories. For example, we commonly group our tests in the following manner for larger packages where all unit tests go in one directory and all integration tests go in another. 
+
+```{block, type="tip"}
+This allows you to easily test a single directory at a time with `pytest tests/unit`.
+```
+
+
+```bash
+.
+└── tests
+    ├── unit
+    │   ├── __init__.py
+    │   ├── test_script1.py
+    │   ├── test_script1.py
+    │   └── test-scriptn.py
+    └── integration
+        ├── __init__.py
+        ├── test_script1.py
+        ├── test_script1.py
+        └── test-scriptn.py
+```
+
+If for some reason you need to create an object, environment or connection that gets used across multiple test files then you will see the following structure where objects, environments or connections are created in the `conftest.py` file, supplied to individual tests with a [test fixture](https://pybit.es/pytest-fixtures.html), and then decommissioned/disconnected thereafter.
+
+```bash
+.
+└── tests
+    ├── __init__.py
+    ├── conftest.py
+    ├── test_script1.py
+    ├── test_script1.py
+    └── test-scriptn.py
+...
+```
+
+```{block, type='warning'}
+Test scripts are ran in order based on their name. So if you need, or desire, to run tests in a specific order than name them in an orderly fashion:
+
+- `test_01_name1.py`
+- `test_02_name2.py`
+- `test_03_name3.py`
+```
+
+### Writing a test
+
+We write tests in the following approach where:
+
+- `def test_name_of_test()` creates a test function that captures a suite of assertions,
+- The test function docstring provides a clear, concise explanation of the purpose of the test,
+- and `assert` is the assertion we have for our test output. 
+
+```{python, eval=FALSE}
+def test_name_of_test():
+   """Test docstring
+   GIVEN ...
+   WHEN ...
+   THEN ...
+   """
+   assert computed == expected
+```
+
+```{block, type='tip'}
+Apart from `assert`, we can also test for exceptions, warning messages and the like with syntax such as `with pytest.raises(TypeError):`. We'll demonstrate this shortly.
+```
+
+Let's take a look at our current `test_validation.py` file:
+
+```{python, eval=FALSE}
+def test_validate_sequence_type():
+    with pytest.raises(TypeError):
+        _validate_numeric_sequence({})
+
+def test_validate_sequence_numeric():
+    assert _validate_numeric_sequence(range(10)) == None
+    with pytest.raises(TypeError):
+        _validate_numeric_sequence(list('a', 'b', 'c'))
+```
+
+A better approach would be to break this up into specific functionality and create appropriate docstrings:
+
+```{python, eval=FALSE}
+def test_validate_sequence_type():
+    """Non-sequence data type raises exception.
+
+    GIVEN a non-sequence input
+
+    WHEN validating said input
+
+    THEN an error is raised
+    """
+    with pytest.raises(TypeError):
+        _validate_numeric_sequence({})
+        _validate_numeric_sequence(set())
+
+def test_validate_non_numeric_sequence():
+    """Non-numeric sequence raises error
+
+    GIVEN a sequence input
+
+    WHEN the sequence is not numeric
+
+    THEN an error is raised
+    """
+    with pytest.raises(TypeError):
+        _validate_numeric_sequence(list('a', 'b', 'c'))
+
+def test_validate_sequence_numeric():
+    """Sequence with numeric data returns None
+
+    GIVEN a sequence input
+
+    WHEN the vector contains numeric values or logical that can be coerced to numeric
+
+    THEN a silent return occurs
+    """
+    assert _validate_numeric_sequence(range(10)) == None
+    assert _validate_numeric_sequence([1, 2, 3]) == None
+    assert _validate_numeric_sequence((True, False)) == None
+```
+
+The above is a little more explicit and methodical regarding what we expect to occur. We can run these new tests on their own with the following. Note that `-v` is for verbose output which will print the path of the test.
+
+```bash
+pytest -v tests/test_validation.py 
+======================================== test session starts ========================================
+platform darwin -- Python 3.7.3, pytest-5.4.2, py-1.8.1, pluggy-0.13.1 -- /Users/b294776/Desktop/Workspace/Projects/misk/myfirstpypkg/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/b294776/Desktop/Workspace/Projects/misk/myfirstpypkg, inifile: setup.cfg
+collected 3 items                                                                                   
+
+tests/test_validation.py::test_validate_sequence_type PASSED                                  [ 33%]
+tests/test_validation.py::test_validate_non_numeric_sequence PASSED                           [ 66%]
+tests/test_validation.py::test_validate_sequence_numeric PASSED                               [100%]
+
+========================================= 3 passed in 0.02s =========================================
+```
+
+### What to test
+
+Exactly what we want to test is a much harder concept to answer. We can certainly go over-board with testing if we try to capture every possible scenario. Our general approach is to test the main use-cases and then add to our test suite down the road as edge cases pop up.
+
+Defining the main use-cases is not always easy. We typically look for:
+
+- a couple basic uses cases that we feel the vast majority of users will apply,
+- a few expected edge cases such as if user supplies a `None` value or if there are upper limits to the expected inputs (what if a user supplies an interest rate parameter with a negative value or value greater than 100%),
+- expected messages, warnings, or errors designed specific for end-users.
+
+For example, our current test for our `my_mean()` function provides a very basic use case:
+
+```{python, eval=FALSE}
+def test_my_mean():
+    x = range(0, 11)
+    assert my_mean(x) == 5
+```
+
+We would likely want to expand this initially to capture a few expected scenarios. The below provides three distinct test purposes for our `my_mean()` function. If you run the following you will see that the second test fails because our original implementation does not handle `None` values. We would need to go back to that function and update it to deail with those values.
+
+```{python, eval=FALSE}
+def test_my_mean_on_numeric_vectors():
+    """Mean of numeric vectors compute accurately
+
+    GIVEN a sequence input
+
+    WHEN the data values are numeric or logical
+
+    THEN an arithmetic mean should be computed
+    """
+    assert my_mean(range(0, 11)) == 5
+    assert my_mean([1.5, 2.5, 3.5]) == 2.5
+    assert my_mean([True, True, False, False]) == 0.5
+    assert my_mean(range(-10, 11)) == 0
+
+def test_my_mean_ignore_none():
+    """None values are ignored
+    GIVEN a sequence input that contains numeric values
+
+    WHEN the sequence also contains `None` values
+
+    THEN these irregular values should be stripped and the arithmetic mean computed
+    """
+    x = list(range(0, 11))
+    x += [None]
+    assert my_mean(x) == 5
+
+def test_my_mean_inadequate_inputs():
+    """Inadequate input raise error.
+
+    GIVEN a user input
+
+    WHEN the input is not a vector with numeric values
+
+    THEN an error should be raised
+    """
+    with pytest.raises(TypeError):
+        my_mean(list('a', 'b', 'c'))
+```
+
+Also, note the first test and the repeated nature of the code. We could simplify this with what's called "_parametrizing_" the test function. You can learn more about parametrization [here](https://docs.pytest.org/en/2.8.7/parametrize.html). This is how you would implement it for the first test. Parametrizing is a great thing to learn!
+
+```{python, eval=FALSE}
+@pytest.mark.parametrize("input, expected",
+    [(range(0, 11), 5),
+     ([1.5, 2.5, 3.5], 2.5),
+     ([True, True, False, False], 0.5),
+     (range(-10, 11), 0),
+    ]
+)
+def test_my_mean_on_numeric_vectors(input, expected):
+    """Mean of numeric vectors compute accurately
+
+    GIVEN a sequence input
+
+    WHEN the data values are numeric or logical
+
+    THEN an arithmetic mean should be computed
+    """
+    assert my_mean(input) == expected
+```
+
