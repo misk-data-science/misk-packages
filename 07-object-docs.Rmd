@@ -169,3 +169,143 @@ See [here](https://r-pkgs.org/man.html#text-formatting) for a quick reference gu
 
 
 ## `r fontawesome::fa("python")` example
+
+Python object documentation is generated from [docstrings](https://www.python.org/dev/peps/pep-0257/). Docstrings should always use `"""triple double quotes"""` and are usually multiline.
+
+```{block, type="tip"}
+A great article on approaching Python project documentation - https://realpython.com/documenting-python-code/
+```
+
+
+### Package-level documentation
+
+The docstring for a package is contained in the `__init__.py` script and typically explains the main features of the package but can also list the modules and subpackages exported by the package. We could add similar package-level documentation as we did in the R example section by adding the following to `myfirstpypkg/src/myfirstpypkg/__init__.py`:
+
+```{python, eval=FALSE}
+__doc__ = """
+myfirstpkg: A simple package to teach myself how to develop Python packages.
+============================================================================
+
+**myfirstpkg** is a Python package provides X categories of important
+functions: foo, bar and baz. It builds on top of basic built-in Python
+functionality without adding much new. However, it sure is helpful in
+advancing my understanding of Python packaging.
+
+Main Features
+-------------
+Here are the key functionalities that myfirstpkg provides:
+  - Foo functions: The foo functions ...
+  - Boo functions: The boo functions ...
+  - Baz functions: The baz functions ...
+
+Learn More
+----------
+- Detailed example implementations: https://some.url.com
+- Source code: https://some.url.com
+"""
+```
+
+The above adds a `__doc__` attribute to our package containing the docstring. So if you go to the terminal and
+
+1. `import myfirstpypkg`
+2. `print(myfirstpypkg.__doc__)`
+
+You will see the documentation print out:
+
+```{r, echo=FALSE}
+knitr::include_graphics("figures/py-pkg-docs.png")
+```
+
+### Module-level documentation
+
+The docstring for individual `.py` scripts/modules can also be done with docstrings at the very top of the module. These generally explain the purpose of the module (remember, you should be grouping like items within a module) and list the classes, exceptions and functions (and any other objects) that are contained in the module, with a one-line summary of each. (These summaries generally give less detail than the summary line in the object's docstring.) 
+
+For example, you could add the following to the top of the `summary_stats.py` script to provide a synopsis of the intent and contents of the scripts. 
+
+```{python, eval=FALSE}
+"""Primary interface for summary statistics functionality.
+
+A longer description can go here if greater details needs to be provided
+that span multiple lines.
+
+Available classes:
+- NA
+
+Available functions:
+- z_score: Computes z-score of a numeric/boolean sequence.
+- my_sd: Computes standard deviation of a numeric/boolean sequence.
+- my_mean: Computes arithmentic mean of a numeric/boolean sequence.
+"""
+```
+
+Now, you or a developer can easily understand the contents contained in that module. And most editors will provide you the docstring information when hovering/highlighting references to the module. For example, in VS Code, when I place my cursor over the reference to the `summary_stats` in the `__init__.py` script I see the following:
+
+```{r, echo=FALSE}
+knitr::include_graphics("figures/py-module-docs.png")
+```
+
+
+### Function-level documentation
+
+Functions are the most commonly, and most important, documented object. As well as the introduction block, most functions have at least three sections: 
+
+* __`Parameters`__: Describes the function’s inputs or parameters. The description should provide a succinct summary of the type of the parameter (e.g., bool, int, list, tuple) and, if not obvious from the name, what the parameter does.
+
+* __`Returns`__: Describes the output from the function. This is not necessary but it is a good idea to always include it so it is clear to the consumer what to expect as output. This becomes even more important when your output type differs from your input type (i.e. input is a dictionary but the output is a list).
+
+* __`Examples`__: Provides executable Python code showing how to use the function in practice. This is a very important part of the documentation because many people look at the examples first. 
+
+It's not uncommon to see other sections such as __`Attributes`__ and __`Methods`__ for class docstrings and __`Raises`__ to describe when functions or methods will raise an exception.
+
+We have already seen all three of these in action with our current `my_mean()` documentation:
+
+```{python, eval=FALSE}
+def my_mean(x, rm_none = True):
+    """
+    Mean of a sequence
+
+    Computes arithmetic mean of a sequence with numeric or logical values.
+
+    Parameters
+    ----------
+    x
+        A numeric or logical sequence.
+    rm_none
+         Boolean specifying whether or not to remove `None` values.
+
+    Returns
+    -------
+    The arithmetic mean of the values in x returned as a numeric value of length one.
+
+    Examples
+    --------
+    >>> x = range(0, 11)
+    ... my_mean(x)
+    """
+    _validate_numeric_sequence(x)
+    x = _validate_none_values(x, rm_none)
+    total = sum(x)
+    units = len(x)
+    return total / units
+```
+
+### Type hints
+
+There is another unique approach to documentating Python classes, functions, and methods called type hints. Type hints allow you to annotate required specifications of object types within the function call. For example, the following states that:
+
+- the parameter `name` should be of type string
+- the output of our function (as indicated with `-> str`) should also be a string.
+
+```{python, eval=FALSE}
+def greeting(name: str) -> str:
+    return 'Hello ' + name
+```
+
+```{block, type='tip'}
+Type hints are a more advanced topic but as you get more comfortable writing Python code, and especially when writing code others will use, type hints are definitely something you will want to learn and incorporate. You can learn more about type hints at:
+
+- https://www.python.org/dev/peps/pep-0484/
+- https://docs.python.org/3/library/typing.html
+- https://realpython.com/lessons/type-hinting/
+```
+
