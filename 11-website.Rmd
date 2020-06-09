@@ -1,3 +1,39 @@
 # Package Website {#website}
 
-Although not required, both `r fontawesome::fa("python")` and `r fontawesome::fa("r-project")` have documentation generators that will allow you to set up a website for your package rather easily. 
+Although not required, both `r fontawesome::fa("python")` and `r fontawesome::fa("r-project")` have documentation generators that will allow you to set up a website for your package rather easily. These generators include [Sphinx](https://www.sphinx-doc.org/en/master/) for `r fontawesome::fa("python")` packages and [pkgdown](https://pkgdown.r-lib.org/) for `r fontawesome::fa("r-project")` packages.
+
+```{block, type='tip'}
+Here are some great examples of websites:
+
+- Python packages
+   - [numpy](https://numpydoc.readthedocs.io/en/latest/)
+   - [pandas](https://pandas.pydata.org/docs/)
+   - [plotnine](https://plotnine.readthedocs.io/en/stable/)
+- R packages
+   - [bayesplot](http://mc-stan.org/bayesplot/index.html)
+   - [vip](https://koalaverse.github.io/vip/index.html)
+   - [recipes](https://recipes.tidymodels.org/)
+```
+
+In both cases, the website documentation is contained in a `/docs` subdirectory of the package. Github allows us host HTML files in the `/docs` subdirectory as a static website. To do so, we need to got to __Settings__ within our Github repo:
+
+```{r, echo=FALSE}
+knitr::include_graphics("figures/github-repo-settings.png")
+```
+
+Scroll down to __GitHub Pages__ and select "master branch /docs folder:
+
+```{r, echo=FALSE}
+knitr::include_graphics("figures/github-repo-enable-github-pages.png")
+```
+
+This will generate a URL (i.e. https://bradleyboehmke.github.io/myfirstpkg/). Currently this URL will not render anything since we haven't produced the website docs but once we do, we can then share this URL so people can view our website. Let's go ahead and create our first package websites!
+
+```{block, type = 'warning'}
+Realize that these websites can become extremely elaborate and complex. We are only concerned with generating a basic website and you can advance your understanding and implementations as you learn more.
+```
+
+## `r fontawesome::fa("r-project")` example
+
+
+## `r fontawesome::fa("python")` example

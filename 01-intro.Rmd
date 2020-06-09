@@ -7,9 +7,9 @@ Often, small snippets of code grow in usefulness and importance, which creates a
 ```{block, type='note'}
 People often use the terms "package" and "library" synonymously. Although there are some semantical differences between R and Python, here is how you can think of the two terms:
 
-- __package__: generally refers to source code that is bundled up in a way that a package manager can host. [PyPI](https://pypi.org/) and [CRAN](https://cran.r-project.org/) are the two primary public package managers for Python and R. When you `pip install pkg` (`r fontawesome::fa("python")`) or `install.packages("pkg")` (`r fontawesome::fa("r-project")`) you are installing the __pkg__ package from a package manager onto a computer.
+- __package__: generally refers to source code that is bundled up in a way that a package manager can host. [PyPI](https://pypi.org/) and [CRAN](https://cran.r-project.org/) are the two primary public package managers for Python and R. When you `pip install pkg` (Python) or `install.packages("pkg")` (R) you are installing the __pkg__ package from a package manager onto a computer.
 
-- __library__: generally refers to a centralized location on an operating system where installed package source code resides and can be imported into a current session (i.e. /usr/lib/R/library).  When you use `pip list` (`r fontawesome::fa("python")`) or `installed.packages()` (`r fontawesome::fa("r-project")`) you will see a list of _installed_ packages, which we refer to as libraries. When you run `sys.path` (Python) or `.libPaths()` (R) you will get the path to the library where your installed packages are stored.
+- __library__: generally refers to a centralized location on an operating system where installed package source code resides and can be imported into a current session (i.e. /usr/lib/R/library).  When you use `pip list` (Python) or `installed.packages()` (R) you will see a list of _installed_ packages, which we refer to as libraries. When you run `sys.path` (Python) or `.libPaths()` (R) you will get the path to the library where your installed packages are stored.
 ```
 
 ## Why is packaging important
