@@ -41,11 +41,14 @@ TBD
 | :-----------: | :----------------------------------- | :-----------: | :-----------: | :-----------: | :-----------: |
 | 1             | Introduction to packages             | Ch [1](https://misk-data-science.github.io/misk-packages/) & [2](https://misk-data-science.github.io/misk-packages/intro.html)      | TBD            | NA            | NA            |
 | 2             | Package structure                    | Ch [3](https://misk-data-science.github.io/misk-packages/structure.html)     | TBD           | TBD           | TBD           |
-| 3             | Package documentation                | TBD           | TBD           | TBD           | TBD           |
-| 4             | Tests                                | TBD           | TBD           | TBD           | TBD           |
-| 5             | Continuous integration and deployment | TBD          | TBD           | TBD           | TBD           |
-| 6             | Other components                     | TBD           | TBD           | TBD           | TBD           |
-| 7             | Case study.                          | TBD           | TBD           | TBD           | TBD           |
+| 3             | Development workflow                 | Ch [4](https://misk-data-science.github.io/misk-packages/workflow.html)      | TBD           | TBD           | TBD           |
+| 4             | Package metadata                     | Ch [5](https://misk-data-science.github.io/misk-packages/metadata.html)      | TBD           | TBD           | TBD           |
+| 5             | Source code                          | Ch [6](https://misk-data-science.github.io/misk-packages/code.html)          | TBD           | TBD           | TBD           |
+| 6             | Tests                                | Ch [7](https://misk-data-science.github.io/misk-packages/test.html)          | TBD           | TBD           | TBD           |
+| 7             | Package documentation                | Ch [8](https://misk-data-science.github.io/misk-packages/object-docs.html) - [11](https://misk-data-science.github.io/misk-packages/website.html)   | TBD           | TBD           | TBD           |
+| 8             | Other components                     | TBD           | TBD           | TBD           | TBD           |
+| 9             | Continuous integration and deployment | TBD          | TBD           | TBD           | TBD           |
+| 10            | Case study.                          | TBD           | TBD           | TBD           | TBD           |
 
 
 ## Extras
