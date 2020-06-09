@@ -6,8 +6,11 @@ Delivering Data Science Products via Packages
 -----
 
 :spiral_calendar: September XX-XX, 2020  
+
 :alarm_clock:     09:00 - 17:00  
+
 :hotel:           TBD  
+
 :writing_hand:    TBD
 
 -----
