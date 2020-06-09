@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Introduction to Packaging | Delivering Data Science Products via Packages</title>
+  <title>11 Long-form Documentation | Delivering Data Science Products via Packages</title>
   <meta name="description" content="Creating R and Python packages to scale data science." />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Introduction to Packaging | Delivering Data Science Products via Packages" />
+  <meta property="og:title" content="11 Long-form Documentation | Delivering Data Science Products via Packages" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bradleyboehmke/misk-packages" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Introduction to Packaging | Delivering Data Science Products via Packages" />
+  <meta name="twitter:title" content="11 Long-form Documentation | Delivering Data Science Products via Packages" />
   
   <meta name="twitter:description" content="Creating R and Python packages to scale data science." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="structure.html"/>
+<link rel="prev" href="readme.html"/>
+<link rel="next" href="website.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -291,71 +291,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="intro" class="section level1">
-<h1><span class="header-section-number">2</span> Introduction to Packaging</h1>
-<p>Often, small snippets of code grow in usefulness and importance, which creates a need to share and distribute their contents. <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg> and <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"/></svg> libraries require <em>packaging</em>, otherwise distributing code becomes problematic and brittle. A package bundles together code, data, documentation, and tests, and is easy to share with others.</p>
-<div class="note">
-<p>
-People often use the terms “package” and “library” synonymously. Although there are some semantical differences between R and Python, here is how you can think of the two terms:
-</p>
-<ul>
-<li>
-<p>
-<strong>package</strong>: generally refers to source code that is bundled up in a way that a package manager can host. <a href="https://pypi.org/">PyPI</a> and <a href="https://cran.r-project.org/">CRAN</a> are the two primary public package managers for Python and R. When you <code>pip install pkg</code> (<code>r fontawesome::fa(“python”)</code>) or <code>install.packages(“pkg”)</code> (<code>r fontawesome::fa(“r-project”)</code>) you are installing the <strong>pkg</strong> package from a package manager onto a computer.
-</p>
-</li>
-<li>
-<p>
-<strong>library</strong>: generally refers to a centralized location on an operating system where installed package source code resides and can be imported into a current session (i.e. /usr/lib/R/library). When you use <code>pip list</code> (<code>r fontawesome::fa(“python”)</code>) or <code>installed.packages()</code> (<code>r fontawesome::fa(“r-project”)</code>) you will see a list of <em>installed</em> packages, which we refer to as libraries. When you run <code>sys.path</code> (Python) or <code>.libPaths()</code> (R) you will get the path to the library where your installed packages are stored.
-</p>
-</li>
-</ul>
-</div>
-<div id="why-is-packaging-important" class="section level2">
-<h2><span class="header-section-number">2.1</span> Why is packaging important</h2>
-<p>Why write a package?</p>
-<ul>
-<li><strong>To share with others</strong>: Bundling your code into a package makes it easy for other people to use it, because like you, they already know how to use packages. If your code is in a package, any <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg> or <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"/></svg> user can easily download it, install it and learn how to use it.</li>
-<li><strong>To make processes reproducible</strong>: When certain code processes are repeated, rather than copy-n-pasting (error prone!) packaging helps to ensure the same procedures are executed in the same way. This leads to standardized tools for standardized conventions and can save you and others time.</li>
-<li><strong>To track changes</strong>: Packaging helps to formulize version changes of a project. Versioning allows developers a way to communicate the type of changes made to a project (i.e. bug fixes versus feature enhancement). It also allows users to “pin” a specific version that works for their project. For example, although a current package may have a version 3.2.1, your project depends on specific functionality provided in version 2.9.7. Pinning allows you to request and use that specific version.</li>
-<li><strong>To communicate with users</strong>: Beyond versioning, packaging helps with communication between developers and end-users. Detailed documentation helps the end-users implement the code, a change log can communcate the progression of a package over its versions, users can communicate to the developers regarding bugs they’ve found or suggested feature enhancements.</li>
-<li><strong>To provide reliability</strong>: Packaging helps to modularize code in a way that allows for, and simplifies, testing procedures. This means as your source code grows, or as you get feedback from end-users, so should your test suite grow to help improve reliability of the code base. This results in code that is reliable and trustworthy.</li>
-<li><strong>To deploy production work</strong>: You may have code that is never reused by others; however, the code is put into production to formalize the processesing and output of the code. Packaging your project is a great way to organize, maintain, and distribute your work into production.</li>
-</ul>
-</div>
-<div id="when-packaging-might-not-be-needed" class="section level2">
-<h2><span class="header-section-number">2.2</span> When packaging might not be needed</h2>
-<p>To be clear, it is not necessary to package your code to address all the bullets in the previous section; but it will definitely make them easier to achieve. However, there are times when writing a package is not necessary. For example:</p>
-<ul>
-<li><strong>Exploratory analysis</strong>: The exploratory phase of a project is very interactive and contains many unknowns. You may find yourself repeating some code, which may be a good time to write and reuse small functions. However, this is not the phase to start writing a package. It’s best to wait and see what results from your exploratory analysis. If there are steps in the process (i.e. data prep, model execution) that you later determine are common steps that will often be repeated in the future then a package may result from post-exploration project review.</li>
-<li><strong>One-off projects</strong>: Many times we perform one-off ad-hoc projects. Sometimes we may be able to abstract some steps in these projects that may be repeated but often these projects contain very unique steps that are not often repeated. You most likely will use packages in your analysis but writing a package based on a one-off project is rarely a good use of time.</li>
-<li><strong>Small scripts</strong>: Sometimes a simple <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg>, <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"/></svg>, or Bash script can go a long way and serve your primary purpose. Small individual scripts can be easy to build, execute and orchestrate; however, if you notice this small script starting to grow in size and use then it’s time to start thinking of converting it to a package.</li>
-</ul>
-<div class="note">
-<p>
-Although the above type of work may not justify a package, it often still justifies good software engineering practices such as modularity and unit tests!
-</p>
-</div>
-</div>
-<div id="an-opinionated-approach" class="section level2">
-<h2><span class="header-section-number">2.3</span> An opinionated approach</h2>
-<p>It is important to understand that there are several approaches and strategies to writing packages. Even within a single language there are different ways to structure a package. Consequently, understand that this book demonstrates the best practices we have found for developing, maintaining, and distributing packages. Our goal is to provide you with a short runway to writing packages as quickly as possible while following commonly used best practices.</p>
-<div class="note">
-<p>
-This is a lot to learn, but don’t feel overwhelmed. Start with a minimal subset of useful features and build up over time.
-</p>
-</div>
-<p>As you write more packages you will begin to learn the lower-level details and alternative options. Do not shy away from these details as we highly recommend that you learn them. In fact, below are some additional resources that will take you to the official R and Python packaging documentation. Realize that the details in these documents can make them challenging to read. That is ok and to be expected. Our suggestion is to get the basics down, which we cover in this book, and slowly expand your knowledge base by writing more packages.</p>
+<div id="tutorials" class="section level1">
+<h1><span class="header-section-number">11</span> Long-form Documentation</h1>
+<p>The <a href="readme.html#readme">README</a> is designed to get a new user up and running with your package as quickly as possible. However, you should not go into too much depth in the README because it can be overwhelming. As your package grows and becomes more complex, you will likely want to create tutorials that are designed to give the user the next step of instruction with greater detailed, longer-form documentation.</p>
+<p>Although not required, it is very common to find long-form documentation in both <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"/></svg> and <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg> packages. Within <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg> these are commonly called <em>“vignettes”</em> while in Python it is common to store these tutorials in Jupyter notebooks.</p>
+<p>When writing tutorials, you’re teaching someone how to use your package. You need to put yourself in the readers’ shoes, and adopt a “beginner’s mind”. This can be difficult because it’s hard to forget all of the knowledge that you’ve already internalized. For this reason, we find it beneficial to have someone that has never used our package before to read through the tutorial and provide feedback.</p>
+<p>Considering our prototype packages are very small, the following sections will merely demonstrate how to set up your basic long-form documentation. However, to give you an idea of how to approach this form of documentation for larger packages check out these examples:</p>
 <ul>
 <li><svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 581 512">
 <path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/>
 </svg>
-: <a href="https://cran.r-project.org/doc/manuals/R-exts.html#Creating-R-packages">Creating R Extensions</a></li>
+<ul>
+<li><a href="https://pkgdown.r-lib.org/articles/pkgdown.html" class="uri">https://pkgdown.r-lib.org/articles/pkgdown.html</a></li>
+<li><a href="https://dplyr.tidyverse.org/articles/dplyr.html" class="uri">https://dplyr.tidyverse.org/articles/dplyr.html</a></li>
+<li><a href="https://parsnip.tidymodels.org/articles/parsnip_Intro.html" class="uri">https://parsnip.tidymodels.org/articles/parsnip_Intro.html</a></li>
+</ul></li>
 <li><svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512">
 <path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"/>
 </svg>
-: <a href="https://packaging.python.org/">Python Packaging User Guide</a></li>
+<ul>
+<li><a href="https://numpy.org/devdocs/user/quickstart.html" class="uri">https://numpy.org/devdocs/user/quickstart.html</a></li>
+<li><a href="https://github.com/has2k1/plotnine-examples/tree/master/plotnine_examples" class="uri">https://github.com/has2k1/plotnine-examples/tree/master/plotnine_examples</a></li>
+<li><a href="https://github.com/scikit-learn/scikit-learn/tree/master/examples" class="uri">https://github.com/scikit-learn/scikit-learn/tree/master/examples</a></li>
+</ul></li>
 </ul>
+<div id="example-14" class="section level2">
+<h2><span class="header-section-number">11.1</span> <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg> example</h2>
+<p>In an <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg> package we use vignettes as our long-form documentation. We can create the vignette structure easily with:</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1">usethis<span class="op">::</span><span class="kw">use_vignette</span>(<span class="st">&quot;myfirstpkg&quot;</span>)</a></code></pre></div>
+<div class="note">
+<p>
+You may get an error message stating you need to add ‘rmarkdown’ or possibly another package. Since you should be operating in your virtual environment you will need to install this package (<code>install.packages(‘rmardown’)</code>) and then <code>renv::snapshot()</code>.
+</p>
+</div>
+<p>This automates three steps for us:</p>
+<ol style="list-style-type: decimal">
+<li>Create a <code>vignettes/</code> directory.</li>
+<li>Add the necessary dependencies to the <code>DESCRIPTION</code> file.</li>
+<li>Creates a draft vignette, <code>vignettes/myfirstpkg.Rmd</code>.</li>
+</ol>
+<p>Once you have the vignette structure then the typical workflow is…</p>
+<ol style="list-style-type: decimal">
+<li>Update the vignette</li>
+<li>Knit the vignette and preview the output (Ctrl/Cmd + Shift + K)</li>
+</ol>
+<p>When you open up the vignette that was created, you’ll see YAML metadata at the top. You’ll want to leave most of this as-is but you can change the <code>title</code> and corresponding <code>VignetteIndexEntry{myfirstpkg}</code> if you want to name your vignette something else.</p>
+<pre><code>---
+title: &quot;myfirstpkg&quot;
+output: rmarkdown::html_vignette
+vignette: &gt;
+  %\VignetteIndexEntry{myfirstpkg}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---</code></pre>
+<p>The rest of the vignette uses basic <a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a> syntax. Let’s add some simple information to our vignette so it looks like this:</p>
+<p><img src="figures/r-vignette-raw.png" /><!-- --></p>
+<p>Now preview the output with Ctrl/Cmd + Shift + K. If you get an error stating myfirstpkg is not available then run <code>devtools::install()</code> first to install your package in the virtual environment and then you should be able to preview the output which will look like:</p>
+<p><img src="figures/r-vignette-html.png" /><!-- --></p>
+<p>Now when a user installs your package they can run <code>vignette(package = &quot;myfirstpkg&quot;)</code> and see your vignette. This will also help us build a nice website as we’ll see in the next chapter.</p>
+</div>
+<div id="example-15" class="section level2">
+<h2><span class="header-section-number">11.2</span> <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"/></svg> example</h2>
+<p>There are a couple ways to do long-form documentation for <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"/></svg> packages but the simplest to get started is by creating <a href="https://jupyter.org/">Jupyter notebooks</a> and store them in an “examples” or “tutorials” directory. Although these will not be deployed with the package as is the case with <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg> packages, they will be easily viewable on Github since Github renders notebooks as HTML.</p>
+<p>Let’s go ahead and create an <code>examples</code> directory with a “Getting started” notebook:</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb119-1" data-line-number="1"><span class="fu">mkdir</span> examples</a>
+<a class="sourceLine" id="cb119-2" data-line-number="2"><span class="fu">touch</span> examples/getting-started.ipynb</a></code></pre></div>
+<p>Now you can open up the notebook and create your tutorial. We’ll add a similar dummy tutorial example as we did in the <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg> example.</p>
+<p><img src="figures/py-tutorial-notebook.png" /><!-- --></p>
+<p>Now when you push this to Github it’ll render as the following:</p>
+<p><img src="figures/py-tutorial-rendered.png" /><!-- --></p>
 
 </div>
 </div>
@@ -364,8 +368,8 @@ This is a lot to learn, but don’t feel overwhelmed. Start with a minimal subse
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="structure.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="readme.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="website.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -387,7 +391,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/bradleyboehmke/misk-packages/edit/master/01-intro.Rmd",
+"link": "https://github.com/bradleyboehmke/misk-packages/edit/master/10-long-form-docs.Rmd",
 "text": "Edit"
 },
 "history": {

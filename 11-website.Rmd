@@ -1,0 +1,3 @@
+# Package Website {#website}
+
+Although not required, both `r fontawesome::fa("python")` and `r fontawesome::fa("r-project")` have documentation generators that will allow you to set up a website for your package rather easily. 
