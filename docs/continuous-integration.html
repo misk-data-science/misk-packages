@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 Package Metadata | Delivering Data Science Products via Packages</title>
+  <title>14 Continuous Integration | Delivering Data Science Products via Packages</title>
   <meta name="description" content="Creating R and Python packages to scale data science." />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 Package Metadata | Delivering Data Science Products via Packages" />
+  <meta property="og:title" content="14 Continuous Integration | Delivering Data Science Products via Packages" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bradleyboehmke/misk-packages" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 Package Metadata | Delivering Data Science Products via Packages" />
+  <meta name="twitter:title" content="14 Continuous Integration | Delivering Data Science Products via Packages" />
   
   <meta name="twitter:description" content="Creating R and Python packages to scale data science." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="workflow.html"/>
-<link rel="next" href="code.html"/>
+<link rel="prev" href="other-components.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -309,245 +309,155 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="metadata" class="section level1">
-<h1><span class="header-section-number">5</span> Package Metadata</h1>
-<p>Every package requires important metadata about the package. This file will declare various information such as package name, description, dependencies, author(s), contact information and more. This chapter covers the metadata information that is either required or should be included in both <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg> and <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"/></svg> packages along with the key files to supply this information.</p>
-<p>First, we’ll talk about the metadata to include and then the last two sections will walk through the <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg> and <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"/></svg> files that hold this info.</p>
-<div id="name-and-package-description" class="section level2">
-<h2><span class="header-section-number">5.1</span> Name and package description</h2>
-<p>Name, title and description information help describe what the package does. Both <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg> and <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"/></svg> have some general guidelines required for each of these fields such as the number of characters. However, the intent is often the same:</p>
-<ol style="list-style-type: decimal">
-<li>Name is the name of the package,</li>
-<li>A shorter, one line description of the package provides,</li>
-<li>A longer, multi-line description of the package. This is the elevator pitch of the key things that your package does and how important it is to others.</li>
-</ol>
-</div>
-<div id="author-and-contact-info" class="section level2">
-<h2><span class="header-section-number">5.2</span> Author and contact info</h2>
-<p>Packages require at least the primary author to be listed along with their email contact information. You can optionally provide additional authors and contributors along with their contact info.</p>
-</div>
-<div id="dependencies" class="section level2">
-<h2><span class="header-section-number">5.3</span> Dependencies</h2>
-<p>Most packages have dependencies. Moreover, packages can have different types of dependencies:</p>
+<div id="continuous-integration" class="section level1">
+<h1><span class="header-section-number">14</span> Continuous Integration</h1>
+<p><strong>Continuous integration</strong> is the idea of continuously testing our Python package as we make changes to our source code and <strong>continuous delivery/deployment</strong> is the idea that we continuously and automatically deploy our package to a production environment. Together we refer to this process as <strong>CI/CD</strong>.</p>
+<p>Thus far, every time we made updates to our code we relied on ourselves to manually run any tests and checks to ensure our code is working. This may be fine for very small projects such as our example package where we are the only contributors. However, as our project gets larger and we have more contributors, it becomes important that we automate this process to ensure any changes made to our code base are done so with our quality expectations met. Automating this process will guarantee that all changes to our code have been tested. Moreso, we can set it up so that it is obvious if a commit or pull request is passing or failing.</p>
+<p>There are many tools that can do this. Some common ones include:</p>
 <ul>
-<li><strong>Language version dependency</strong>: Sometimes our package relies on certain language features that are only available in certain versions. For example, if you use f-strings in a Python package than your package depends on using Python v3.6 or later.</li>
-<li><strong>Required package dependencies</strong>: Often our package uses other third party packages to simplify tasks. We may use <strong>dplyr</strong> or <strong>pandas</strong> to simplify data frame manipulations. We need to capture any required packages used by our source code to make sure anyone using our package also has these required packages installed on their operating system (OS).</li>
-<li><strong>Suggested package dependencies</strong>: Sometimes your package leverages third party packages but doesn’t strictly require them to provide its fundamental capabilities. This may include packages that provide example datasets, running tests, building documentation, etc. We can usually specify these packages in a way that doesn’t enforce installation onto a users OS but provides them the option to install them if necessary.</li>
-<li><strong>Developer dependencies</strong>: Developers often use certain packages for enabling syntax styling, pre-commit hooks and other developer environment requirements.</li>
+<li><a href="https://travis-ci.org/">Travis-CI</a></li>
+<li><a href="https://azure.microsoft.com/en-us/services/devops/pipelines/">Azure Pipelines</a></li>
+<li><a href="https://github.com/features/actions">GitHub Actions</a></li>
 </ul>
-</div>
-<div id="versioning" class="section level2">
-<h2><span class="header-section-number">5.4</span> Versioning</h2>
-<p>There is a wide array of options when it comes to software versioning; however, we advise using a <a href="https://semver.org/">Semantic Versioning</a> approach. Semantic versioning follows a <code>&lt;MAJOR&gt;.&lt;MINOR&gt;.&lt;PATCH&gt;</code> numbering approach (i.e. 0.9.1, 1.4.0). With this approach, you increment certain parts of a version number depending on the changes made:</p>
-<ul>
-<li><code>&lt;MAJOR&gt;</code> version when you make incompatible API changes. This signals that your updates will likely effect many users and will cause breaking changes to users’ prior code.</li>
-<li><code>&lt;MINOR&gt;</code> version when you add functionality in a backwards compatible manner. This often includes adding a new feature that does not effect the existing code base.</li>
-<li><code>&lt;PATCH&gt;</code> version when you make backwards compatible bug fixes.</li>
-</ul>
-<p>You may also see in-development packages using a fourth component called the <em>development version</em> (i.e. 1.0.0.9000). Using this development number makes it easy to see if a package is released or in-development and the use of the fourth place means that you’re not limited to what the next version will be.</p>
 <div class="note">
 <p>
-Unfortunately, determining the right version number is not always an exact science. For example, if you make an API-incompatible change to a rarely-used part of your code, it may not deserve a major number change. But if you fix a bug that many people depend on, it will feel like an API breaking change. Use your best judgement.
+All these services not only will automate the process of testing your package, but they can also automate the process of deploying your package to a production environment (or CRAN and PyPI). For this chapter we are only going to discuss the automation of testing, checking and building your package.
 </p>
 </div>
-<p>Packages often start with a version number <code>0.1.0</code> and slowly increment as they mature. A version of <code>1.0.0</code> typically indicates that your package is feature complete with a stable API.</p>
-</div>
-<div id="license" class="section level2">
-<h2><span class="header-section-number">5.5</span> License</h2>
-<p>The license field states who can use your package. The License field can be either a standard abbreviation for an open source license, like GPL-2 or BSD, or a pointer to a file containing more information, file <code>LICENSE</code>. The license is really only important if you’re planning on releasing your package or you may need a proprietary license for packages built within your organization.</p>
-<p>There are several open source software licenses to choose from. A few of the more common ones include:</p>
-<ul>
-<li><a href="https://tldrlegal.com/license/mit-license">MIT</a>: This is a simple and permissive license. It lets people use and freely distribute your code subject to only one restriction: the license must always be distributed with the code.</li>
-<li><a href="https://tldrlegal.com/license/gnu-general-public-license-v2">GPL-2</a> or <a href="https://tldrlegal.com/license/gnu-general-public-license-v3-(gpl-3)">GPL-3</a>: These are “copy-left” licenses. This means that anyone who distributes your code in a bundle must license the whole bundle in a GPL-compatible way. Additionally, anyone who distributes modified versions of your code (derivative works) must also make the source code available. GPL-3 is a little stricter than GPL-2, closing some older loopholes.</li>
-<li><a href="https://tldrlegal.com/license/creative-commons-cc0-1.0-universal">CC0</a>: It relinquishes all your rights on the code and data so that it can be freely used by anyone for any purpose. This is sometimes called putting it in the public domain, a term which is neither well-defined nor meaningful in all countries.</li>
-</ul>
+<p>Although the setup for each of these services do differ, they all have a very similar approach - they use <code>.yaml</code> configuration files to drive the process. For our example, we are going to use <a href="https://github.com/features/actions">GitHub Actions</a>.</p>
+<p>To create a new Github action we need to make a new directory and file within the <code>.github/</code> directory that currently exists at the root of your directory. First, make sure that your current directory is at the root of your package. Next, make a new directory called <code>workflows/</code> and within that new directory we’ll create a <code>.yml</code> config file called <code>package-ci.yml</code>.</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb132-1" data-line-number="1"><span class="fu">mkdir</span> .github/workflows</a>
+<a class="sourceLine" id="cb132-2" data-line-number="2"><span class="fu">touch</span> .github/workflows/package-ci.yml</a></code></pre></div>
+<p>All our logic to direct our automated CI process will be contained in this <code>package-ci.yml</code> file but the contents will differ depending on the language of your package.</p>
+<div id="example-16" class="section level2">
+<h2><span class="header-section-number">14.1</span> <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg> example</h2>
+<p>The following provides a simple Github CI template to copy into your <code>package-ci.yml</code> file within your R package.</p>
 <div class="tip">
 <p>
-If you’d like to learn more about other common licenses, Github’s <a href="http://choosealicense.com/licenses/">choosealicense.com</a> is a good place to start. Another good resource is <a href="https://tldrlegal.com/" class="uri">https://tldrlegal.com/</a>, which explains the most important parts of each license.
+This a very simple template that simply automates the workflow procedures we’ve been discussing thus far. However, you can easily extend this to automatically run linting procedures, build the package, and save the artifact. Learn how to extend the below template <a href="https://ropenscilabs.github.io/actions_sandbox/">here</a> and <a href="https://github.com/r-lib/actions/tree/master/examples">here</a>.
 </p>
 </div>
-</div>
-<div id="project-source" class="section level2">
-<h2><span class="header-section-number">5.6</span> Project source</h2>
-<p>It is common to include URLs to direct users to:</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode yml"><code class="sourceCode yaml"><a class="sourceLine" id="cb133-1" data-line-number="1"><span class="fu">name:</span><span class="at"> Validate &#39;myfirstpkg&#39;</span></a>
+<a class="sourceLine" id="cb133-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb133-3" data-line-number="3"><span class="fu">on:</span><span class="at"> </span><span class="kw">[</span>push<span class="kw">]</span></a>
+<a class="sourceLine" id="cb133-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb133-5" data-line-number="5"><span class="fu">jobs:</span></a>
+<a class="sourceLine" id="cb133-6" data-line-number="6">  <span class="fu">build:</span></a>
+<a class="sourceLine" id="cb133-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb133-8" data-line-number="8">    <span class="fu">runs-on:</span><span class="at"> ubuntu-latest</span></a>
+<a class="sourceLine" id="cb133-9" data-line-number="9">    <span class="fu">steps:</span></a>
+<a class="sourceLine" id="cb133-10" data-line-number="10">    <span class="kw">-</span> <span class="fu">uses:</span><span class="at"> actions/checkout@v2</span></a>
+<a class="sourceLine" id="cb133-11" data-line-number="11">    <span class="kw">-</span> <span class="fu">uses:</span><span class="at"> r-lib/actions/setup-r@master</span></a>
+<a class="sourceLine" id="cb133-12" data-line-number="12">    <span class="kw">-</span> <span class="fu">name:</span><span class="at"> Install dependencies</span></a>
+<a class="sourceLine" id="cb133-13" data-line-number="13">      <span class="fu">run:</span><span class="at"> |</span></a>
+<a class="sourceLine" id="cb133-14" data-line-number="14">        install.packages(c(<span class="st">&quot;remotes&quot;</span>, <span class="st">&quot;rcmdcheck&quot;</span>))</a>
+<a class="sourceLine" id="cb133-15" data-line-number="15">        <span class="fu">remotes:</span><span class="at">:install_deps(dependencies = TRUE)</span></a>
+<a class="sourceLine" id="cb133-16" data-line-number="16">      <span class="fu">shell:</span><span class="at"> Rscript {0}</span></a>
+<a class="sourceLine" id="cb133-17" data-line-number="17">    <span class="kw">-</span> <span class="fu">name:</span><span class="at"> Check</span></a>
+<a class="sourceLine" id="cb133-18" data-line-number="18">      <span class="fu">run:</span><span class="at"> rcmdcheck::rcmdcheck(args = &quot;--no-manual&quot;, error_on = &quot;error&quot;)</span></a>
+<a class="sourceLine" id="cb133-19" data-line-number="19">      <span class="fu">shell:</span><span class="at"> Rscript {0}</span></a></code></pre></div>
+<p>So what’s going on with this script?</p>
 <ul>
-<li>Where the source code resides (i.e. Github repo)</li>
-<li>Where to post bugs, feature requests, etc. (i.e. Github issues)</li>
+<li><code>name</code>: Provides a name for this Github workflow action. You can actually have more than one workflow <code>.yml</code> file that can drive multiple processes.</li>
+<li><p><code>on</code>: Specifies when to run the Github action. Simply stating <code>push</code> means this action will run every time you push a new commit to Github. You could change this to something like the following which states to run the action only when pushing or performing a pull request to the master branch.</p>
+<pre><code>on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]</code></pre></li>
+<li><code>runs-on</code>: OS platforms to run on. You can run on Ubuntu, Windows or Mac OS.</li>
+<li><code>uses: actions/checkout@v2</code>: This is a <a href="https://github.com/actions/checkout">built-in Github step</a> that checks out your repository to allow you to run your code on a virtual machine.</li>
+<li><p><code>uses: r-lib/actions/setup-r@master</code>: This is a Github action step built and maintained by the <a href="https://github.com/r-lib/actions">R community</a> that automates the process of creating an R environment in which to run your code.</p></li>
 </ul>
-<p>We may also want to point people to a package documentation website, the changelog, or other URLs that host important package information.</p>
-</div>
-<div id="other" class="section level2">
-<h2><span class="header-section-number">5.7</span> Other</h2>
-<p>As you’ll see in the next couple sections, there are additional types of metadata that we can include such as deploying data or other files (i.e. LICENSE) with you package. However, the items listed in the previous section are the primary forms of metadata that we want to ensure we include.</p>
-</div>
-<div id="example-2" class="section level2">
-<h2><span class="header-section-number">5.8</span> <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg> example</h2>
-<p>The <code>DESCRIPTION</code> file is the main file used to capture metadata for your <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg> package. If you look at your package’s <code>DESCRIPTION</code> file you will see that several items are already filled out.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">Package<span class="op">:</span><span class="st"> </span>myfirstpkg</a>
-<a class="sourceLine" id="cb53-2" data-line-number="2">Title<span class="op">:</span><span class="st"> </span>My First Package</a>
-<a class="sourceLine" id="cb53-3" data-line-number="3">Version<span class="op">:</span><span class="st"> </span><span class="dv">0</span>.<span class="fl">1.0</span></a>
-<a class="sourceLine" id="cb53-4" data-line-number="4">Authors<span class="op">@</span>R<span class="op">:</span></a>
-<a class="sourceLine" id="cb53-5" data-line-number="5"><span class="st">    </span><span class="kw">person</span>(<span class="st">&quot;Brad&quot;</span>, <span class="st">&quot;Boehmke&quot;</span>, <span class="dt">email =</span> <span class="st">&quot;bradleyboehmke@gmail.com&quot;</span>, <span class="dt">role =</span> <span class="kw">c</span>(<span class="st">&quot;aut&quot;</span>, <span class="st">&quot;cre&quot;</span>))</a>
-<a class="sourceLine" id="cb53-6" data-line-number="6">Description<span class="op">:</span><span class="st"> </span>Provide a longer description of what the package does. This is the</a>
-<a class="sourceLine" id="cb53-7" data-line-number="7">    place to give your elevator pitch of how great this package is and how important</a>
-<a class="sourceLine" id="cb53-8" data-line-number="8">    it is to others.</a>
-<a class="sourceLine" id="cb53-9" data-line-number="9">URL<span class="op">:</span><span class="st"> </span>https<span class="op">:</span><span class="er">//</span>github.com<span class="op">/</span>bradleyboehmke<span class="op">/</span>myfirstpkg</a>
-<a class="sourceLine" id="cb53-10" data-line-number="10">BugReports<span class="op">:</span><span class="st"> </span>https<span class="op">:</span><span class="er">//</span>github.com<span class="op">/</span>bradleyboehmke<span class="op">/</span>myfirstpkg<span class="op">/</span>issues</a>
-<a class="sourceLine" id="cb53-11" data-line-number="11">License<span class="op">:</span><span class="st"> </span>file LICENSE</a>
-<a class="sourceLine" id="cb53-12" data-line-number="12">Encoding<span class="op">:</span><span class="st"> </span>UTF<span class="dv">-8</span></a>
-<a class="sourceLine" id="cb53-13" data-line-number="13">LazyData<span class="op">:</span><span class="st"> </span>true</a>
-<a class="sourceLine" id="cb53-14" data-line-number="14">Depends<span class="op">:</span></a>
-<a class="sourceLine" id="cb53-15" data-line-number="15"><span class="st">    </span><span class="kw">R</span> (<span class="op">&gt;=</span><span class="st"> </span><span class="fl">2.10</span>)</a>
-<a class="sourceLine" id="cb53-16" data-line-number="16">Suggests<span class="op">:</span></a>
-<a class="sourceLine" id="cb53-17" data-line-number="17"><span class="st">    </span>testthat</a>
-<a class="sourceLine" id="cb53-18" data-line-number="18">Roxygen<span class="op">:</span><span class="st"> </span><span class="kw">list</span>(<span class="dt">markdown =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb53-19" data-line-number="19">RoxygenNote<span class="op">:</span><span class="st"> </span><span class="dv">7</span>.<span class="fl">1.0</span></a></code></pre></div>
-<p>A couple items to note:</p>
-<ul>
-<li><code>Title</code> is the one line description of the package you supplied when creating the package structure. It should be plain text, title case, and NOT end in a period. If submitting to CRAN, this will be truncated to 65 characters. So depending on your original input you may want to adjust the <code>Title</code> to ensure it meets these requirements.</li>
-<li><p>Your <code>Author</code> information has been included but if you are working with multiple people you may want to include more authors which can look like this:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">Authors<span class="op">@</span>R<span class="op">:</span><span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb54-2" data-line-number="2"> <span class="kw">person</span>(<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Doe&quot;</span>, <span class="dt">email =</span> <span class="st">&quot;john.doe@example.com&quot;</span>, <span class="dt">role =</span> <span class="st">&quot;cre&quot;</span>),</a>
-<a class="sourceLine" id="cb54-3" data-line-number="3"> <span class="kw">person</span>(<span class="st">&quot;Jane&quot;</span>, <span class="st">&quot;Doe&quot;</span>, <span class="dt">email =</span> <span class="st">&quot;jane.doe@examplecom&quot;</span>, <span class="dt">role =</span> <span class="st">&quot;aut&quot;</span>))</a></code></pre></div>
-<p>Note that there are various roles authorship can have. The main ones include:</p>
-<ul>
-<li><code>cre</code>: the creator or maintainer, the person to contact if there are problems.</li>
-<li><code>aut</code>: authors, those who have made significant contributions to the package.</li>
-<li><code>ctb</code>: contributors, those who have made smaller contributions, like patches.</li>
-<li><code>cph</code>: copyright holder. This is used if the copyright is held by someone other than the author, typically a company (i.e. the author’s employer).</li>
-</ul></li>
-<li><code>Description</code> is more detailed than the title. You can use multiple sentences but you are limited to one paragraph. If your description spans multiple lines (and it should!), each line must be no more than 80 characters wide. Indent subsequent lines with 4 spaces.</li>
-<li><code>License</code> points to the LICENSE file automatically created based on the license you specified.</li>
-<li><code>Encoding</code> is if you use any non-ASCII characters in the <code>DESCRIPTION</code> file, you must also specify an encoding. There are three main encodings that work on all platforms: <code>latin1</code>, <code>latin2</code> and <code>UTF-8</code> (by far the most common).</li>
-<li><p><code>LazyData</code> makes it easier to access data in your package. Because it’s important, it’s included in the basic template even though you may not share data through your package.</p></li>
-</ul>
-<div id="dependencies-1" class="section level3">
-<h3><span class="header-section-number">5.8.1</span> Dependencies</h3>
-<p>Currently in our <code>DESCRIPTION</code> file we specify:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">Depends<span class="op">:</span></a>
-<a class="sourceLine" id="cb55-2" data-line-number="2"><span class="st">    </span><span class="kw">R</span> (<span class="op">&gt;=</span><span class="st"> </span><span class="fl">2.10</span>)</a>
-<a class="sourceLine" id="cb55-3" data-line-number="3">Suggests<span class="op">:</span></a>
-<a class="sourceLine" id="cb55-4" data-line-number="4"><span class="st">    </span>testthat</a></code></pre></div>
-<p><code>Depends</code> states that our package depends on the users version of R to be 2.10 or greater. Think very carefully before increasing to a more restrictive version of R. As you add more sophisticated functionality to your package you, as the developer, need to think about whether or not those functionalities will continue to work on all versions of R &gt;= 2.10 or if you need to bump the version number to, say, 3.0.</p>
-<p><code>Suggests</code> states that our package leverages the <strong>testthat</strong> package but it is not required for basic functionality. In fact, <strong>testthat</strong> is only used to run the tests for our package so a regular user of our package does not need <strong>testthat</strong> to use <code>my_mean()</code>.</p>
-<p>Often, we will need to add new dependencies to our package. For example, say one of our functions uses the <strong>dplyr</strong> and <strong>ggplot2</strong> packages and one our tests uses the <strong>purrr</strong> package. Then, our package’s functionality depends on <strong>dplyr</strong> and <strong>ggplot2</strong> but <strong>purrr</strong> is not a hard requirement.</p>
-<p>We would add the required package dependencies under <code>Imports</code> and the non-hard requirements under <code>Suggests</code>:</p>
+<p>The rest of the code should look familiar as it is the normal procedures we walked through in section <a href="workflow.html#workflow-r">4.6</a> to install our dependency packages and run R Cmd check.</p>
 <div class="note">
 <p>
-Generally you will only put the R version under <code>Depends</code> and keep all package requirements under <code>Imports</code>.
+Note that when you run R Cmd check you are not only checking that the package meets all requirements but it also runs the unit tests and will fail if any of the tests fail.
 </p>
 </div>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">Depends<span class="op">:</span></a>
-<a class="sourceLine" id="cb56-2" data-line-number="2"><span class="st">    </span><span class="kw">R</span> (<span class="op">&gt;=</span><span class="st"> </span><span class="fl">2.10</span>)</a>
-<a class="sourceLine" id="cb56-3" data-line-number="3">Imports<span class="op">:</span></a>
-<a class="sourceLine" id="cb56-4" data-line-number="4"><span class="st">    </span>dplyr,</a>
-<a class="sourceLine" id="cb56-5" data-line-number="5">    ggplot2</a>
-<a class="sourceLine" id="cb56-6" data-line-number="6">Suggests<span class="op">:</span></a>
-<a class="sourceLine" id="cb56-7" data-line-number="7"><span class="st">    </span>purrr,</a>
-<a class="sourceLine" id="cb56-8" data-line-number="8">    testthat</a></code></pre></div>
+</div>
+<div id="example-17" class="section level2">
+<h2><span class="header-section-number">14.2</span> <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"/></svg> example</h2>
+<p>The following provides a simple Github CI template to copy into your <code>package-ci.yml</code> file within your Python package.</p>
 <div class="tip">
 <p>
-You can easily add new packages to the <code>Imports</code> and <code>Suggests</code> fields with:
+This a very simple template that simply automates the workflow procedures we’ve been discussing thus far. However, you can easily extend this to automatically run linting procedures (i.e. flake8, mypy), build the package, and save the artifact. Learn how to extend the below template <a href="https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions">here</a>.
 </p>
+</div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode yml"><code class="sourceCode yaml"><a class="sourceLine" id="cb135-1" data-line-number="1"><span class="fu">name:</span><span class="at"> Validate &#39;myfirstpypkg&#39;</span></a>
+<a class="sourceLine" id="cb135-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb135-3" data-line-number="3"><span class="fu">on:</span><span class="at"> </span><span class="kw">[</span>push<span class="kw">]</span></a>
+<a class="sourceLine" id="cb135-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb135-5" data-line-number="5"><span class="fu">jobs:</span></a>
+<a class="sourceLine" id="cb135-6" data-line-number="6">  <span class="fu">build:</span></a>
+<a class="sourceLine" id="cb135-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb135-8" data-line-number="8">    <span class="fu">runs-on:</span><span class="at"> ubuntu-latest</span></a>
+<a class="sourceLine" id="cb135-9" data-line-number="9">    <span class="fu">strategy:</span></a>
+<a class="sourceLine" id="cb135-10" data-line-number="10">      <span class="fu">matrix:</span></a>
+<a class="sourceLine" id="cb135-11" data-line-number="11">        <span class="fu">python-version:</span><span class="at"> </span><span class="kw">[</span>3.5<span class="kw">,</span> 3.6<span class="kw">,</span> 3.7<span class="kw">,</span> 3.8<span class="kw">]</span></a>
+<a class="sourceLine" id="cb135-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb135-13" data-line-number="13">    <span class="fu">steps:</span></a>
+<a class="sourceLine" id="cb135-14" data-line-number="14">    <span class="kw">-</span> <span class="fu">uses:</span><span class="at"> actions/checkout@v2</span></a>
+<a class="sourceLine" id="cb135-15" data-line-number="15">    <span class="kw">-</span> <span class="fu">name:</span><span class="at"> Set up Python ${{ matrix.python-version }}</span></a>
+<a class="sourceLine" id="cb135-16" data-line-number="16">      <span class="fu">uses:</span><span class="at"> actions/setup-python@v2</span></a>
+<a class="sourceLine" id="cb135-17" data-line-number="17">      <span class="fu">with:</span></a>
+<a class="sourceLine" id="cb135-18" data-line-number="18">        <span class="fu">python-version:</span><span class="at"> ${{ matrix.python-version }}</span></a>
+<a class="sourceLine" id="cb135-19" data-line-number="19">    <span class="kw">-</span> <span class="fu">name:</span><span class="at"> Install dependencies</span></a>
+<a class="sourceLine" id="cb135-20" data-line-number="20">      <span class="fu">run:</span><span class="at"> |</span></a>
+<a class="sourceLine" id="cb135-21" data-line-number="21">        python -m pip install --upgrade pip</a>
+<a class="sourceLine" id="cb135-22" data-line-number="22">        pip install -e <span class="st">&quot;.[dev]&quot;</span></a>
+<a class="sourceLine" id="cb135-23" data-line-number="23">    <span class="kw">-</span> <span class="fu">name:</span><span class="at"> Test with pytest</span></a>
+<a class="sourceLine" id="cb135-24" data-line-number="24">      <span class="fu">run:</span><span class="at"> |</span></a>
+<a class="sourceLine" id="cb135-25" data-line-number="25">        pytest</a></code></pre></div>
+<p>So what’s going on with this script?</p>
 <ul>
-<li>
-<code>usethis::use_package(“pkg_name”)</code>
-</li>
-<li>
-<code>usethis::use_package(“pkg_name”, “Suggests”)</code>
-</li>
+<li><code>name</code>: Provides a name for this Github workflow action. You can actually have more than one workflow <code>.yml</code> file that can drive multiple processes.</li>
+<li><p><code>on</code>: Specifies when to run the Github action. Simply stating <code>push</code> means this action will run every time you push a new commit to Github. You could change this to something like the following which states to run the action only when pushing or performing a pull request to the master branch.</p>
+<pre><code>on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]</code></pre></li>
+<li><code>runs-on</code>: OS platforms to run on. You can run on Ubuntu, Windows or Mac OS.</li>
+<li><code>strategy / matrix</code>: You can run on an individual Python version or, as in this case, we want to run and test our code against Python versions 3.5-3.8.</li>
+<li><code>uses: actions/checkout@v2</code>: This is a <a href="https://github.com/actions/checkout">built-in Github step</a> that checks out your repository to allow you to run your code on a virtual machine.</li>
+<li><p><code>uses: actions/setup-python@v2</code>: This is a <a href="https://github.com/actions/setup-python">built-in Github step</a> that automates the process of creating a Python environment in which to run your code.</p></li>
 </ul>
+<p>The rest of the code should look familiar as it is the normal <code>pip install</code> and <code>pytest</code> procedures we walked through in section <a href="workflow.html#workflow-py">4.7</a>.</p>
 </div>
-<p>Also, you can require specific versions of a package by specifying the version in parentheses after the package name:</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1">Imports<span class="op">:</span></a>
-<a class="sourceLine" id="cb57-2" data-line-number="2"><span class="st">    </span><span class="kw">ggvis</span> (<span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.2</span>),</a>
-<a class="sourceLine" id="cb57-3" data-line-number="3">    <span class="kw">dplyr</span> (<span class="op">&gt;=</span><span class="st"> </span><span class="dv">0</span>.<span class="dv">3</span>.<span class="fl">0.1</span>)</a>
-<a class="sourceLine" id="cb57-4" data-line-number="4">Suggests<span class="op">:</span></a>
-<a class="sourceLine" id="cb57-5" data-line-number="5"><span class="st">    </span><span class="kw">MASS</span> (<span class="op">&gt;=</span><span class="st"> </span><span class="dv">7</span>.<span class="fl">3.0</span>)</a></code></pre></div>
-</div>
-<div id="exercises" class="section level3">
-<h3><span class="header-section-number">5.8.2</span> Exercises</h3>
+<div id="leveraging-the-results" class="section level2">
+<h2><span class="header-section-number">14.3</span> Leveraging the Results</h2>
+<p>Once you have added the requisite <code>package-ci.yml</code> file you can <code>git add, commit, push</code> to your remote repository. Once you have pushed your commit to Github, go to your Github repository and click on the <strong>Actions</strong> tab:</p>
+<p><img src="figures/actions-tab-py.png" style="display: block; margin: auto;" /></p>
+<p>Within the Actions tab you will see the results of your automated CI action. If you followed the same procedure as above where we tested against multiple versions of R and/or Python then you will see the build for each version. Below is a screen shot of my Python CI action and if you click on one of the version builds you will see the results for each step in our action. Clicking on any of these steps will show the same terminal output that we would see in our local editor. In this example we see that my test results all passed.</p>
+<p><img src="figures/results-individual-job-py.png" style="display: block; margin: auto;" /></p>
+<p>A benefit of using automated CI procedures is that you can protect your code from changing if the CI process does not successfully pass. The easiest way to do this is to add <strong>branch protection</strong> rules. Branch rules allow us to limit branch manipulation, as well as enforce required status checks before a branch is merged in a pull request or before commits on a local branch can be pushed to the protected remote branch.</p>
+<p>In this example, we’ll set up a branch protection that ensures our Github CI action passes successfully before a pull request can be merged. If somebody updates the code, creates a pull request but one of the unit tests fail, then the pull request will not be allowed to merge until the code is fixed and the tests pass. This helps to enforce good code quality for all contributions.</p>
+<p>To create this rule, go to <strong>Settings &gt;&gt; Branches</strong> and create a new branch rule:</p>
 <ol style="list-style-type: decimal">
-<li>Check out the LICENSE file in your package.</li>
-<li>Fill out the <code>Description</code> field for your package.</li>
-<li>Add <strong>dplyr</strong> as a required package dependency.</li>
-<li>Add <strong>purrr</strong> as a suggested package dependency.</li>
-<li>Run <code>devtools::check()</code> to make sure the package builds successfully.</li>
+<li>Use <code>*</code> for the Branch name pattern. This means this rule will be applied to <em>all</em> branches. Alternatively, you could always add a rule to just one or two branches (i.e. “master”).</li>
+<li>Select <code>Require status checks to pass before merging</code> and choose just the build status checks but not the “Page Build” or “github/pages”.</li>
+<li>Select “Create”.</li>
 </ol>
-</div>
-</div>
-<div id="example-3" class="section level2">
-<h2><span class="header-section-number">5.9</span> <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"/></svg> example</h2>
-<p>The <code>setup.py</code> file is the main file used to capture metadata for your <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"/></svg> package and configures your package for distribution. The <code>setup()</code> function provides the main functionality. If you look at your package’s <code>setup.py</code> file you will see that several items are already filled out.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="co">#!/usr/bin/env python</span></a>
-<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="co">&quot;&quot;&quot;Setup, configuration, and metadata file for the myfirstpypkg package.&quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb58-3" data-line-number="3"><span class="im">from</span> setuptools <span class="im">import</span> find_packages</a>
-<a class="sourceLine" id="cb58-4" data-line-number="4"><span class="im">from</span> setuptools <span class="im">import</span> setup</a>
-<a class="sourceLine" id="cb58-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb58-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb58-7" data-line-number="7">install_requires <span class="op">=</span> []</a>
-<a class="sourceLine" id="cb58-8" data-line-number="8">doc_requires <span class="op">=</span> [<span class="st">&quot;sphinx&quot;</span>, <span class="st">&quot;sphinx_rtd_theme&quot;</span>, <span class="st">&quot;sphinxcontrib.napoleon&quot;</span>]</a>
-<a class="sourceLine" id="cb58-9" data-line-number="9">test_requires <span class="op">=</span> [<span class="st">&quot;pytest&quot;</span>]</a>
-<a class="sourceLine" id="cb58-10" data-line-number="10">dev_requires <span class="op">=</span> [<span class="st">&quot;flake8&quot;</span>, <span class="st">&quot;mypy&quot;</span>] <span class="op">+</span> doc_requires <span class="op">+</span> test_requires</a>
-<a class="sourceLine" id="cb58-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb58-12" data-line-number="12">setup(</a>
-<a class="sourceLine" id="cb58-13" data-line-number="13">    name<span class="op">=</span><span class="st">&quot;myfirstpypkg&quot;</span>,</a>
-<a class="sourceLine" id="cb58-14" data-line-number="14">    version<span class="op">=</span><span class="st">&quot;0.1.0&quot;</span>,</a>
-<a class="sourceLine" id="cb58-15" data-line-number="15">    license<span class="op">=</span><span class="st">&quot;GNU General Public License v3&quot;</span>,</a>
-<a class="sourceLine" id="cb58-16" data-line-number="16">    description<span class="op">=</span><span class="st">&quot;My first package&quot;</span>,</a>
-<a class="sourceLine" id="cb58-17" data-line-number="17">    url<span class="op">=</span><span class="st">&quot;https://github.com/bradleyboehmke/myfirstpypkg&quot;</span>,</a>
-<a class="sourceLine" id="cb58-18" data-line-number="18">    author<span class="op">=</span><span class="st">&quot;Brad Boehmke&quot;</span>,</a>
-<a class="sourceLine" id="cb58-19" data-line-number="19">    author_email<span class="op">=</span><span class="st">&quot;bradleyboehmke@gmail.com&quot;</span>,</a>
-<a class="sourceLine" id="cb58-20" data-line-number="20">    package_dir<span class="op">=</span>{<span class="st">&quot;&quot;</span>: <span class="st">&quot;src&quot;</span>},</a>
-<a class="sourceLine" id="cb58-21" data-line-number="21">    packages<span class="op">=</span>find_packages(where<span class="op">=</span><span class="st">&#39;src&#39;</span>),</a>
-<a class="sourceLine" id="cb58-22" data-line-number="22">    python_requires<span class="op">=</span><span class="st">&#39;&gt;=3.6&#39;</span>,</a>
-<a class="sourceLine" id="cb58-23" data-line-number="23">    install_requires<span class="op">=</span>install_requires,</a>
-<a class="sourceLine" id="cb58-24" data-line-number="24">    extras_require<span class="op">=</span>{<span class="st">&quot;docs&quot;</span>: doc_requires, <span class="st">&quot;tests&quot;</span>: test_requires, <span class="st">&quot;dev&quot;</span>: dev_requires},</a>
-<a class="sourceLine" id="cb58-25" data-line-number="25">    test_suite<span class="op">=</span><span class="st">&quot;tests&quot;</span>,</a>
-<a class="sourceLine" id="cb58-26" data-line-number="26">    include_package_data<span class="op">=</span><span class="va">True</span>,</a>
-<a class="sourceLine" id="cb58-27" data-line-number="27">    project_urls<span class="op">=</span>{</a>
-<a class="sourceLine" id="cb58-28" data-line-number="28">        <span class="st">&#39;Source&#39;</span>: <span class="st">&quot;https://github.com/bradleyboehmke/myfirstpypkg&quot;</span>,</a>
-<a class="sourceLine" id="cb58-29" data-line-number="29">        <span class="st">&#39;Bug Reports&#39;</span>: <span class="st">&quot;https://github.com/bradleyboehmke/myfirstpypkg/issues&quot;</span>,</a>
-<a class="sourceLine" id="cb58-30" data-line-number="30">    },</a>
-<a class="sourceLine" id="cb58-31" data-line-number="31">)</a></code></pre></div>
-<p>A couple items to note:</p>
-<ul>
-<li><code>description</code> is a one-line description or tagline of what your project does but does not require title-case or have a strict character length restriction. Note that you can also supply a longer, multi-line description with a <code>long_description</code> parameter.</li>
-<li><code>package_dir</code> and <code>packages</code> points to where the package is located. In our case we have our package in the <code>src/</code> subdirectory so we need to specify that is where it is located.</li>
-<li><code>test_suite</code> simply tells <strong>pytest</strong> where to look to find and run our tests.</li>
-<li><code>include_package_data</code> is used when you have data you want to deploy with your package.</li>
-</ul>
-<div id="dependencies-2" class="section level3">
-<h3><span class="header-section-number">5.9.1</span> Dependencies</h3>
-<p>A common theme you will see is specifying all package requirements in a list and then supplying them to <code>setup()</code> parameters as we are doing in our current <code>setup.py</code>:</p>
-<ul>
-<li><code>python_requires</code> is where you need to specify the version of Python required for your package. When a user tries to install your package <code>pip install</code> will check that the user’s Python version meets this requirement and refuse to install the project if the version does not match.</li>
-<li><code>install_requires</code> is where any required package dependencies would be added. In this case, our initial package has no requirements but if we added functionality that requires <strong>numpy</strong> for example, then we would include <strong>numpy</strong> in the currently empty <code>install_requires</code> list.</li>
-<li><p><code>extras_require</code> is where any additional “supporting” packages would go. These are packages that are not required for normal use but commonly required to run tests, build supporting documentation, and execute other common developer activities. Users can install these “extras” by running <code>pip install pkgname[dev]</code>.</p>
-<p>When you are developing you will often do the following the activate your virtual environment, install the package in an editable fashion, and ensure all developer required packages are installed in your environment:
-<code>bash  source venv/bin/activate  pip install -e . &quot;.[dev]&quot;</code></p></li>
-</ul>
-</div>
-<div id="exercises-1" class="section level3">
-<h3><span class="header-section-number">5.9.2</span> Exercises</h3>
-<ol style="list-style-type: decimal">
-<li>Check out the LICENSE file in your package.</li>
-<li>Create a <code>long_description</code> field for your package.</li>
-<li>Add <strong>numpy</strong> as a required package dependency.</li>
-<li>Add <strong>black</strong> as a developer suggested package dependency.</li>
-<li>Activate your virtual environment, install your package in editable mode, ensure all developer dependencies are installed and rerun your test(s).</li>
-</ol>
+<p><img src="figures/branch-protection-py.png" style="display: block; margin: auto;" /></p>
+<p>Now if you create a pull request to incorporate new code changes you will see a section that states whether or not “All checks have passed”. In the below example, since all my checks pass I can merge the pull request.</p>
+<p><img src="figures/pr-checks-pass-py.png" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>
-</div>
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="workflow.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="code.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="other-components.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -569,7 +479,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/bradleyboehmke/misk-packages/edit/master/04-pkg-metadata.Rmd",
+"link": "https://github.com/bradleyboehmke/misk-packages/edit/master/13-cicd.Rmd",
 "text": "Edit"
 },
 "history": {

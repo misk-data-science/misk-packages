@@ -114,7 +114,7 @@ Lastly, we need to now save our work to our remote repository. This typically in
 
 Okay, so this may seem like a lot of steps to keep track of. Often, this feels more convoluted on paper than when you are actually implementing so let's start working with an example package to go through these steps.
 
-## `r fontawesome::fa("r-project")` example
+## `r fontawesome::fa("r-project")` example {#workflow-r}
 
 Let's work through a simple example to illustrate how to perform the previous steps discussed for an `r fontawesome::fa("r-project")` package. We'll create a package that has a single function. To simplify this process we'll just reimplement existing functionality that already exists in R...calculating the mean of a vector.
 
@@ -498,7 +498,7 @@ If pull requests are new to you, read more about them here:
 ```
 
 
-## `r fontawesome::fa("python")` example
+## `r fontawesome::fa("python")` example {#workflow-py}
 Now we'll work through a simple example to illustrate how to perform the basic workflow steps for n `r fontawesome::fa("python")` package. As in the previous section, we'll create a package that has a single function...calculating the mean of a vector.
 
 ### Step 1: Check package name
