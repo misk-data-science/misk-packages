@@ -1,3 +1,26 @@
 # Other Components {#other-components}
 
-TBD...
+So far we have covered the important and common components of `r fontawesome::fa("r-project")` and `r fontawesome::fa("python")` packages that you should be concerned with. However, as you become more involved in package development in either of these languages, you will start to see additional files or components present in packaging projects. This chapter simply serves to introduce some of these components along with resources to learn more about them. 
+
+## Other `r fontawesome::fa("r-project")` package components
+
+Commons additional R components that we did not discuss include:
+
+- `data/`: It’s often useful to include data in a package. If you want to store binary data and make it available to end-users than you typically store it in `.rda` files within a `data/` directory. Read [here](https://r-pkgs.org/data.html) for more details.
+- `src/`: R allows you to incorporate C and C++ code to speed up your package functionality. This compiled code lives in `.c` and `.cpp` files that live in the `src/` directory. You can learn more about incorporating C and C++ into your packages [here](https://r-pkgs.org/src.html).
+- `.Rbuildignore`: Lists files that we need to have around but that should not be included when building the R package from source. Some of the developer tools we have been using allow you not to worry about this file. For example, when you used `usethis::use_pkgdown()` it automatically added `^pkgdown$` to the `.Rbuildignore` so that it would not be included when building the package from the source files. Read more [here](https://r-pkgs.org/package-structure-state.html#rbuildignore).
+- `NAMESPACE`: Declares the functions your package exports for external use and the external functions your package imports from other packages. You will not edit this directly, rather, it will be updated from the roxygen documentation. Read more [here](https://r-pkgs.org/namespace.html#namespace).
+- `inst/`: The `inst/` folder is for files/folders that should be copied and unmodified into the installed R package folder. This can have wide use but examples that you might see are citation files for how to cite a package, python or java directories if you are going to use other languages in your package, etc. Read more [here](https://r-pkgs.org/inst.html).
+ - `cran-comments.md`: When submitting your package to CRAN, this file provides important comments that you want to provide to the reviewers of your package. We'll discuss the CRAN submission process [here]().
+
+## Other `r fontawesome::fa("python")` package components
+
+Commons additional Python components that we did not discuss are below. Most of this are configuration files and Python is notorious for having too many optional config files available for packaging. If you are not familiar with these file types then [this](https://hackersandslackers.com/simplify-your-python-projects-configuration/) is a good read discussing these file types.
+
+- `setup.cfg`: A configuration file that allows you to specify certain configurations for various tooling. For example, our `setup.cfg` file is already configured to use [flake8](https://flake8.pycqa.org/en/latest/) and [mypy](http://mypy-lang.org/). Read more [here](https://docs.python.org/3/distutils/configfile.html).
+- `requirements.txt`: Historically, it has always been very common to use `requirements.txt` to hold all required packages (and versions) for a project. In our case, we hold all our developer requirements in the `setup.py` file but it is equally common for people to use `requirements.txt`. Learn more [here](https://medium.com/@boscacci/why-and-how-to-make-a-requirements-txt-f329c685181e#:~:text=In%20short%2C%20we%20generate%20and,Python%20code%20we've%20written.).
+- `<pkg_name>.toml`: This is Python's attempt to provide a single, common config file for packages to specify their build dependencies. It is designed to replace `setup.cfg` and many of the various `.ini` config files. You can read more [here](https://www.python.org/dev/peps/pep-0518/) and [here](https://snarky.ca/what-the-heck-is-pyproject-toml/).
+- `MANIFEST.ini`: When you build and distribute your package, only a small set of files are included. However, sometimes you want to distribute additional files such as the CHANGELOG, AUTHOR, config files (`.yml`) used by your source code, or even distributing data files. `MANIFEST.ini` allows you to specify these additional files to be distributed. Read more [here](https://packaging.python.org/guides/using-manifest-in/).
+- `pytest.ini`: You can configure pytest for many reasons (i.e. how to display test results, the directory to search for test files, test markers to use). You can specify these in one of several config files. It is common to specify them in a `pytest.ini` file whereas we have specified them in the `setup.cfg` file. Read more [here](https://docs.pytest.org/en/2.7.3/customize.html).
+- `mypy.ini`: [mypy](http://mypy-lang.org/) is an optional static type checker commonly used for Python projects. Similar to pytest, you can cusomtize the mypy configuration in a `mypy.ini` file or, as in our case, the `setup.cfg` file.
+- `.pre-commit-config.yaml`: An optional, yet fantastic, tool that automates the application of git hooks to your code. Git hooks allow you to automatically check that certain characteristics exist in your code before allowing you to `git add, commit, push` your code. Read more at https://pre-commit.com/.
