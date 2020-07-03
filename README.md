@@ -42,17 +42,19 @@ TBD
 
 | Session       | Description                          | Notebook    | Other     | 
 | :-----------: | :----------------------------------- | :-----------: | :-----------: | 
-| 1             | Introduction to packages             | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/01-introduction.html)      | TBD            |
-| 2             | Package structure                    | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/02-package-structure.html)     | TBD           | 
-| 3             | Development workflow                 | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/03-workflow.html)      | TBD           | 
-| 4             | __Portfolio builder:__ Create your first package | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/04-porfolio-builder-01.html)      | TBD           | 
-| 4             | Package metadata                     | TBD          | TBD           | 
-| 5             | Source code                          | TBD          | TBD           | 
-| 6             | Tests                                | TBD          | TBD           | 
-| 7             | Package documentation                | TBD          | TBD  |
-| 8             | Other components                     | TBD          | TBD  | 
-| 9             | Continuous integration and deployment | TBD          | TBD  |
-| 10            | Case study.                          | TBD          | TBD  | 
+| 1             | Introduction to packages             | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/01-introduction.html) | TBD            |
+| 2             | Package structure                    | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/02-package-structure.html) | TBD           | 
+| 3             | Development workflow                 | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/03-workflow.html) | TBD           | 
+| 4             | __Portfolio builder:__ Create your first package | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/04-porfolio-builder-01.html) | TBD           | 
+| 5             | Package metadata                     | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/05-metadata.html) | TBD           | 
+| 6             | Source code                          | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/06-source-code.html) | TBD           |
+| 7             | __Portfolio builder:__ TBD           | TBD          | TBD           |
+| 8             | Tests                                | TBD          | TBD           | 
+| 9             | Package documentation                | TBD          | TBD  |
+| 10           | Other components                     | TBD          | TBD  | 
+| 11           | __Portfolio builder:__ TBD           | TBD          | TBD           |
+| 12            | Continuous integration              | TBD          | TBD  |
+| 13            | __Portfolio builder:__ TBD           | TBD          | TBD           |
 
 
 ## Extras
