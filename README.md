@@ -48,19 +48,15 @@ TBD
 | 4             | __Portfolio builder:__ Create your first package | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/04-porfolio-builder-01.html) | TBD           | 
 | 5             | Package metadata                     | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/05-metadata.html) | TBD           | 
 | 6             | Source code                          | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/06-source-code.html) | TBD           |
-| 7             | __Portfolio builder:__ TBD           | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/07-porfolio-builder-01.html)  | TBD           |
+| 7             | __Portfolio builder:__ Make your first open source contribution | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/07-porfolio-builder-01.html)  | TBD           |
 | 8             | Tests                                | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/08-testing.html)  | TBD           | 
 | 9             | Object documentation                | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/09-object-docs.html) | TBD  |
 | 10            | Changelog                           | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/10-changelog.html) | TBD  |
 | 11            | README                              | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/11-readme.html) | TBD  |
+| 12            | Long-form documentation            | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/12-long-form-docs.html) | TBD  |
 | 9             | Package documentation                | TBD          | TBD  |
 | 10           | Other components                     | TBD          | TBD  | 
-| 11           | __Portfolio builder:__ TBD           | TBD          | TBD           |
+| 11           | __Portfolio builder:__ Improve an open source package's documentation | TBD          | TBD           |
 | 12            | Continuous integration              | TBD          | TBD  |
 | 13            | __Portfolio builder:__ TBD           | TBD          | TBD           |
-
-
-## Extras
-
-TBD
 
