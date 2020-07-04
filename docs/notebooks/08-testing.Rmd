@@ -1,0 +1,527 @@
+---
+title: "Testing"
+output:
+  html_document:
+    toc: yes
+    toc_float: true
+    css: style.css
+---
+
+<br>
+
+Testing is a vital part of package development. It ensures that your code does what you want it to do. Although testing adds an additional step to your development workflow, it should not be overlooked. The goal of this module is to discuss the fundamentals of testing; however, this is a very cursory overview so we provide additional resources to learn more.
+
+## Why test
+
+Often when we start writing a package our instinct is to write a function, experiment with it in the console to see if it works, rinse and repeat until we have a solution we're happy with. While this is _"testing"_ your code, you’re only doing it informally. The problem with this approach is that when you come back to this code in 3 months time to add a new feature, you’ve probably forgotten some of the informal tests you ran the first time around. This makes it very easy to break code that used to work.
+
+Formalizing and automating the test structure and process helps with:
+
+* __Fewer bugs__. Because you’re explicit about how your code should behave you will have fewer bugs. The reason why is a bit like the reason double entry book-keeping works: because you describe the behaviour of your code in two places, both in your code and in your tests, you are able to check one against the other. By following this approach to testing, you can be sure that bugs that you’ve fixed in the past will never come back to haunt you.
+
+* __Better code structure__. Code that’s easy to test is usually better designed. This is because writing tests forces you to break up complicated parts of your code into separate functions that can work in isolation. This reduces duplication in your code. As a result, functions will be easier to test, understand and work with (it’ll be easier to combine them in new ways).
+
+* __Easier restarts__. If you always finish a coding session by creating a failing test (e.g. for the next feature you want to implement), testing makes it easier for you to pick up where you left off: your tests will let you know what to do next.
+
+* __Robust code__. If you know that all the major functionality of your package has an associated test, you can confidently make big changes without worrying about accidentally breaking something. For me, this is particularly useful when I think I have a simpler way to accomplish a task (usually the reason my solution is simpler is that I’ve forgotten an important use case!).
+
+## What to test
+
+There is a fine balance to writing tests. Each test that you write makes your code less likely to change inadvertently; but it also can make it harder to change your code on purpose. It’s hard to give good general advice about writing tests, but you might find these points helpful:
+
+* Focus on testing the external interface to your functions - if you test the internal interface, then it’s harder to change the implementation in the future because as well as modifying the code, you’ll also need to update all the tests.
+
+* Strive to test each behaviour in one and only one test. Then if that behavior later changes you only need to update a single test.
+
+* You do not need to test _all_ of your code; however, we often strive to test 85-95% of our code. Focus your time on code that you’re not sure about, is fragile, or has complicated interdependencies. That said, we often find we make the most mistakes when we falsely assume that the problem is simple and doesn’t need any tests. So there is definitely a case for striving for 100% coverage.
+
+* Always write a test when you discover a bug or want to create a feature enhancement. Start by writing the tests, and then write the code that makes them pass. This reflects an important problem solving strategy: start by establishing your success criteria, how you know if you’ve solved the problem.
+
+* You should not only write tests that outline the successful expected outcome of a function but you should also write tests to verify that expected messages, warnings, and errors are produced.
+
+## Test organization
+
+For both `r fontawesome::fa("r-project")` and `r fontawesome::fa("python")` packages the tests should live in a `tests/` directory at the root of the package. The test files for both languages should start with `test` (i.e. `test-validation.R`, `test_summary_stats.py`). Within the `tests/` directory there are some differences between the two languages and we will discuss that in the example sections.
+
+Tests are organized hierarchically: expectations and assertions are grouped into tests which are organized in files:
+
+* An __expectation__ or __assertion__ is the atom of testing. It describes the expected result of a computation: Does it have the right value and right class? Does it produce error messages when it should? An expectation automates visual checking of results in the console. 
+
+* A __test__ groups together one or more expectations/assertions to test the output from a simple function, a range of possibilities for a single parameter from a more complicated function, or tightly related functionality from across multiple functions. This is why they are sometimes called unit as they test one unit of functionality.
+
+* A __test file__ groups together multiple related tests. How you organize tests within files is your discretion; however, one best practice suggests that for every source code script there is a companion, similarly named test script (i.e. `summary_stats.py` & `test_summary_stats.py`).
+
+## Types of tests
+
+There are many types of tests that you will read about when diving into the software test literature; however, the most common ones you should be thinking of initially are:
+
+* __unit tests__: Tests that focus on the output from a single function, typically functions with lower levels of abstraction. Unit tests typically test the foundational building block functions of your package. This is why they are sometimes called unit as they test one unit of functionality. Unit tests should be fast so you can run them often and, preferablly not require any special environment to run them (i.e. a Spark session). Examples in our prototype package include the tests for `my_mean()` and `my_sd()`.
+
+* __integration tests__: Tests that focus on processes and/or components that combine functionality from across multiple functions. As you build higher levels of abstraction, most of the underlying functionality of this abstraction is already tested with unit tests; however, the integration tests ensure that all the lower abstraction level functions work nicely with one another when combined. An example of an integration test in our prototype package is the test for the `z_score()` function.
+  Often, integrated functionality becomes very large and sometimes can be slower to compute so it is not unusual for integration tests to be much slower than unit tests. However, we also do not need to run them as often as unit tests.
+
+## Writing tests
+
+Writing good tests takes time. It is not uncommon for people to write tests that are unfocused or too broad when first learning about software testing. Also, many people do not document their tests in a comprehensive way. This can lead to you coming back to a test in 3 months, when it does fail, scratching your head wondering what you were trying to do with the test.
+
+__Given-When-Then__ is a style of representing tests that can help guide you in writing your tests, make your tests more focused and better documented.  The essential idea is to break down writing a scenario (or test) into three sections:
+
+* The __given__ part describes the state of the world before you begin the behavior you're specifying in this scenario. You can think of it as the pre-conditions to the test.
+* The __when__ section is the behavior that you're specifying, or the specific functionality you are applying to the given state of the world.
+* Finally the __then__ section describes the changes you expect due to the specified behavior.
+
+A simple example is with our `my_mean()` function. In both languages we follow a common procedure:
+
+1. __GIVEN__ a vector or list of integers from 0-10,
+2. __WHEN__ we compute the mean value,
+3. __THEN__ the result should be 5
+
+Following this basic guide will make writing tests more explicit, easier, and better documented.
+
+## Additional resources
+
+Software testing is far too comprehensive to cover in one module. The above sections provide good foundations for your testing methodology and the `r fontawesome::fa("r-project")` and `r fontawesome::fa("python")` sections that follow will show a few more details about actual implementation. However, if you want to learn more about testing we recommend the following:
+
+- Build your knowledge of general software testing philosophies:
+   - [The Pragramatic Programmer](https://www.amazon.com/Pragmatic-Programmer-journey-mastery-Anniversary/dp/0135957052/ref=dp_ob_title_bk) (Ch. 41)
+   - [Clean Code](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882/ref=pd_bxgy_img_2/134-3713013-8748161?_encoding=UTF8&pd_rd_i=0132350882&pd_rd_r=c66a8eb8-13a3-4246-bf5c-47bff29f3be6&pd_rd_w=m2kCB&pd_rd_wg=NqeJv&pf_rd_p=4e3f7fc3-00c8-46a6-a4db-8457e6319578&pf_rd_r=R46745MCZ1C0V1ZD3QS4&psc=1&refRID=R46745MCZ1C0V1ZD3QS4) (Ch. 9)
+   - [Test Driven Development](https://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530)
+
+- Learn more about implementing software testing in `r fontawesome::fa("r-project")` and `r fontawesome::fa("python")`:
+   - [Testing R Code](https://www.amazon.com/Testing-Code-Chapman-Hall-CRC/dp/1498763650)
+   - [testthat documentation](https://testthat.r-lib.org/)
+   - [Python Testing with pytest](https://www.amazon.com/Python-Testing-pytest-Effective-Scalable/dp/1680502409/ref=sr_1_3?keywords=Python+Testing+with+pytest&qid=1578174634&s=books&sr=1-3)
+   - [Multiply your Testing Effectiveness with Parameterized Testing](https://us.pycon.org/2020/schedule/presentation/172/)
+   - [pytest documentation](https://docs.pytest.org/en/latest/)
+
+## `r fontawesome::fa("r-project")` testing example {#rexample}
+
+The most common testing framework in `r fontawesome::fa("r-project")` is the [testthat](https://github.com/r-lib/testthat/) package.
+
+### Test organization
+
+The `test/` directory in an `r fontawesome::fa("r-project")` should have the following:
+
+```bash
+.
+└── tests
+    └── testthat
+        ├── test-script1.R
+        ├── test-script2.R
+        └── test-scriptn.R
+```
+
+...where all test scripts start with `test` and fall in a `tests/testhat/` directory. This is automatically set up for you in our template but you can easily create this from scratch with `usethis::use_testthat()`. When using this approach, each test script should be considered isolated from one another. If for some reason you need to create an object, environment or connection that gets used across multiple test files then you will see the following structure where objects, environments or connections are created in the `setup.R` file and then, if necessary, decommissioned/disconnected in the `teardown.R` file.
+
+```bash
+.
+└── tests
+    └── testthat
+        ├── setup.R
+        ├── test-script1.R
+        ├── test-script2.R
+        ├── test-scriptn.R
+        └── teardown.R
+```
+
+```{block, type='warning'}
+Test scripts are ran in order based on their name. So if you need, or desire, to run tests in a specific order than name them in an orderly fashion:
+
+- `test-01-name1.R`
+- `test-02-name2.R`
+- `test-03-name3.R`
+```
+
+### Writing a test
+
+We write tests in the following approach where:
+
+- `test_that()` captures a suite of expectations,
+- `"test context"` provides a clear, concise explanation of the purpose of the test,
+- we can include any additional documentation in comments
+- and `expect_xxx()` is the expectation we have for our test output. There are a variety of `expect_xxx()` functions that we can apply (i.e. `expect_equal`, )
+
+```{r, eval=FALSE}
+test_that("test context", {
+   # additional documentation
+   expect_xxx()
+})
+```
+
+```{block, type='tip'}
+There are a variety of `expect_xxx()` functions that we can apply (i.e. `expect_equal`, `expect_length`, `expect_failure`, `expect_message`).
+
+Type `testthat::expect_` + tab in your console to see all the options.
+```
+
+Let's take a look at our current `test-validation.R` file:
+
+```{r, eval=FALSE}
+test_that("inputs are a numeric vector", {
+  expect_error(validate_numeric_vector("a"))
+  expect_error(validate_numeric_vector(factor(1, 2, 3)))
+  expect_error(validate_numeric_vector(list(1, 2, 3)))
+
+  expect_silent(c(1, 2, 3))
+  expect_silent(c(TRUE, FALSE))
+})
+```
+
+This test is currently a catch-all for our `validate_numeric_vector()` function. A better approach would be to break this up into specific functionality such as:
+
+```{r, eval=FALSE}
+test_that("non-vector inputs raise error", {
+  # GIVEN a non-atomic vector input
+  # WHEN validating said input
+  # THEN an error is raised
+  expect_error(validate_numeric_vector(matrix(1:3)))
+  expect_error(validate_numeric_vector(list(1:3)))
+  expect_error(validate_numeric_vector(data.frame(x = 1:3)))
+})
+
+test_that("non-numeric vectors raise error", {
+  # GIVEN a vector input
+  # WHEN the vector is not numeric
+  # THEN an error is raised
+  expect_error(validate_numeric_vector("a"))
+  expect_error(validate_numeric_vector(factor(1, 2, 3)))
+})
+
+test_that("atomic vectors with numeric data are silent", {
+  # GIVEN an atomic vector input
+  # WHEN the vector contains numeric values or logical that can be coerced to numeric
+  # THEN a silent return occurs
+  expect_silent(c(1.0, 2.0, 3.0))
+  expect_silent(c(1L, 2L, 3L))
+  expect_silent(c(TRUE, FALSE))
+})
+
+```
+
+The above is a little more explicit and methodical regarding what we expect to occur. If you run the above tests, you will actually see that a failure occurs. This is because a `matrix` technically is an atomic vector. We've found an edge case in our testing that we either need to decide to relax our unit test (if we are okay with a user supplying a matrix) or make our `validate_numeric_vector` function more robust to deal with matrix inputs.
+
+```{r, eval=FALSE}
+devtools::test()
+## Loading myfirstpkg
+## Testing myfirstpkg
+## ✓ |  OK F W S | Context
+## ✓ |   3       | summary-stats
+## x |   7 1     | validation
+## ───────────────────────────────────────────────────────────────────────────────────────────────
+## test-validation.R:5: failure: non-vector inputs raise error
+## `validate_numeric_vector(matrix(1:3))` did not throw an error.
+## ───────────────────────────────────────────────────────────────────────────────────────────────
+## 
+## ══ Results ════════════════════════════════════════════════════════════════════════════════════
+## OK:       10
+## Failed:   1
+## Warnings: 0
+## Skipped:  0
+```
+
+
+This brings up the topic of what exactly we should be testing.
+
+### What to test
+
+This is a much harder concept to answer. We can certainly go over-board with testing if we try to capture every possible scenario. Our general approach is to test the main use-cases and then add to our test suite down the road as edge cases pop up.
+
+Defining the main use-cases is not always easy. We typically look for:
+
+- a couple basic uses cases that we feel the vast majority of users will apply,
+- a few expected edge cases such as if user supply `NA` or `Inf` values or if there are upper limits to the expected inputs (what if a user supplies an interest rate parameter with a negative value or value greater than 100%),
+- expected messages, warnings, or errors designed specific for end-users.
+
+For example, our current test for our `my_mean()` function provides a very basic use case:
+
+```{r, eval=FALSE}
+test_that("mean of simple vector computes accurately", {
+  x <- 0:10
+  expect_equal(my_mean(x), 5)
+})
+```
+
+We would likely want to expand this initially to capture a few expected scenarios. The below provides three distinct test purposes for our `my_mean()` function. If you run the following you will see that the second test fails because our original implementation does not handle `NA`, `Inf` or `Nan` values. We would need to go back to that function and update it to deail with those values.
+
+```{r, eval=FALSE}
+test_that("mean of numeric vectors compute accurately", {
+  # GIVEN a vector input
+  # WHEN the data values are numeric or logical
+  # THEN an arithmetic mean should be computed
+  integer_inputs <- 0:10
+  float_inputs <- c(1.5, 2.5, 3.5)
+  logical_inputs <- c(TRUE, TRUE, FALSE, FALSE)
+  negative_inputs <- -10:10
+
+  expect_equal(my_mean(integer_inputs), 5)
+  expect_equal(my_mean(float_inputs), 2.5)
+  expect_equal(my_mean(negative_inputs), 0)
+})
+
+test_that("Inf, NaN, and NA values are ignored", {
+  # GIVEN a vector input that contains numeric values
+  # WHEN the vector also contains Inf, NaN, and NA values
+  # THEN these irregular values should be stripped and the arithmetic mean computed
+  x <- c(0:10, NA, Inf, NaN)
+  expect_equal(my_mean(x), 5)
+})
+
+test_that("Inadequate inputs raise error", {
+  # GIVEN a user input
+  # WHEN the input is not a vector with numeric values
+  # THEN an error should be raised
+  expect_error(my_mean(list(1:3)))
+  expect_error(my_mean(data.frame(x = 1:3)))
+  expect_error(my_mean("a"))
+  expect_error(my_mean(factor(1, 2, 3)))
+})
+```
+
+## `r fontawesome::fa("python")` testing example {#pyexample}
+
+The most common testing framework in `r fontawesome::fa("python")` is the [pytest](https://docs.pytest.org/en/latest/) package.
+
+### Test organization
+
+The `test/` directory in an `r fontawesome::fa("python")` should have the following:
+
+```bash
+.
+└── tests
+    ├── __init__.py
+    ├── test_script1.py
+    ├── test_script1.py
+    └── test-scriptn.py
+```
+
+...where all test scripts start with `test`. The `__init__.py` file is not necessary but it allows you to have duplicate file and test names without causing namespace clashes. This is especially helpful when you have multiple test directories. For example, we commonly group our tests in the following manner for larger packages where all unit tests go in one directory and all integration tests go in another. 
+
+```{block, type="tip"}
+Splitting your tests into different directories helps with organization and allows you to easily test a single directory at a time with `pytest tests/unit`.
+```
+
+
+```bash
+.
+└── tests
+    ├── unit
+    │   ├── __init__.py
+    │   ├── test_script1.py
+    │   ├── test_script1.py
+    │   └── test-scriptn.py
+    └── integration
+        ├── __init__.py
+        ├── test_script1.py
+        ├── test_script1.py
+        └── test-scriptn.py
+```
+
+If for some reason you need to create an object, environment or connection that gets used across multiple test files then you will see the following structure where objects, environments or connections are created in the `conftest.py` file, supplied to individual tests with a [test fixture](https://pybit.es/pytest-fixtures.html), and then decommissioned/disconnected thereafter.
+
+```bash
+.
+└── tests
+    ├── __init__.py
+    ├── conftest.py
+    ├── test_script1.py
+    ├── test_script1.py
+    └── test-scriptn.py
+...
+```
+
+```{block, type='warning'}
+Test scripts are ran in order based on their name. So if you need, or desire, to run tests in a specific order than name them in an orderly fashion:
+
+- `test_01_name1.py`
+- `test_02_name2.py`
+- `test_03_name3.py`
+```
+
+### Writing a test
+
+We write tests in the following approach where:
+
+- `def test_name_of_test()` creates a test function that captures a suite of assertions,
+- The test function docstring provides a clear, concise explanation of the purpose of the test,
+- and `assert` is the assertion we have for our test output. 
+
+```{python, eval=FALSE}
+def test_name_of_test():
+   """Test docstring
+   GIVEN ...
+   WHEN ...
+   THEN ...
+   """
+   assert computed == expected
+```
+
+```{block, type='tip'}
+Apart from `assert`, we can also test for exceptions, warning messages and the like with syntax such as `with pytest.raises(TypeError):`. We'll demonstrate this shortly.
+```
+
+Let's take a look at our current `test_validation.py` file:
+
+```{python, eval=FALSE}
+def test_validate_sequence_type():
+    with pytest.raises(TypeError):
+        _validate_numeric_sequence({})
+
+def test_validate_sequence_numeric():
+    assert _validate_numeric_sequence(range(10)) == None
+    with pytest.raises(TypeError):
+        _validate_numeric_sequence(list('a', 'b', 'c'))
+```
+
+A better approach would be to break this up into specific functionality and create appropriate docstrings:
+
+```{python, eval=FALSE}
+def test_validate_sequence_type():
+    """Non-sequence data type raises exception.
+
+    GIVEN a non-sequence input
+
+    WHEN validating said input
+
+    THEN an error is raised
+    """
+    with pytest.raises(TypeError):
+        _validate_numeric_sequence({})
+        _validate_numeric_sequence(set())
+
+def test_validate_non_numeric_sequence():
+    """Non-numeric sequence raises error
+
+    GIVEN a sequence input
+
+    WHEN the sequence is not numeric
+
+    THEN an error is raised
+    """
+    with pytest.raises(TypeError):
+        _validate_numeric_sequence(list('a', 'b', 'c'))
+
+def test_validate_sequence_numeric():
+    """Sequence with numeric data returns None
+
+    GIVEN a sequence input
+
+    WHEN the vector contains numeric values or logical that can be coerced to numeric
+
+    THEN a silent return occurs
+    """
+    assert _validate_numeric_sequence(range(10)) == None
+    assert _validate_numeric_sequence([1, 2, 3]) == None
+    assert _validate_numeric_sequence((True, False)) == None
+```
+
+The above is a little more explicit and methodical regarding what we expect to occur. We can run these new tests on their own with the following. Note that `-v` is for verbose output which will print the path of the test.
+
+```bash
+pytest -v tests/test_validation.py 
+======================================== test session starts =======================================
+platform darwin -- Python 3.7.3, pytest-5.4.2, py-1.8.1, pluggy-0.13.1 -- /Users/b294776/Desktop/Workspace/Projects/misk/myfirstpypkg/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/b294776/Desktop/Workspace/Projects/misk/myfirstpypkg, inifile: setup.cfg
+collected 3 items                                                                                   
+
+tests/test_validation.py::test_validate_sequence_type PASSED                                [ 33%]
+tests/test_validation.py::test_validate_non_numeric_sequence PASSED                         [ 66%]
+tests/test_validation.py::test_validate_sequence_numeric PASSED                             [100%]
+
+========================================= 3 passed in 0.02s ========================================
+```
+
+### What to test
+
+Exactly what we want to test is a much harder concept to answer. We can certainly go over-board with testing if we try to capture every possible scenario. Our general approach is to test the main use-cases and then add to our test suite down the road as edge cases pop up.
+
+Defining the main use-cases is not always easy. We typically look for:
+
+- a couple basic uses cases that we feel the vast majority of users will apply,
+- a few expected edge cases such as if user supplies a `None` value or if there are upper limits to the expected inputs (what if a user supplies an interest rate parameter with a negative value or value greater than 100%),
+- expected messages, warnings, or errors designed specific for end-users.
+
+For example, our current test for our `my_mean()` function provides a very basic use case:
+
+```{python, eval=FALSE}
+def test_my_mean():
+    x = range(0, 11)
+    assert my_mean(x) == 5
+```
+
+We would likely want to expand this initially to capture a few expected scenarios. The below provides three distinct test purposes for our `my_mean()` function. If you run the following you will see that the second test fails because our original implementation does not handle `None` values. We would need to go back to that function and update it to deail with those values.
+
+```{python, eval=FALSE}
+def test_my_mean_on_numeric_vectors():
+    """Mean of numeric vectors compute accurately
+
+    GIVEN a sequence input
+
+    WHEN the data values are numeric or logical
+
+    THEN an arithmetic mean should be computed
+    """
+    assert my_mean(range(0, 11)) == 5
+    assert my_mean([1.5, 2.5, 3.5]) == 2.5
+    assert my_mean([True, True, False, False]) == 0.5
+    assert my_mean(range(-10, 11)) == 0
+
+def test_my_mean_ignore_none():
+    """None values are ignored
+    GIVEN a sequence input that contains numeric values
+
+    WHEN the sequence also contains `None` values
+
+    THEN these irregular values should be stripped and the arithmetic mean computed
+    """
+    x = list(range(0, 11))
+    x += [None]
+    assert my_mean(x) == 5
+
+def test_my_mean_inadequate_inputs():
+    """Inadequate input raise error.
+
+    GIVEN a user input
+
+    WHEN the input is not a vector with numeric values
+
+    THEN an error should be raised
+    """
+    with pytest.raises(TypeError):
+        my_mean(list('a', 'b', 'c'))
+```
+
+Also, note the first test and the repeated nature of the code. We could simplify this with what's called "_parametrizing_" the test function. You can learn more about parametrization [here](https://docs.pytest.org/en/2.8.7/parametrize.html). This is how you would implement it for the first test. Parametrizing is a great thing to learn!
+
+```{python, eval=FALSE}
+@pytest.mark.parametrize("input, expected",
+    [(range(0, 11), 5),
+     ([1.5, 2.5, 3.5], 2.5),
+     ([True, True, False, False], 0.5),
+     (range(-10, 11), 0),
+    ]
+)
+def test_my_mean_on_numeric_vectors(input, expected):
+    """Mean of numeric vectors compute accurately
+
+    GIVEN a sequence input
+
+    WHEN the data values are numeric or logical
+
+    THEN an arithmetic mean should be computed
+    """
+    assert my_mean(input) == expected
+```
+
+## Exercises
+
+1. With the R and Python packages you created in the portfolio builder, work through the [R](#rexample) and [Python](#pyexample) examples above to update your package's unit tests.
+
+2. Fork one of your classmates packages and:
+   - create a new branch,
+   - review their unit tests, identify and add a new unit test,
+   - add a new function (and associated unit test) that is unique to the existing functions.
+   
+3. Review the testing setup for the [usethis](https://github.com/r-lib/usethis) package. Identify something unique about this setup compared to the testing structure we outlined above.
+
+4. Review the testing setup for the [scikit-learn](https://github.com/scikit-learn/scikit-learn/tree/master/sklearn/tests) package. Identify at least three tests where the documentation could be clearer by incorporating our __Given-When-Then__ approach. How would you write this improved documentation?

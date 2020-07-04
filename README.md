@@ -40,21 +40,23 @@ This module makes a few assumptions of your established knowledge regarding your
 TBD
 
 
-| Session       | Description                          | Reading(s)    | Slides     | Python        | R             |
-| :-----------: | :----------------------------------- | :-----------: | :-----------: | :-----------: | :-----------: |
-| 1             | Introduction to packages             | Ch [1](https://misk-data-science.github.io/misk-packages/) & [2](https://misk-data-science.github.io/misk-packages/intro.html)      | TBD            | NA            | NA            |
-| 2             | Package structure                    | Ch [3](https://misk-data-science.github.io/misk-packages/structure.html)     | TBD           | TBD           | TBD           |
-| 3             | Development workflow                 | Ch [4](https://misk-data-science.github.io/misk-packages/workflow.html)      | TBD           | TBD           | TBD           |
-| 4             | Package metadata                     | Ch [5](https://misk-data-science.github.io/misk-packages/metadata.html)      | TBD           | TBD           | TBD           |
-| 5             | Source code                          | Ch [6](https://misk-data-science.github.io/misk-packages/code.html)          | TBD           | TBD           | TBD           |
-| 6             | Tests                                | Ch [7](https://misk-data-science.github.io/misk-packages/test.html)          | TBD           | TBD           | TBD           |
-| 7             | Package documentation                | Ch [8](https://misk-data-science.github.io/misk-packages/object-docs.html) - [11](https://misk-data-science.github.io/misk-packages/website.html)   | TBD           | TBD           | TBD           |
-| 8             | Other components                     | TBD           | TBD           | TBD           | TBD           |
-| 9             | Continuous integration and deployment | TBD          | TBD           | TBD           | TBD           |
-| 10            | Case study.                          | TBD           | TBD           | TBD           | TBD           |
-
-
-## Extras
-
-TBD
+| Session       | Description                          | Notebook    | Other     | 
+| :-----------: | :----------------------------------- | :-----------: | :-----------: | 
+| 1             | Introduction to packages             | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/01-introduction.html) | TBD            |
+| 2             | Package structure                    | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/02-package-structure.html) | TBD           | 
+| 3             | Development workflow                 | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/03-workflow.html) | TBD           | 
+| 4             | __Portfolio builder:__ Create your first package | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/04-porfolio-builder-01.html) | TBD           | 
+| 5             | Package metadata                     | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/05-metadata.html) | TBD           | 
+| 6             | Source code                          | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/06-source-code.html) | TBD           |
+| 7             | __Portfolio builder:__ Make your first open source contribution | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/07-porfolio-builder-01.html)  | TBD           |
+| 8             | Tests                                | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/08-testing.html)  | TBD           | 
+| 9             | Object documentation                | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/09-object-docs.html) | TBD  |
+| 10            | Changelog                           | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/10-changelog.html) | TBD  |
+| 11            | README                              | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/11-readme.html) | TBD  |
+| 12            | Long-form documentation            | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/12-long-form-docs.html) | TBD  |
+| 13            | Package website           | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/13-website.html) | TBD  |
+| 10           | Other components                     | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/14-other-components.html) | TBD  | 
+| 11           | __Portfolio builder:__ Improve an open source package's documentation | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/15-porfolio-builder-03.html)  | TBD           |
+| 12            | Continuous integration              | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/16-ci.html) | TBD  |
+| 13            | __Portfolio builder:__ TBD           | TBD          | TBD           |
 
