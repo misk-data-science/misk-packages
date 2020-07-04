@@ -54,8 +54,8 @@ TBD
 | 10            | Changelog                           | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/10-changelog.html) | TBD  |
 | 11            | README                              | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/11-readme.html) | TBD  |
 | 12            | Long-form documentation            | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/12-long-form-docs.html) | TBD  |
-| 9             | Package documentation                | TBD          | TBD  |
-| 10           | Other components                     | TBD          | TBD  | 
+| 13            | Package website           | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/13-website.html) | TBD  |
+| 10           | Other components                     | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/14-other-components.html) | TBD  | 
 | 11           | __Portfolio builder:__ Improve an open source package's documentation | TBD          | TBD           |
 | 12            | Continuous integration              | TBD          | TBD  |
 | 13            | __Portfolio builder:__ TBD           | TBD          | TBD           |
