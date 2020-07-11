@@ -109,3 +109,6 @@ knitr::include_graphics("../figures/README_Py.png")
 3. Identify 3 things in the above packages' READMEs that you think could be improved to help newcomers to that package.
 
 4. Using what you've learned improve upon your package's README. Be sure to do this in a feature branch and perform a pull request to the develop but have at least 2 other classmates review your pull request.
+
+<br>
+[🏠](https://github.com/misk-data-science/misk-packages)

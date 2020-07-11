@@ -846,5 +846,8 @@ Pick at least one exercise for R and one for Python to complete. Write up a summ
    2. Watch David Robinson's screencast on [creating an R data package](https://www.youtube.com/watch?edufilter=NULL&v=F4oUJp76KUY).
    
 * Python blended learning exercises
-   1. Read [Hitchhiker's Guide to Python: Packaging Your Code]().
+   1. Read [Hitchhiker's Guide to Python: Packaging Your Code](https://docs.python-guide.org/shipping/packaging/).
    2. Read [Python's New Package Landscape](http://andrewsforge.com/article/python-new-package-landscape/).
+
+<br>
+[🏠](https://github.com/misk-data-science/misk-packages)

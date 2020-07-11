@@ -117,3 +117,6 @@ knitr::include_graphics("../figures/py-tutorial-rendered.png")
 2. Add an introductory vignette to help newcomers use your R package.
 
 3. Add an introductory vignette to help newcomers use your Python package.
+
+<br>
+[🏠](https://github.com/misk-data-science/misk-packages)

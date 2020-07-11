@@ -33,3 +33,6 @@ Commons additional Python components that we did not discuss are below. Most of 
 - `pytest.ini`: You can configure pytest for many reasons (i.e. how to display test results, the directory to search for test files, test markers to use). You can specify these in one of several config files. It is common to specify them in a `pytest.ini` file whereas we have specified them in the `setup.cfg` file. Read more [here](https://docs.pytest.org/en/2.7.3/customize.html).
 - `mypy.ini`: [mypy](http://mypy-lang.org/) is an optional static type checker commonly used for Python projects. Similar to pytest, you can cusomtize the mypy configuration in a `mypy.ini` file or, as in our case, the `setup.cfg` file.
 - `.pre-commit-config.yaml`: An optional, yet fantastic, tool that automates the application of git hooks to your code. Git hooks allow you to automatically check that certain characteristics exist in your code before allowing you to `git add, commit, push` your code. Read more at https://pre-commit.com/.
+
+<br>
+[🏠](https://github.com/misk-data-science/misk-packages)

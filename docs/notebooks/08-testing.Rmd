@@ -525,3 +525,6 @@ def test_my_mean_on_numeric_vectors(input, expected):
 3. Review the testing setup for the [usethis](https://github.com/r-lib/usethis) package. Identify something unique about this setup compared to the testing structure we outlined above.
 
 4. Review the testing setup for the [scikit-learn](https://github.com/scikit-learn/scikit-learn/tree/master/sklearn/tests) package. Identify at least three tests where the documentation could be clearer by incorporating our __Given-When-Then__ approach. How would you write this improved documentation?
+
+<br>
+[🏠](https://github.com/misk-data-science/misk-packages)

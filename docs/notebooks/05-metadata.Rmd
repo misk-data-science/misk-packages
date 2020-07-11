@@ -264,3 +264,6 @@ A common theme you will see is specifying all package requirements in a list and
       - Add __numpy__ as a required package dependency.
       - Add __black__ as a developer suggested package dependency.
       - Activate your virtual environment, install your package in editable mode, ensure all developer dependencies are installed and rerun your test(s).
+
+<br>
+[🏠](https://github.com/misk-data-science/misk-packages)

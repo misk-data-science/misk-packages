@@ -185,3 +185,6 @@ knitr::include_graphics("../figures/pr-checks-pass-py.png")
 ## Exercises
 
 TBD
+
+<br>
+[🏠](https://github.com/misk-data-science/misk-packages)

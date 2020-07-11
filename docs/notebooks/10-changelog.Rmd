@@ -100,6 +100,9 @@ All notable changes to this project will be documented in this file.
 
 Both the `r fontawesome::fa("r-project")` and `r fontawesome::fa("python")` package templates include a changelog file. 
 
-1. The [Pandas]() package is know for very detailed release notes. You can read them [here](https://pandas.pydata.org/docs/whatsnew/index.html) and see the source code [here](https://github.com/pandas-dev/pandas/tree/master/doc/source/whatsnew). What are 3 unique attributes about Pandas' approach to documenting changes?
+1. The [Pandas](https://github.com/pandas-dev/pandas) package is known for very detailed release notes. You can read them [here](https://pandas.pydata.org/docs/whatsnew/index.html) and see the source code [here](https://github.com/pandas-dev/pandas/tree/master/doc/source/whatsnew). What are 3 unique attributes about Pandas' approach to documenting changes?
 2. Go to your `r fontawesome::fa("r-project")` and/or `r fontawesome::fa("python")` package and check out the existing changelog.
 3. Add appropriate sections within the current version you are working to capture the features __added__ and any other changes you have made.
+
+<br>
+[🏠](https://github.com/misk-data-science/misk-packages)

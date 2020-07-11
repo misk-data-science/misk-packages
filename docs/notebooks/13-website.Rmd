@@ -291,3 +291,6 @@ Once you push the changes to the master branch then you should see your publishe
 2. Add a basic website for your R package. Now review this [vignette](https://pkgdown.r-lib.org/articles/pkgdown.html) for using and customizing pkgdown and make at least 3 changes to the format of your website.
 
 3. Add a basic website for your Python package. Now review this [guide](https://www.sphinx-doc.org/en/master/usage/quickstart.html) for using and customizing Sphinx docs and make at least 3 changes to the format of your website.
+
+<br>
+[🏠](https://github.com/misk-data-science/misk-packages)

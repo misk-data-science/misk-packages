@@ -332,3 +332,6 @@ Focusing on the R and Python packages you created in the portfolio builder:
 ```{block, type='note'}
 As a reviewer of the above pull requests, be sure to thoroughly review the contributors changes. It is ok to ask for edits or corrections on a pull request. And as a submitter of the above pull requests, if the maintainer requests edits or even rejects your pull request, don't take this personally. Listen to their reasons why, learn from them and move on.
 ```
+
+<br>
+[🏠](https://github.com/misk-data-science/misk-packages)

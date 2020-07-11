@@ -84,3 +84,6 @@ Signifies a warning or caution
    - `r fontawesome::fa("python")`: [Python Packaging User Guide](https://packaging.python.org/)
 2. Identify two popular `r fontawesome::fa("r-project")` packages and explain why packaging these capabilities is beneficial.
 3. Identify two popular `r fontawesome::fa("python")` packages and explain why packaging these capabilities is beneficial.
+
+<br>
+[🏠](https://github.com/misk-data-science/misk-packages)

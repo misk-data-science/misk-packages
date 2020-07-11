@@ -811,3 +811,6 @@ git push --set-upstream origin ch6
    - add a new function (and associated unit test) that is unique to the existing functions,
    - add a new function (and associated unit test) that builds onto one of their existing functions,
    - create a pull request to add this new functionality to your classmates develop branch.
+
+<br>
+[🏠](https://github.com/misk-data-science/misk-packages)
