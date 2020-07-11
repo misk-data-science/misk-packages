@@ -42,10 +42,10 @@ This module makes a few assumptions of your established knowledge regarding your
 TBD
 
 
-| Session       | Description                          | Notebook    | Other     | 
+| Session       | Description                          | Notebook    | Slides | 
 | :-----------: | :----------------------------------- | :-----------: | :-----------: | 
-| 1             | Introduction to packages             | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/01-introduction.html) | TBD            |
-| 2             | Package structure                    | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/02-package-structure.html) | TBD           | 
+| 1             | Introduction to packages             | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/01-introduction.html) | [Slides](https://misk-data-science.github.io/misk-packages/01-introduction-slides.html)  |
+| 2             | Package structure                    | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/02-package-structure.html) | [Slides](https://misk-data-science.github.io/misk-packages/01-introduction-slides.html#10)  | 
 | 3             | Development workflow                 | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/03-workflow.html) | TBD           | 
 | 4             | __Portfolio builder:__ Create your first package | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/04-portfolio-builder-01.html) | TBD           | 
 | 5             | Package metadata                     | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/05-metadata.html) | TBD           | 
