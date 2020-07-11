@@ -5,4 +5,16 @@ output: html_document
 
 <br>
 
-TBD
+1. Work through the R and Python workflow examples to create your first R and Python
+packages. Be sure to implement all of the steps.
+
+2. Now create 3 new functions to add to the package. These can be simple functions that
+recreate existing functionality in R and Python or they can be functions that you 
+developed in other modules.
+
+3. After you've completed #1 & #2, commit your work to Github (this should be done in
+a feature branch) and do a pull request from the feature branch to the develop branch. Be
+sure to add at least two classmates as reviewers to your pull request.
+
+4. In addition to completing your own pull request, review and provide feedback to at
+least two other classmates pull requests.
