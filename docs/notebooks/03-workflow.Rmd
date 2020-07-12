@@ -34,7 +34,7 @@ Once you've come up with a name or two you probably want to make sure that the n
 
 Once you have a name its time to create the package. This includes determining where the package will live on your operating system and creating the bare bones framework of the package. 
 
-When creating a package, the source code location (path) refers to where the __source__ lives, not where the __installed__ form lives. Recall in Chapter \@ref(intro) that installed packages all live within a library directory. But when developing, you will keep the source code somewhere else. 
+When creating a package, the source code location (path) refers to where the __source__ lives, not where the __installed__ form lives. Recall in the [introduction notebook](https://misk-data-science.github.io/misk-packages/notebooks/01-introduction.html) that installed packages all live within a library directory. But when developing, you will keep the source code somewhere else. 
 
 Where should you keep source packages? The main principle is that this location should be distinct from where installed packages live. In the absence of external considerations, a typical user should designate a directory inside their home directory for `r fontawesome::fa("r-project")` and `r fontawesome::fa("python")` (source) packages. This may be in directories such as `~/Desktop/Packages/` or `/r/packages` and `/python/packages`. Some of us use one directory for this, others divide source packages among a few directories. This probably reflects that we are primarily tool-builders. An academic researcher might organize their files around individual publications, whereas a data scientist might organize around data products and reports. There is no particular technical or traditional reason for one specific approach. As long as you keep a clear distinction between source and installed packages, just pick a strategy that works within your overall system for file organization, and use it consistently.
 
@@ -226,7 +226,7 @@ Now if you look at your Github repo you will see the master branch has your curr
 knitr::include_graphics("../figures/initial-master.png")
 ```
 
-Recall in section \@ref(version-control) that we prefer to do development work with a __support » develop » master__ branch framework. This has us doing work in a support branch and not the master or develop branch. Right now we only have a master branch established so let's create a develop branch with `git checkout -b develop` and push the contents of the develop branch (which are the same as the master) to Github.
+Recall in the version control section that we prefer to do development work with a __support » develop » master__ branch framework. This has us doing work in a support branch and not the master or develop branch. Right now we only have a master branch established so let's create a develop branch with `git checkout -b develop` and push the contents of the develop branch (which are the same as the master) to Github.
 
 ```bash
 git checkout -b develop
@@ -381,7 +381,7 @@ devtools::test()
 ## Skipped:  0
 ```
 
-We likely want to iterate like this to make our function more robust. For example, what happens if a user passes non-numeric values or a non-vector data structure to our function?  Or what happens if our vector contains `NA`, `NaN`, or `Inf` values? For each scenario like this we want to create a test first, make sure it fails, and then add the new functionality to our code to make our tests pass.  We'll explore this process more in chapter \@ref(test).
+We likely want to iterate like this to make our function more robust. For example, what happens if a user passes non-numeric values or a non-vector data structure to our function?  Or what happens if our vector contains `NA`, `NaN`, or `Inf` values? For each scenario like this we want to create a test first, make sure it fails, and then add the new functionality to our code to make our tests pass.  We'll explore this process more in the [notebook on tests](https://misk-data-science.github.io/misk-packages/notebooks/08-testing.html).
 
 We have empirical evidence that `my_mean()` works. But how can we be sure that all the moving parts of our package still work? This may seem silly to check, after such a small addition, but it’s good to establish the habit of checking this often. `R CMD check`, executed in the shell, is the gold standard for checking that an R package is in full working order. `devtools::check()` is a convenient way to run this without leaving your R session.
 
