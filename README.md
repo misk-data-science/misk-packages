@@ -49,8 +49,8 @@ TBD
 | 3             | Development workflow                 | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/03-workflow.html) | [Slides](https://misk-data-science.github.io/misk-packages/01-introduction-slides.html#16)  | 
 | 4             | __Portfolio builder:__ Create your first package | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/04-portfolio-builder-01.html) |     | 
 | 5             | Package metadata                     | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/05-metadata.html) | [Slides](https://misk-data-science.github.io/misk-packages/01-introduction-slides.html#30)  | 
-| 6             | Source code                          | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/06-source-code.html) | TBD           |
-| 7             | __Portfolio builder:__ Make your first open source contribution | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/07-portfolio-builder-01.html)  | TBD           |
+| 6             | Source code                          | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/06-source-code.html) | [Slides](https://misk-data-science.github.io/misk-packages/01-introduction-slides.html#42)  |
+| 7             | __Portfolio builder:__ Make your first open source contribution | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/07-portfolio-builder-01.html)  |  |
 | 8             | Tests                                | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/08-testing.html)  | TBD           | 
 | 9             | Object documentation                | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/09-object-docs.html) | TBD  |
 | 10            | Changelog                           | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/10-changelog.html) | TBD  |

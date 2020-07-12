@@ -484,3 +484,306 @@ class: misk-section-slide
 
 <br><br><br><br><br><br><br>
 .bold.font250[Package Metadata]
+
+---
+# Metadata considerations
+
+.pull-left[
+
+- Name & package description
+
+- Author & contact info
+
+- Dependencies
+
+- Versioning
+
+- License
+
+- Project source
+
+- Other
+
+]
+
+.pull-right[
+
+
+]
+
+---
+# Metadata considerations
+
+.pull-left[
+
+- .bold[Name & package description]
+
+- Author & contact info
+
+- Dependencies
+
+- Versioning
+
+- License
+
+- Project source
+
+- Other
+
+]
+
+.pull-right[
+
+* Name of the package,
+
+* A shorter, one line description of the package provides,
+
+* A longer, multi-line description of the package. This is the elevator pitch of the key things that your package does and how important it is to others.
+
+]
+
+---
+# Metadata considerations
+
+.pull-left[
+
+- Name & package description
+
+- .bold[Author & contact info]
+
+- Dependencies
+
+- Versioning
+
+- License
+
+- Project source
+
+- Other
+
+]
+
+.pull-right[
+
+- Minimum: primary author and email contact info
+
+- Optionally provide additional authors and contributors along with their contact info
+
+- Can even specify corporation relationships if necessary
+
+]
+
+---
+# Metadata considerations
+
+.pull-left[
+
+- Name & package description
+
+- Author & contact info
+
+- .bold[Dependencies]
+
+- Versioning
+
+- License
+
+- Project source
+
+- Other
+
+]
+
+.pull-right[
+
+- Language version dependency
+
+- Required package dependencies
+
+- Suggested package dependencies
+
+- Developer dependencies
+
+]
+
+---
+# Metadata considerations
+
+.pull-left[
+
+- Name & package description
+
+- Author & contact info
+
+- Dependencies
+
+- .bold[Versioning]
+
+- License
+
+- Project source
+
+- Other
+
+]
+
+.pull-right[
+
+We advise using a [Semantic Versioning](https://semver.org/) approach 
+
+`<MAJOR>.<MINOR>.<PATCH>` (i.e. 0.9.1, 1.4.0)
+
+- `<MAJOR>` version when you make incompatible API changes. This signals that your updates will likely effect many users and will cause breaking changes to users' prior code. 
+- `<MINOR>` version when you add functionality in a backwards compatible manner. This often includes adding a new feature that does not effect the existing code base.
+- `<PATCH>` version when you make backwards compatible bug fixes.
+
+]
+
+---
+# Metadata considerations
+.scrollable90[
+.pull-left[
+
+- Name & package description
+
+- Author & contact info
+
+- Dependencies
+
+- Versioning
+
+- .bold[License]
+
+- Project source
+
+- Other
+
+]
+
+.pull-right[
+
+The License field can be either a standard abbreviation for an open source license, like GPL-2 or BSD, or a pointer to a file containing more information, file `LICENSE`.
+
+- [MIT](https://tldrlegal.com/license/mit-license): This is a simple and permissive license. It lets people use and freely distribute your code subject to only one restriction: the license must always be distributed with the code.
+- [GPL-2](https://tldrlegal.com/license/gnu-general-public-license-v2) or [GPL-3](https://tldrlegal.com/license/gnu-general-public-license-v3-(gpl-3)): These are “copy-left” licenses. This means that anyone who distributes your code in a bundle must license the whole bundle in a GPL-compatible way. Additionally, anyone who distributes modified versions of your code (derivative works) must also make the source code available. GPL-3 is a little stricter than GPL-2, closing some older loopholes.
+- [CC0](https://tldrlegal.com/license/creative-commons-cc0-1.0-universal): It relinquishes all your rights on the code and data so that it can be freely used by anyone for any purpose. This is sometimes called putting it in the public domain, a term which is neither well-defined nor meaningful in all countries.
+
+```{block, type='tip'}
+If you’d like to learn more about other common licenses, Github’s [choosealicense.com](http://choosealicense.com/licenses/) is a good place to start. Another good resource is https://tldrlegal.com/, which explains the most important parts of each license.
+```
+
+]]
+
+---
+# Metadata considerations
+
+.pull-left[
+
+- Name & package description
+
+- Author & contact info
+
+- Dependencies
+
+- Versioning
+
+- License
+
+- .bold[Project source]
+
+- Other
+
+]
+
+.pull-right[
+
+It is common to include URLs to direct users to:
+
+- Where the source code resides (i.e. Github repo)
+- Where to post bugs, feature requests, etc. (i.e. Github issues)
+
+We may also want to point people to a package documentation website, the changelog, or other URLs that host important package information.
+
+]
+
+---
+# Metadata considerations
+
+.pull-left[
+
+- Name & package description
+
+- Author & contact info
+
+- Dependencies
+
+- Versioning
+
+- License
+
+- Project source
+
+- .bold[Other]
+
+]
+
+.pull-right[
+
+As you'll see in the next couple sections, there are additional types of metadata that we can include such as deploying data or other files (i.e. LICENSE) with you package. However, the items listed in the previous section are the primary forms of metadata that we want to ensure we include.
+
+]
+
+---
+class: inverse, hide-logo
+
+<br><br><br>
+[.center.white.font300[
+`r fontawesome::fa("r-project", fill = "white")` example
+]](https://misk-data-science.github.io/misk-packages/notebooks/05-metadata.html#_package_metadata_example)
+
+---
+class: inverse, hide-logo
+
+<br><br><br>
+[.center.white.font300[
+`r fontawesome::fa("python", fill = "white")` example
+]](https://misk-data-science.github.io/misk-packages/notebooks/05-metadata.html#_package_metadata_example9)
+
+---
+# Exercises
+
+.scrollable90[
+* Check out the metadata for the [dplyr](https://github.com/tidyverse/dplyr) package.
+   * What is the current version number?
+   * Who was the original creator?
+   * What kind of license does it have?
+   * What R version does it require?
+   * What kind of dependencies are glue, rlang, DBI and lobstr?
+* Check out the metadata for the [pre-commit](https://github.com/pre-commit/pre-commit) package. Note that this package uses setup.cfg to hold its metadata.
+   * What is the current version number?
+   * Who is the author?
+   * What kind of license does it have?
+   * What Oython version does it require?
+   * Name 4 package dependencies of pre-commit?
+* Building on to the initial R and Python packages you created in the portfolio building exercise:
+   * Check out the LICENSE file in your package.
+   * R package
+      - Fill out the `Description` field for your package.
+      - Add __dplyr__ as a required package dependency.
+      - Add __purrr__ as a suggested package dependency.
+      - Run `devtools::check()` to make sure the package builds successfully.
+   * Python package
+      - Create a `long_description` field for your package.
+      - Add __numpy__ as a required package dependency.
+      - Add __black__ as a developer suggested package dependency.
+      - Activate your virtual environment, install your package in editable mode, ensure all developer dependencies are installed and rerun your test(s).
+]
+
+---
+class: misk-section-slide 
+
+<br><br><br><br><br><br><br>
+.bold.font250[Source Code]
+
+---
+# TBD
