@@ -1091,8 +1091,52 @@ class: misk-section-slide
 <br><br><br><br><br><br><br>
 .bold.font250[Object documentation]
 
+---
+# Levels of documentation
 
+Multiple forms of documentation:
 
+- __Package-level documentation__: Top level description for what your package does and can point users to additional resources if necessary.
+
+- __Module-level documentation__: More common in `r fontawesome::fa("python")` than `r fontawesome::fa("r-project")` and helps to describe the purpose and contents of an individual module within a package.
+
+- __Function-level documentation__: The function documentation that you have already been exposed to in earlier modules.
+
+<br>
+
+```{block, type='tip'}
+Documentation is one of the most important aspects of a good package
+```
+
+---
+class: inverse, hide-logo
+
+<br><br><br>
+[.center.white.font300[
+`r fontawesome::fa("r-project", fill = "white")` example
+]](https://misk-data-science.github.io/misk-packages/notebooks/09-object-docs.html#_object_documentation_example)
+
+---
+class: inverse, hide-logo
+
+<br><br><br>
+[.center.white.font300[
+`r fontawesome::fa("python", fill = "white")` example
+]](https://misk-data-science.github.io/misk-packages/notebooks/09-object-docs.html#_object_documentation_example2)
+
+---
+# Exercises
+
+Focusing on the R and Python packages you created in the portfolio builder:
+
+1. Fork one of your classmates packages, create a new branch, add package-level documentation and create a pull request.
+2. Fork another classmates packages, create a new branch, add module-level documentation and create a pull request.
+3. Fork another classmates packages, create a new branch, add function-level documentation and create a pull request.
+4. __Optional__: Review the referenced documentation for [type-hints](#typehints) add type hints to your existing code. Be sure to run [mypy](https://mypy.readthedocs.io/en/stable/) on your package to ensure your type hints are implemented correctly.
+
+```{block, type='note'}
+As a reviewer of the above pull requests, be sure to thoroughly review the contributors changes. It is ok to ask for edits or corrections on a pull request. And as a submitter of the above pull requests, if the maintainer requests edits or even rejects your pull request, don't take this personally. Listen to their reasons why, learn from them and move on.
+```
 
 ---
 class: misk-section-slide 
