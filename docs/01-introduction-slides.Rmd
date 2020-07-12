@@ -786,4 +786,164 @@ class: misk-section-slide
 .bold.font250[Source Code]
 
 ---
-# TBD
+# Organization
+
+Organizing your source code provides many benefits such as:
+
+- making the intentions of the code obvious,
+
+- making it easy for others to contribute,
+
+- making it easy for you to maintain,
+
+- making it easy to debug,
+
+- making it easy to expand.
+
+```{block, type="note"}
+There are very few strict requirements in how you organize your code but what follows are general best practices.
+```
+
+---
+# Individual units
+
+.pull-left[
+
+Individual units of functionality 
+
+- should be <font size="-2">small.</font>,
+- should not require significant scrolling in your editor,
+- should be very clear regarding the intention and functionality they are providing,
+- should only _"do one thing"_.
+
+```{block, type="tip"}
+One way to know if a function is doing more than one thing is if you can extract another function from it with a name that is not merely a restatement of its implementation.
+```
+
+]
+
+--
+
+.pull-right[
+
+Two main ways our code expands:
+
+1. breadth: we add more functionality but not necessarily building onto existing functionality,
+
+2. aggregation: we continue building onto existing functionality to create layers of abstraction.
+
+]
+
+---
+# Expanding code breadth
+
+* Expanding code breadth is easier to maintain. For our example package that currently has a `my_mean()` function, this could include adding new functions such as `my_median()` and  `my_mode()`. 
+
+* When expanding code breadth the main thing you should consider is where to put the new functionality.
+
+* Grouping like functionality into one file is good. For example, since `my_mean()`, `my_median()` and `my_mode()` are all forms of central tendencies we may put them in the same file while functions with other purposes (i.e. deviations) may go into a different file.
+
+```{block, type='tip'}
+While you're free to arrange functions into files as you wish, the two extremes are bad: don't put all functions into one file and don't put each function into its own separate file.
+```
+
+---
+# Aggregating functionality
+
+.pull-left[
+
+* Often, we write code that builds on top of each other. 
+
+* This is known as creating higher levels of abstraction. 
+
+* For example, say we wanted to create a function that computes the z-score, which uses the mean and standard deviations. This is a higher level of abstraction and we should write our code in such a way that:
+  1. our code reads like a top-down narrative,
+  2. functionality is abstracted away and grouped at similar levels of abstraction.
+
+]
+
+.pull-right[
+
+```python
+# highest abstracted level
+def z_score():
+  pass
+  
+# next layer of abstractoin
+def my_mean():
+  pass
+  
+def my_sd():
+  pass
+  
+# lowest level of abstraction
+def validate_input():
+  pass
+```
+
+]
+
+---
+# Naming is important
+
+Naming is important but as our source code grows it becomes even moreso. Here are some good naming tips:
+
+- If a file contains a single function, give the file the same name as the function.
+
+- If a file contains multiple related functions, give it a concise, but descriptive name. For example, we could group `my_mean()`, `my_median()` and `my_mode()` together into a file named `central_tendencies`.
+
+- Sometimes you have many helper functions in your source code that all support one primary user facing API functionality. Put the user-facing API function/class into a file named `main` or `main_api`.
+
+- Many times people create a general `utils` file to hold general utility functions. This is not advised. Always try to find a proper home and name for all supporting functions. This is a [great read](https://breadcrumbscollector.tech/stop-naming-your-python-modules-utils/) explaining why.
+
+- Deprecated functions should live in a file or directory that makes it obvious they are deprecated (i.e. prefix file name with `deprec-`).
+
+---
+# External vs internal
+
+When developing packages, we often build functions with two main purposes:
+
+1. External use: functions that are designed to be used by the end-user. This is the primary purpose of writing a package, to make some functionality easier for an end-user.
+
+2. Internal use: functions that are designed to help you, the developer, write efficient and effect code. Internal functions are usually not intended for external use by end-users.
+
+--
+
+```{block, type="tip"}
+Within both R and Python package you have the ability to make your functions be either externally or internally focused. In the examples that follow we will illustrate how but it is important that you apply the same rules to both external and internal functions - document and test __all__ your functions. Although not a requirement this will make your life and other developer's lives that want to contribute much easier.
+```
+
+---
+class: inverse, hide-logo
+
+<br><br><br>
+[.center.white.font300[
+`r fontawesome::fa("r-project", fill = "white")` example
+]](https://misk-data-science.github.io/misk-packages/notebooks/06-source-code.html#_source_code_example)
+
+---
+class: inverse, hide-logo
+
+<br><br><br>
+[.center.white.font300[
+`r fontawesome::fa("python", fill = "white")` example
+]](https://misk-data-science.github.io/misk-packages/notebooks/06-source-code.html#_source_code_example3)
+
+---
+# Exercises
+
+<br>
+
+1. With the R and Python packages you created in the portfolio builder, work through the [R](#rexample) and [Python](#pyexample) examples above to add new functionality to your package.
+
+2. Fork one of your classmates packages and:
+   - create a new branch,
+   - add a new function (and associated unit test) that is unique to the existing functions,
+   - add a new function (and associated unit test) that builds onto one of their existing functions,
+   - create a pull request to add this new functionality to your classmates develop branch.
+
+---
+class: misk-section-slide 
+
+<br><br><br><br><br><br><br>
+.bold.font250[Tests]
