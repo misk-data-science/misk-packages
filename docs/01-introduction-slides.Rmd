@@ -947,3 +947,195 @@ class: misk-section-slide
 
 <br><br><br><br><br><br><br>
 .bold.font250[Tests]
+
+---
+# Why test
+
+Formalizing and automating the test structure and process helps with:
+
+.scrollable90[
+* __Fewer bugs__. Because you’re explicit about how your code should behave you will have fewer bugs. The reason why is a bit like the reason double entry book-keeping works: because you describe the behaviour of your code in two places, both in your code and in your tests, you are able to check one against the other. By following this approach to testing, you can be sure that bugs that you’ve fixed in the past will never come back to haunt you.
+
+* __Better code structure__. Code that’s easy to test is usually better designed. This is because writing tests forces you to break up complicated parts of your code into separate functions that can work in isolation. This reduces duplication in your code. As a result, functions will be easier to test, understand and work with (it’ll be easier to combine them in new ways).
+
+* __Easier restarts__. If you always finish a coding session by creating a failing test (e.g. for the next feature you want to implement), testing makes it easier for you to pick up where you left off: your tests will let you know what to do next.
+
+* __Robust code__. If you know that all the major functionality of your package has an associated test, you can confidently make big changes without worrying about accidentally breaking something. For me, this is particularly useful when I think I have a simpler way to accomplish a task (usually the reason my solution is simpler is that I’ve forgotten an important use case!).
+]
+
+---
+# What to test
+
+.scrollable90[
+* __Focus on testing the external interface to your functions__ - if you test the internal interface, then it’s harder to change the implementation in the future because as well as modifying the code, you’ll also need to update all the tests.
+
+* Strive to __test each behaviour in one and only one test__. Then if that behavior later changes you only need to update a single test.
+
+* You do not need to test _all_ of your code; however, we often __strive to test 85-95% of our code__. Focus your time on code that you’re not sure about, is fragile, or has complicated interdependencies. That said, we often find we make the most mistakes when we falsely assume that the problem is simple and doesn’t need any tests. So there is definitely a case for striving for 100% coverage.
+
+* __Always write a test when you discover a bug or want to create a feature enhancement__. Start by writing the tests, and then write the code that makes them pass. This reflects an important problem solving strategy: start by establishing your success criteria, how you know if you’ve solved the problem.
+
+* You should not only write tests that outline the successful expected outcome of a function but you should also __write tests to verify that expected messages, warnings, and errors are produced__.
+]
+
+---
+# Test organization
+
+* tests should live in a `tests/` directory at the root of the package
+
+* test files for both languages should start with `test` (i.e. `test-validation.R`, `test_summary_stats.py`)
+
+* Tests are organized hierarchically: expectations and assertions are grouped into tests which are organized in files:
+   * An __expectation__ or __assertion__ is the atom of testing. It describes the expected result of a computation: Does it have the right value and right class? Does it produce error messages when it should? An expectation automates visual checking of results in the console. 
+   * A __test__ groups together one or more expectations/assertions to test the output from a simple function, a range of possibilities for a single parameter from a more complicated function, or tightly related functionality from across multiple functions. This is why they are sometimes called unit as they test one unit of functionality.
+   * A __test file__ groups together multiple related tests. How you organize tests within files is your discretion; however, one best practice suggests that for every source code script there is a companion, similarly named test script (i.e. `summary_stats.py` & `test_summary_stats.py`).
+
+---
+# Types of tests
+
+Many types of tests; however, the most common ones you should be thinking of initially are:
+
+.scrollable90[
+
+* __unit tests__: 
+   - test one unit of functionality
+   - focus on the output from a single function
+   - foundational building block functions of your package
+   - should be fast so you can run them often and, preferablly not require any special environment to run them (i.e. a Spark session)
+
+* __integration tests__: 
+   - tests that focus on processes and/or components that combine functionality from across multiple functions
+   - ensure that all the lower abstraction level functions work nicely with one another when combined
+
+```{block, type="note"}
+Often, integrated functionality becomes very large and sometimes can be slower to compute so it is not unusual for integration tests to be much slower than unit tests. However, we also do not need to run them as often as unit tests.
+```
+]
+
+---
+# Writing tests
+
+.pull-left[
+
+__Given-When-Then__ is a style of representing tests that can help guide you in writing your tests, make your tests more focused and better documented.
+
+* The __given__ part describes the state of the world before you begin the behavior you're specifying in this scenario. You can think of it as the pre-conditions to the test.
+* The __when__ section is the behavior that you're specifying, or the specific functionality you are applying to the given state of the world.
+* Finally the __then__ section describes the changes you expect due to the specified behavior.
+
+]
+
+--
+
+.pull-right[
+
+A simple example is with our `my_mean()` function. In both languages we follow a common procedure:
+
+1. __GIVEN__ a vector or list of integers from 0-10,
+2. __WHEN__ we compute the mean value,
+3. __THEN__ the result should be 5
+
+]
+
+---
+# Additional resources
+
+- Build your knowledge of general software testing philosophies:
+   - [The Pragramatic Programmer](https://www.amazon.com/Pragmatic-Programmer-journey-mastery-Anniversary/dp/0135957052/ref=dp_ob_title_bk) (Ch. 41)
+   - [Clean Code](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882/ref=pd_bxgy_img_2/134-3713013-8748161?_encoding=UTF8&pd_rd_i=0132350882&pd_rd_r=c66a8eb8-13a3-4246-bf5c-47bff29f3be6&pd_rd_w=m2kCB&pd_rd_wg=NqeJv&pf_rd_p=4e3f7fc3-00c8-46a6-a4db-8457e6319578&pf_rd_r=R46745MCZ1C0V1ZD3QS4&psc=1&refRID=R46745MCZ1C0V1ZD3QS4) (Ch. 9)
+   - [Test Driven Development](https://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530)
+
+- Learn more about implementing software testing in `r fontawesome::fa("r-project")` and `r fontawesome::fa("python")`:
+   - [Testing R Code](https://www.amazon.com/Testing-Code-Chapman-Hall-CRC/dp/1498763650)
+   - [testthat documentation](https://testthat.r-lib.org/)
+   - [Python Testing with pytest](https://www.amazon.com/Python-Testing-pytest-Effective-Scalable/dp/1680502409/ref=sr_1_3?keywords=Python+Testing+with+pytest&qid=1578174634&s=books&sr=1-3)
+   - [Multiply your Testing Effectiveness with Parameterized Testing](https://us.pycon.org/2020/schedule/presentation/172/)
+   - [pytest documentation](https://docs.pytest.org/en/latest/)
+
+---
+class: inverse, hide-logo
+
+<br><br><br>
+[.center.white.font300[
+`r fontawesome::fa("r-project", fill = "white")` example
+]](https://misk-data-science.github.io/misk-packages/notebooks/08-testing.html#_testing_example)
+
+---
+class: inverse, hide-logo
+
+<br><br><br>
+[.center.white.font300[
+`r fontawesome::fa("python", fill = "white")` example
+]](https://misk-data-science.github.io/misk-packages/notebooks/08-testing.html#_testing_example7)
+
+
+---
+# Exercises
+
+<br>
+
+1. With the R and Python packages you created in the portfolio builder, work through the [R](#rexample) and [Python](#pyexample) examples above to update your package's unit tests.
+
+2. Fork one of your classmates packages and:
+   - create a new branch,
+   - review their unit tests, identify and add a new unit test,
+   - add a new function (and associated unit test) that is unique to the existing functions.
+   
+3. Review the testing setup for the [usethis](https://github.com/r-lib/usethis) package. Identify something unique about this setup compared to the testing structure we outlined above.
+
+4. Review the testing setup for the [scikit-learn](https://github.com/scikit-learn/scikit-learn/tree/master/sklearn/tests) package. Identify at least three tests where the documentation could be clearer by incorporating our __Given-When-Then__ approach. How would you write this improved documentation?
+
+---
+class: misk-section-slide 
+
+<br><br><br><br><br><br><br>
+.bold.font250[Object documentation]
+
+
+
+
+---
+class: misk-section-slide 
+
+<br><br><br><br><br><br><br>
+.bold.font250[Changelog]
+
+
+
+---
+class: misk-section-slide 
+
+<br><br><br><br><br><br><br>
+.bold.font250[README]
+
+
+
+---
+class: misk-section-slide 
+
+<br><br><br><br><br><br><br>
+.bold.font250[Long-form Documentation]
+
+
+
+---
+class: misk-section-slide 
+
+<br><br><br><br><br><br><br>
+.bold.font250[Package Website]
+
+
+
+---
+class: misk-section-slide 
+
+<br><br><br><br><br><br><br>
+.bold.font250[Other Components]
+
+
+
+---
+class: misk-section-slide 
+
+<br><br><br><br><br><br><br>
+.bold.font250[Continuous Integration]

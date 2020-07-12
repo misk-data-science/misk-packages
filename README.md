@@ -52,7 +52,7 @@ TBD
 | 6             | Source code                          | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/06-source-code.html) | [Slides](https://misk-data-science.github.io/misk-packages/01-introduction-slides.html#42)  |
 | 7             | __Portfolio builder:__ Make your first open source contribution | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/07-portfolio-builder-01.html)  |  |
 | 8             | Tests                                | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/08-testing.html)  | [Slides](https://misk-data-science.github.io/misk-packages/01-introduction-slides.html#54) | 
-| 9             | Object documentation                | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/09-object-docs.html) | TBD  |
+| 9             | Object documentation                | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/09-object-docs.html) | [Slides](https://misk-data-science.github.io/misk-packages/01-introduction-slides.html#65) |
 | 10            | Changelog                           | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/10-changelog.html) | TBD  |
 | 11            | README                              | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/11-readme.html) | TBD  |
 | 12            | Long-form documentation            | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/12-long-form-docs.html) | TBD  |
