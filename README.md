@@ -57,7 +57,7 @@ TBD
 | 11            | README                              | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/11-readme.html) | [Slides](https://misk-data-science.github.io/misk-packages/01-introduction-slides.html#78) |
 | 12            | Long-form documentation            | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/12-long-form-docs.html) | [Slides](https://misk-data-science.github.io/misk-packages/01-introduction-slides.html#88) |
 | 13            | Package website           | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/13-website.html) | [Slides](https://misk-data-science.github.io/misk-packages/01-introduction-slides.html#95) |
-| 10           | Other components                     | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/14-other-components.html) | TBD  | 
+| 10           | Other components                     | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/14-other-components.html) | [Slides](https://misk-data-science.github.io/misk-packages/01-introduction-slides.html#104) | 
 | 11           | __Portfolio builder:__ Improve an open source package's documentation | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/15-portfolio-builder-03.html)  |   |
 | 12            | Continuous integration              | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/16-ci.html) | TBD  |
 | 13            | __Portfolio builder:__ TBD           | TBD          |  |

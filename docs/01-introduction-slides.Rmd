@@ -1683,7 +1683,54 @@ class: misk-section-slide
 <br><br><br><br><br><br><br>
 .bold.font250[Other Components]
 
+---
+# Staying simple
 
+So far we have covered the important and common components of `r fontawesome::fa("r-project")` and `r fontawesome::fa("python")` packages that you should be concerned with. 
+
+However, as you become more involved in package development in either of these languages, you will start to see additional files or components present in packaging projects.
+
+--
+
+<br>
+
+```{block, type = "tip"}
+You will want to familiarize yourself with these other components as you do more packaging but they are not necessary to make packages. Learn the basics first, then work on expanding into these components!
+```
+
+---
+# Other `r fontawesome::fa("r-project", fill = "white")` package components
+
+- `data/`: Store binary data and make it available to end-users. Read [here](https://r-pkgs.org/data.html) for more details.
+
+- `src/`: Incorporate C and C++ code to speed up your package functionality. Learn more about incorporating C and C++ into your packages [here](https://r-pkgs.org/src.html).
+
+- `.Rbuildignore`: Lists files that we need to have around but that should not be included when building the R package from source. Read more [here](https://r-pkgs.org/package-structure-state.html#rbuildignore).
+
+- `NAMESPACE`: Declares the functions your package exports for external use and the external functions your package imports from other packages. You will not edit this directly, rather, it will be updated from the roxygen documentation. Read more [here](https://r-pkgs.org/namespace.html#namespace).
+
+- `inst/`: Files/folders that should be copied and unmodified into the installed R package folder. Read more [here](https://r-pkgs.org/inst.html).
+
+- `cran-comments.md`: When submitting your package to CRAN, this file provides important comments that you want to provide to the reviewers of your package. Learn more [here](https://r-pkgs.org/release.html#release-process).
+
+---
+# Other `r fontawesome::fa("python", fill = "white")` package components
+
+.scrollable90[
+- `setup.cfg`: A configuration file that allows you to specify certain configurations for various tooling. Read more [here](https://docs.python.org/3/distutils/configfile.html).
+
+- `requirements.txt`: Popular alternative to specifying developer dependencies. Learn more [here](https://medium.com/@boscacci/why-and-how-to-make-a-requirements-txt-f329c685181e#:~:text=In%20short%2C%20we%20generate%20and,Python%20code%20we've%20written.).
+
+- `<pkg_name>.toml`: Python's attempt to provide a single, common config file for packages to specify their build dependencies. You can read more [here](https://www.python.org/dev/peps/pep-0518/) and [here](https://snarky.ca/what-the-heck-is-pyproject-toml/).
+
+- `MANIFEST.ini`: Distribute additional files such as the CHANGELOG, AUTHOR, config files (`.yml`) used by your source code, or even distributing data files. Read more [here](https://packaging.python.org/guides/using-manifest-in/).
+
+- `pytest.ini`: pytest configuration file. Read more [here](https://docs.pytest.org/en/2.7.3/customize.html).
+
+- `mypy.ini`: [mypy](http://mypy-lang.org/) is an optional static type checker commonly used for Python projects. Similar to pytest, you can cusomtize the mypy configuration in a `mypy.ini` file or, as in our case, the `setup.cfg` file.
+
+- `.pre-commit-config.yaml`: An optional, yet fantastic, tool that automates the application of git hooks to your code. Git hooks allow you to automatically check that certain characteristics exist in your code before allowing you to `git add, commit, push` your code. Read more at https://pre-commit.com/.
+]
 
 ---
 class: misk-section-slide 
