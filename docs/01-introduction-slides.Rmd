@@ -1555,7 +1555,127 @@ class: misk-section-slide
 <br><br><br><br><br><br><br>
 .bold.font250[Package Website]
 
+---
+# Package website
 
+Both `r fontawesome::fa("python")` and `r fontawesome::fa("r-project")` have documentation generators that will allow you to set up a website for your package rather easily
+
+.pull-left[
+
+.center[`r fontawesome::fa("r-project", height = 50)`]
+
+![](figures/pkgdown.png)
+
+]
+
+.pull-right[
+
+.center[`r fontawesome::fa("python", height = 50)`]
+
+![](figures/sphinx.png)
+
+]
+
+---
+# Package website
+
+Both `r fontawesome::fa("python")` and `r fontawesome::fa("r-project")` have documentation generators that will allow you to set up a website for your package rather easily
+
+.pull-left[
+
+.center[`r fontawesome::fa("r-project", height = 50)`]
+
+- [bayesplot](http://mc-stan.org/bayesplot/index.html)
+
+- [vip](https://koalaverse.github.io/vip/index.html)
+
+- [recipes](https://recipes.tidymodels.org/)
+
+]
+
+.pull-right[
+
+.center[`r fontawesome::fa("python", height = 50)`]
+
+- [numpy](https://numpydoc.readthedocs.io/en/latest/)
+
+- [pandas](https://pandas.pydata.org/docs/)
+
+- [plotnine](https://plotnine.readthedocs.io/en/stable/)
+
+]
+
+```{block, type="todo"}
+Spend 15 minutes reviewing these great examples.
+```
+
+---
+# Github docs
+
+In both cases, the website documentation is contained in a `/docs` subdirectory of the package
+
+.pull-left[
+
+.center.bold[Step 1]
+
+![](figures/github-repo-settings.png)
+
+]
+
+--
+
+.pull-right[
+
+.center.bold[Step 2]
+
+![](figures/github-repo-enable-github-pages.png)
+]
+
+---
+# Github docs
+
+In both cases, the website documentation is contained in a `/docs` subdirectory of the package
+
+```{block, type = "warning"}
+This will generate a URL (i.e. https://bradleyboehmke.github.io/myfirstpkg/). Currently this URL will not render anything (actually, it will render a 404 _file not found_ error) since we haven't produced the website docs but once we do create our website files, we can then share this URL so people can view our website.
+```
+
+<br>
+
+.center.bold.red[Let's go ahead and create our package websites!]
+
+---
+class: inverse, hide-logo
+
+<br><br><br>
+[.center.white.font300[
+`r fontawesome::fa("r-project", fill = "white")` example
+]](https://misk-data-science.github.io/misk-packages/notebooks/13-website.html#_website_example)
+
+---
+class: inverse, hide-logo
+
+<br><br><br>
+[.center.white.font300[
+`r fontawesome::fa("python", fill = "white")` example
+]](https://misk-data-science.github.io/misk-packages/notebooks/13-website.html#_website_example2)
+
+---
+# Exercises
+
+1. Review these packages websites. Can you identify the source code location for these websites?
+   - Python packages
+      - [numpy](https://numpydoc.readthedocs.io/en/latest/)
+      - [pandas](https://pandas.pydata.org/docs/)
+      - [plotnine](https://plotnine.readthedocs.io/en/stable/)
+   - R packages
+      - [bayesplot](http://mc-stan.org/bayesplot/index.html)
+      - [vip](https://koalaverse.github.io/vip/index.html)
+      - [recipes](https://recipes.tidymodels.org/)
+
+2. Add a basic website for your R package. Now review this [vignette](https://pkgdown.r-lib.org/articles/pkgdown.html) for using and customizing pkgdown and make at least 3 changes to the format of your website.
+
+3. Add a basic website for your Python package. Now review this [guide](https://www.sphinx-doc.org/en/master/usage/quickstart.html) for using and customizing Sphinx docs and make at least 3 changes to the format of your website.
 
 ---
 class: misk-section-slide 
