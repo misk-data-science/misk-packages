@@ -1145,6 +1145,189 @@ class: misk-section-slide
 .bold.font250[Changelog]
 
 
+---
+# Changelog
+
+.pull-left[
+* A curated, chronologically ordered list of notable changes for each version of a project
+
+* README --> new users
+
+* Changelog --> existing users
+
+* Gives you a detailed view into the development process
+
+* Makes it easier for users and contributors to see precisely what notable changes have been made between each release (or version) of the package
+]
+
+.pull-right[
+
+![](figures/example-changelog.png)
+
+]
+
+---
+# How to log
+
+.pull-left[
+
+.bold.center[What to log]
+
+* Release version and date of release
+
+* New features __added__
+
+* __Changes__ in existing functionality
+
+* __Deprecated__ functionality (features/functionality that soon-to-be removed)
+
+* __Removed__ functionality
+
+* Bug __fixes__
+
+]
+
+--
+
+.pull-right[
+
+.bold.center[What not to do]
+
+* Commit log diffs
+
+* Ignoring deprecations
+
+]
+
+---
+# How to log
+
+* Typically contained in a file named `CHANGELOG`, `NEWS`, `RELEASES`, or `HISTORY` (.md or .rst)
+
+* Release version & date should be displayed (reverse chronological order)
+
+* Common to keep an `Unreleased` section at the top to track upcoming changes until you have determined the appropriate version bump
+
+* Common headings to capture types of changes:
+  - `Added`
+  - `Changed`
+  - `Deprecated`
+  - `Removed`
+  - `Fixed`
+  - `Refactor`
+
+* Related to an issue in GitHub, include the issue number in parentheses, e.g. (#10). If an item is related to a pull request, include the pull request number and the author, e.g. (#101, \@bradleyboehmke).
+
+---
+# Example: markdown
+
+.scrollable90[
+.code70[
+
+```md
+# Changelog
+All notable changes to this project will be documented in this file.
+
+## Unreleased
+
+### Added
+- Feature `xxx`: allows you to do some great stuff. <Provide good summary and you can even supply examples>.
+- Feature `xxx`: allows you do this other great stuff.
+
+### Removed
+- Feature `xxx`: version 1.0.0 deprecated feature `xxx` has been removed.
+- Param `xxx`: version 1.0.0 deprecated param `xxx` has been removed.
+
+### Fixed
+- Bug in `xxx`: was throwing `xxxx` error when doing <provide good summary> (#87).
+- Bug in `xxx`: was returning a integer instead of a float when <summary> (#86).
+
+
+## Version 1.0.0
+
+### Added
+- Feature `xxx`: allows you to ... <summary>. 
+- Param `xxx`: added to feature `xyz` to allow for... <summary>.
+
+### Deprecated
+- Feature `xxx`: deprecated in favor of feature `xxx` (#98, @johndoe).
+- Param `xxx`: deprecated in favor of param `xxx` (#97, @janedoe).
+
+
+## Version 0.9.1
+
+### Fixed
+- Bug in xxx: <summary> (#74).
+- Bug in xxx: <summary> (#73).
+- Bug in xxx: <summary> (#72).
+
+## Version ...
+...
+```
+]]
+
+---
+# Example: output
+
+.scrollable90.font90[
+
+## Changelog
+
+All notable changes to this project will be documented in this file.
+
+### Unreleased
+
+#### Added
+
+- Feature `xxx`: allows you to do some great stuff. `<Provide good summary and you can even supply examples>`.
+- Feature `xxx`: allows you do this other great stuff.
+
+#### Removed
+
+- Feature `xxx`: version 1.0.0 deprecated feature `xxx` has been removed.
+- Param `xxx`: version 1.0.0 deprecated param `xxx` has been removed.
+
+#### Fixed
+
+- Bug in `xxx`: was throwing `xxxx` error when doing `<provide good summary>` (#87).
+- Bug in `xxx`: was returning a integer instead of a float when `<summary>` (#86).
+
+### Version 1.0.0
+
+#### Added
+
+- Feature `xxx`: allows you to ... `<summary>`.
+- Param `xxx`: added to feature `xyz` to allow for... `<summary>`.
+
+#### Deprecated
+
+- Feature `xxx`: deprecated in favor of feature `xxx` (#98, @johndoe).
+- Param `xxx`: deprecated in favor of param `xxx` (#97, @janedoe).
+
+### Version 0.9.1
+
+#### Fixed
+
+- Bug in xxx: `<summary>` (#74).
+- Bug in xxx: `<summary>` (#73).
+- Bug in xxx: `<summary>` (#72).
+
+## Version ...
+...
+
+
+]
+
+---
+# Exercises
+
+<br>
+
+1. The [Pandas](https://github.com/pandas-dev/pandas) package is known for very detailed release notes. You can read them [here](https://pandas.pydata.org/docs/whatsnew/index.html) and see the source code [here](https://github.com/pandas-dev/pandas/tree/master/doc/source/whatsnew). What are 3 unique attributes about Pandas' approach to documenting changes?
+
+2. Go to your `r fontawesome::fa("r-project")` and/or `r fontawesome::fa("python")` package and check out the existing changelog.
+
+3. Add appropriate sections within the current version you are working to capture the features __added__ and any other changes you have made.
 
 ---
 class: misk-section-slide 

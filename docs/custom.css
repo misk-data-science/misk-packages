@@ -596,11 +596,6 @@ a, a > code {
         background-color: #FAFAFA;
           border-top: 0px solid #FAFAFA;
         background-image:
-          linear-gradient(
-            rgba(255, 255, 255, 0),
-            rgba(231, 85, 60, .1),
-            rgba(68, 112, 153, 1)
-          ),
           url(figures/titleSlideBackground.png);
         background-size: cover;
       }
@@ -609,11 +604,6 @@ a, a > code {
         background-color: #FAFAFA;
           border-top: 0px solid #FAFAFA;
         background-image:
-          linear-gradient(
-            rgba(255, 255, 255, 0),
-            rgba(231, 85, 60, .1),
-            rgba(68, 112, 153, 1)
-          ),
           url(figures/sectionSlideBackground.png);
         background-size: cover;
       }
