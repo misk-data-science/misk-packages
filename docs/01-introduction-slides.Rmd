@@ -1335,7 +1335,140 @@ class: misk-section-slide
 <br><br><br><br><br><br><br>
 .bold.font250[README]
 
+---
+# A newcomers introduction
 
+* A [README](https://en.wikipedia.org/wiki/README) is a text file (often `.md` or `.rst`) that introduces and explains a project
+
+* Should always be in the top level directory of the package directory
+
+* Often the first document a user or develop will encounter when first learning about your package
+
+  - understand what your package is about, 
+  
+  - how to install it,
+  
+  - how to start using it,
+  
+  - how to communicate with the developers/maintainers.
+  
+--
+  
+```{block, type="tip"}
+A great README quickly gains trust from users and other developers!
+```
+
+---
+# Structure
+
+A simple way to structure your README is as follows:
+
+1. A paragraph that describes the high-level purpose of the package.
+
+2. Installation instructions, giving code that can be copied and pasted into an end-user's editor.
+
+3. An example that shows how to use the package to solve a simple problem along with where the user can find more detailed examples if they exist.
+
+4. How a user can report problems, bugs, or ideas for enhancements.
+
+5. Where to find details about contributing to the package (optional).
+
+---
+# Badges
+
+.scrollable90[
+Common to see badges at the top of the README such as:
+
+- ![](https://img.shields.io/badge/version-1.0.0-blue.svg)
+- ![](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
+- ![](https://img.shields.io/badge/coverage-100%25-brightgreen.svg)
+- ![](https://img.shields.io/badge/build-passing-brightgreen.svg)
+
+Not required but often add a level of confidence and professionalism to a package. Most informative and common include:
+
+- [Version number](https://shields.io/category/version) signaling the current version available.
+- [Lifecycle](https://www.tidyverse.org/lifecycle/) of your package to convey the maturity of your package.
+- [Build status](https://shields.io/category/build) to show that the current version builds successfully.
+- [Code coverage](https://shields.io/category/coverage) to show how much of your source code is tested.
+
+```{block, type="tip"}
+Here are some places where you can access/reference common badges you can use in your packages:
+
+- https://shields.io/
+- https://naereen.github.io/badges/
+- https://www.tidyverse.org/lifecycle/
+```
+]
+
+---
+# Great examples
+
+A simple README can go a long way. Here are some great resources to learn more about producing great READMEs and also some fantastic examples:
+
+- https://www.makeareadme.com/
+
+- https://github.com/matiassingers/awesome-readme
+
+```{block, type="todo"}
+Take 15 minutes to check out the above resources.
+```
+
+---
+# Great examples
+
+A simple README can go a long way. Here are some great resources to learn more about producing great READMEs and also some fantastic examples:
+
+- https://www.makeareadme.com/
+
+- https://github.com/matiassingers/awesome-readme
+
+```{block, type="todo"}
+Take 15 minutes to check out the above resources. .bold.red[Thoughts?]
+```
+
+---
+# `r fontawesome::fa("r-project", fill = "white")` example
+
+.pull-left[
+
+![](figures/README_raw.png)
+
+]
+
+.pull-right[
+
+![](figures/README.png)
+]
+
+---
+# `r fontawesome::fa("python", fill = "white")` example
+
+.pull-left[
+
+![](figures/README_raw_Py.png)
+
+]
+
+.pull-right[
+
+![](figures/README_Py.png)
+
+]
+
+---
+# Exercises
+
+1. Review the READMEs for these packages:
+   - [mypy](https://github.com/python/mypy)
+   - [parsnip](https://github.com/tidymodels/parsnip)
+   - [black](https://github.com/psf/black)
+   - [skimr](https://github.com/ropensci/skimr)
+   
+2. Identify 3 things in the above packages' READMEs that you think is very helpful as a newcomer to that package.
+
+3. Identify 3 things in the above packages' READMEs that you think could be improved to help newcomers to that package.
+
+4. Using what you've learned improve upon your package's README. Be sure to do this in a feature branch and perform a pull request to the develop but have at least 2 other classmates review your pull request.
 
 ---
 class: misk-section-slide 

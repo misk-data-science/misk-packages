@@ -54,7 +54,7 @@ TBD
 | 8             | Tests                                | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/08-testing.html)  | [Slides](https://misk-data-science.github.io/misk-packages/01-introduction-slides.html#54) | 
 | 9             | Object documentation                | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/09-object-docs.html) | [Slides](https://misk-data-science.github.io/misk-packages/01-introduction-slides.html#65) |
 | 10            | Changelog                           | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/10-changelog.html) | [Slides](https://misk-data-science.github.io/misk-packages/01-introduction-slides.html#70) |
-| 11            | README                              | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/11-readme.html) | TBD  |
+| 11            | README                              | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/11-readme.html) | [Slides](https://misk-data-science.github.io/misk-packages/01-introduction-slides.html#78) |
 | 12            | Long-form documentation            | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/12-long-form-docs.html) | TBD  |
 | 13            | Package website           | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/13-website.html) | TBD  |
 | 10           | Other components                     | [Notebook](https://misk-data-science.github.io/misk-packages/notebooks/14-other-components.html) | TBD  | 
