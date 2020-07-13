@@ -1476,7 +1476,78 @@ class: misk-section-slide
 <br><br><br><br><br><br><br>
 .bold.font250[Long-form Documentation]
 
+---
+# Why?
 
+* The README is designed to get a new user up and running with your package as quickly as possible. 
+
+* However, you should not go into too much depth in the README because it can be overwhelming. 
+
+* As your package grows and becomes more complex, you will likely want to create tutorials that are designed to give the user the next step of instruction with greater detailed, __longer-form documentation__.
+
+---
+# Vignettes & notebook tutorials
+
+* `r fontawesome::fa("r-project")`: commonly called _"vignettes"_ 
+
+* `r fontawesome::fa("r-project")`: common to store these tutorials in Jupyter notebooks
+
+```{block, type="tip"}
+Need to put yourself in the readers’ shoes, and adopt a "beginner’s mind"
+```
+
+---
+# Vignettes & notebook tutorials
+
+* `r fontawesome::fa("r-project")`: commonly called _"vignettes"_ 
+
+* `r fontawesome::fa("r-project")`: common to store these tutorials in Jupyter notebooks
+
+```{block, type="todo"}
+Take 15 minutes to review these examples:
+
+* R
+   - https://pkgdown.r-lib.org/articles/pkgdown.html
+   - https://dplyr.tidyverse.org/articles/dplyr.html
+   - https://parsnip.tidymodels.org/articles/parsnip_Intro.html
+* Python
+   - https://numpy.org/devdocs/user/quickstart.html
+   - https://github.com/has2k1/plotnine-examples/tree/master/plotnine_examples
+   - https://github.com/scikit-learn/scikit-learn/tree/master/examples
+```
+
+---
+class: inverse, hide-logo
+
+<br><br><br>
+[.center.white.font300[
+`r fontawesome::fa("r-project", fill = "white")` example
+]](https://misk-data-science.github.io/misk-packages/notebooks/12-long-form-docs.html#_tutorial_docs_example)
+
+---
+class: inverse, hide-logo
+
+<br><br><br>
+[.center.white.font300[
+`r fontawesome::fa("python", fill = "white")` example
+]](https://misk-data-science.github.io/misk-packages/notebooks/12-long-form-docs.html#_tutorial_docs_example2)
+
+---
+# Exercises
+
+1. Review these packages long-form documentation and identify three strengths that these all have in common and then identify particular weaknesses in one or more of them.
+   * `r fontawesome::fa("r-project")`
+      - https://pkgdown.r-lib.org/articles/pkgdown.html
+      - https://dplyr.tidyverse.org/articles/dplyr.html
+      - https://parsnip.tidymodels.org/articles/parsnip_Intro.html
+   * `r fontawesome::fa("python")`
+      - https://numpy.org/devdocs/user/quickstart.html
+      - https://github.com/has2k1/plotnine-examples/tree/master/plotnine_examples
+      - https://github.com/scikit-learn/scikit-learn/tree/master/examples
+
+2. Add an introductory vignette to help newcomers use your R package.
+
+3. Add an introductory vignette to help newcomers use your Python package.
 
 ---
 class: misk-section-slide 
