@@ -19,7 +19,8 @@ The following represent collections of R and Python packages that actively post 
 - Python packages
    - [Awesome First PR Opportunities](https://github.com/MunGell/awesome-for-beginners)
    - [good-first-issue](https://github.com/topics/good-first-issue?l=python)
-R packages
+
+- R packages
    - [tidyverse](https://github.com/tidyverse)
    - [tidymodels](https://github.com/tidymodels)
 
