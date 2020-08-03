@@ -5,7 +5,23 @@ output: html_document
 
 <br>
 
-TBD
+Contributing to your first open source project can be intimidating because its often hard to know where to begin? GitHub can help you find good first issues to start contributing to open source with the `good first issue` label (alternative labels exist that represent the same concept -- `easy`, `low-hanging-fruit`, `beginner`, etc.). This label typically represents a solution is required that should have low complexity, severity and minimal specifications. Moreover, packages that use these labels often mean the package maintainers are looking for active contributors from people with less package development experience.
+
+For this portfolio builder, seek out a good first issue to contribute towards for both an R and Python package. Be sure to follow the suggested development workflow of:
+
+1. forking the repository
+2. creating a new feature branch
+3. build out the solution
+4. make a pull request
+
+The following represent collections of R and Python packages that actively post good first issues but feel free to explore Github for other options.
+
+- Python packages
+   - [Awesome First PR Opportunities](https://github.com/MunGell/awesome-for-beginners)
+   - [good-first-issue](https://github.com/topics/good-first-issue?l=python)
+R packages
+   - [tidyverse](https://github.com/tidyverse)
+   - [tidymodels](https://github.com/tidymodels)
 
 <br>
 [🏠](https://github.com/misk-data-science/misk-packages)
