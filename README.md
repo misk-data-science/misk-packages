@@ -23,7 +23,14 @@ This module will teach students how to create R and Python packages to scale cod
 
 ## Learning Objectives
 
-TBD
+This module will step through the process of building and contributing to R and Python packages. The goal is to provide you with a comprehensive picture of how to develop a high quality package. By the end of this module you should:
+
+1. Understand why and when we create packages.
+2. Be comfortable with the general structure and workflow of package development.
+3. Know how to fully document components of your package.
+4. Be able to implement a sound test structure for your source code.
+5. Incorporate continuous integration.
+6. Be exposed to many high quality R and Python packages.
 
 ## Prework
 
@@ -31,16 +38,12 @@ This module makes a few assumptions of your established knowledge regarding your
 
 | Assumptions                       | Resource      
 | --------------------------------- | ------------- |
-| You should be familiar with...    | [link](https://github.com/misk-data-science/misk-packages) | 
-| You should be familiar with...    | [link](https://github.com/misk-data-science/misk-packages) | 
-| You should be familiar with...    | [link](https://github.com/misk-data-science/misk-packages) | 
-| You should be familiar with...    | [link](https://github.com/misk-data-science/misk-packages) | 
+| You should be familiar with the basics of both R and Python | [link](https://github.com/misk-data-science/misk-intro-ds) | 
+| You should be familiar with writing functions | [link](https://github.com/misk-data-science/misk-intro-ds) | 
+| You should be familiar with using git and Github | [link](https://github.com/misk-data-science/misk-dev-tools) |
 
 
 ## Schedule
-
-TBD
-
 
 | Session       | Description                          | Notebook    | Slides | 
 | :-----------: | :----------------------------------- | :-----------: | :-----------: | 
