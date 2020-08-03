@@ -1737,3 +1737,86 @@ class: misk-section-slide
 
 <br><br><br><br><br><br><br>
 .bold.font250[Continuous Integration]
+
+---
+# CI/CD
+
+<br>
+.font130[
+- **Continuous integration (CI)** is the idea of continuously testing our Python package as we make changes to our source code
+
+- **Continuous delivery/deployment (CD)** is the idea that we continuously and automatically deploy our package to a production environment
+]
+
+---
+# Why
+
+<br>
+.font110[
+- So far we relied on ourselves to manually run any tests and checks to ensure our code is working.
+
+- As our project gets larger and we have more contributors, it becomes important that we automate this process to ensure any changes made to our code base are done so with our quality expectations met. 
+
+- Automating this process will guarantee that all changes to our code have been tested. Moreso, we can set it up so that it is obvious if a commit or pull request is passing or failing.
+
+<br>
+.center.bold.red[CI/CD helps ensure a certain level of quality exists]
+]
+
+---
+# Tools
+
+.pull-left.font120[
+There are many tools that can do this. Some common public source tools include:
+
+- [Travis-CI](https://travis-ci.org/)
+- [Azure Pipelines](https://azure.microsoft.com/en-us/services/devops/pipelines/)
+- [GitHub Actions](https://github.com/features/actions)
+
+]
+
+.pull-right[
+
+```{r, echo=FALSE, out.width='75%', out.height='75%', fig.align='center'}
+knitr::include_graphics("figures/travis-ci-azure.jpg")
+```
+
+```{r, echo=FALSE, out.width='50%', out.height='50%', fig.align='center'}
+knitr::include_graphics("figures/github-actions.png")
+```
+
+]
+
+```{block, type='note'}
+All these services not only will automate the process of testing your package, but they can also automate the process of deploying your package to a production environment (or CRAN and PyPI).
+```
+
+---
+class: inverse, hide-logo
+
+<br><br><br>
+[.center.white.font300[
+`r fontawesome::fa("r-project", fill = "white")` example
+]](https://misk-data-science.github.io/misk-packages/notebooks/16-ci.html#_ci_example)
+
+---
+class: inverse, hide-logo
+
+<br><br><br>
+[.center.white.font300[
+`r fontawesome::fa("python", fill = "white")` example
+]](https://misk-data-science.github.io/misk-packages/notebooks/16-ci.html#_ci_example2)
+
+---
+# Exercises
+
+<br>
+1. Add a github actions CI pipeline to your R and Python packages.
+
+2. Add a Travis CI pipeline to your R and Python packages.
+
+3. Add an Azure CI pipeline to your R and Python packages.
+
+4. Identify and review the CI pipeline workflows in at least 3 different [Tidyverse packages](https://github.com/tidyverse). Implement at least one new CI pipeline workflow attribute you discover into your package pipeline.
+
+5. Identify and review the CI pipeline workflows in at least 3 different [Anthony Sottile repositories](https://github.com/asottile?tab=repositories). Implement at least one new CI pipeline workflow attribute you discover into your package pipeline.

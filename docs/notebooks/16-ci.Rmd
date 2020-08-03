@@ -184,7 +184,15 @@ knitr::include_graphics("../figures/pr-checks-pass-py.png")
 
 ## Exercises
 
-TBD
+1. Add a github actions CI pipeline to your R and Python packages.
+
+2. Add a Travis CI pipeline to your R and Python packages.
+
+3. Add an Azure CI pipeline to your R and Python packages.
+
+4. Identify and review the CI pipeline workflows in at least 3 different [Tidyverse packages](https://github.com/tidyverse). Implement at least one new CI pipeline workflow attribute you discover into your package pipeline.
+
+5. Identify and review the CI pipeline workflows in at least 3 different [Anthony Sottile repositories](https://github.com/asottile?tab=repositories). Implement at least one new CI pipeline workflow attribute you discover into your package pipeline.
 
 <br>
 [🏠](https://github.com/misk-data-science/misk-packages)
