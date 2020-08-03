@@ -5,7 +5,31 @@ output: html_document
 
 <br>
 
-TBD
+Documentation is usually an area that every package could improve upon. For this portfolio builder, seek out both R and Python packages where you have identified needed improvements in any of the following:
+
+- README
+- Changelog
+- Object documentation
+- Test documentation
+- Long-form documentation (i.e. tutorials)
+- Package website
+
+Be sure to follow the suggested development workflow of:
+
+1. forking the repository
+2. creating a new feature branch
+3. build out the solution
+4. make a pull request
+
+The following represent collections of R and Python packages that could be good places to start in identifying good first issues for documentation but feel free to explore Github for other options.
+
+- Python packages
+   - [Awesome First PR Opportunities](https://github.com/MunGell/awesome-for-beginners)
+   - [good-first-issue](https://github.com/topics/good-first-issue?l=python)
+
+- R packages
+   - [tidyverse](https://github.com/tidyverse)
+   - [tidymodels](https://github.com/tidymodels)
 
 <br>
 [🏠](https://github.com/misk-data-science/misk-packages)
